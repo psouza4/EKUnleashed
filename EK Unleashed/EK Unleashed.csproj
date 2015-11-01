@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{67F3D805-002E-41E8-B6CE-1DABF0F7AFB3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EKUnleashed</RootNamespace>
+    <AssemblyName>EK Unleashed</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>398.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>External Libraries\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Comm.cs" />
+    <Compile Include="frmImagePreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImagePreview.Designer.cs">
+      <DependentUpon>frmImagePreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKWPriority.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKWPriority.Designer.cs">
+      <DependentUpon>frmKWPriority.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectCard.Designer.cs">
+      <DependentUpon>frmSelectCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectDeck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectDeck.Designer.cs">
+      <DependentUpon>frmSelectDeck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectRune.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectRune.Designer.cs">
+      <DependentUpon>frmSelectRune.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettings.Designer.cs">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameReward.cs" />
+    <Compile Include="GameChat.cs" />
+    <Compile Include="GameClient.cs" />
+    <Compile Include="Errors.cs" />
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameObjs\Card.cs" />
+    <Compile Include="GameObjs\Hero.cs" />
+    <Compile Include="GameObjs\Rune.cs" />
+    <Compile Include="GameResourceManager.cs" />
+    <Compile Include="InputText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputText.designer.cs">
+      <DependentUpon>InputText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JSBeautify.cs" />
+    <Compile Include="frmEKARCCAPTCHA.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEKARCCAPTCHA.designer.cs">
+      <DependentUpon>frmEKARCCAPTCHA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RAMCache.cs" />
+    <Compile Include="RichTextBoxLinks.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RTF.cs" />
+    <Compile Include="Scheduler.cs" />
+    <Compile Include="SettingFromFile.cs" />
+    <Compile Include="SuperDateTime.cs" />
+    <Compile Include="TextComparison.cs" />
+    <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="frmImagePreview.resx">
+      <DependentUpon>frmImagePreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKWPriority.resx">
+      <DependentUpon>frmKWPriority.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectCard.resx">
+      <DependentUpon>frmSelectCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectDeck.resx">
+      <DependentUpon>frmSelectDeck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectRune.resx">
+      <DependentUpon>frmSelectRune.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettings.resx">
+      <DependentUpon>frmSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputText.resx">
+      <DependentUpon>InputText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEKARCCAPTCHA.resx">
+      <DependentUpon>frmEKARCCAPTCHA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Resources\common\141-CAI978.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="398.ico" />
+    <EmbeddedResource Include="Resources\EK_SW\KWRendered.png" />
+    <EmbeddedResource Include="Resources\EK_SW\CardComposite_FrameActivity.PNG" />
+    <EmbeddedResource Include="Resources\common\Card_Blank.jpg" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberGold0.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberGold1.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberGold2.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberGold3.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberGold4.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberGold5.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberGold6.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberGold7.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberGold8.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberGold9.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberSilver8.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberSilver9.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberSilver0.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberSilver1.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberSilver2.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberSilver3.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberSilver4.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberSilver5.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberSilver6.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_NumberSilver7.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_ShaderFadeLeft.png" />
+    <EmbeddedResource Include="Resources\common\CommonComposite_Star.png" />
+    <EmbeddedResource Include="Resources\common\Rune_Blank.jpg" />
+    <EmbeddedResource Include="Resources\EK_SW\CardComposite_ATK.png" />
+    <EmbeddedResource Include="Resources\EK_SW\CardComposite_FrameBoss.png" />
+    <EmbeddedResource Include="Resources\EK_SW\CardComposite_FrameForest.png" />
+    <EmbeddedResource Include="Resources\EK_SW\CardComposite_FrameMountain.png" />
+    <EmbeddedResource Include="Resources\EK_SW\CardComposite_FrameSwamp.png" />
+    <EmbeddedResource Include="Resources\EK_SW\CardComposite_FrameTundra.png" />
+    <EmbeddedResource Include="Resources\EK_SW\CardComposite_HP.png" />
+    <EmbeddedResource Include="Resources\EK_SW\CardComposite_WaitHourglass.png" />
+    <EmbeddedResource Include="Resources\EK_SW\CommonComposite_SkillSC1.png" />
+    <EmbeddedResource Include="Resources\EK_SW\CommonComposite_SkillSC2.png" />
+    <EmbeddedResource Include="Resources\EK_SW\CommonComposite_SkillSC3.png" />
+    <EmbeddedResource Include="Resources\EK_SW\CommonComposite_SkillSC4.png" />
+    <EmbeddedResource Include="Resources\EK_SW\CommonComposite_SkillSC5.png" />
+    <EmbeddedResource Include="Resources\EK_SW\RuneComposite_Background.png" />
+    <EmbeddedResource Include="Resources\EK_SW\RuneComposite_Frame.png" />
+    <EmbeddedResource Include="Resources\EK_SW\RuneComposite_IconAir.png" />
+    <EmbeddedResource Include="Resources\EK_SW\RuneComposite_IconEarth.png" />
+    <EmbeddedResource Include="Resources\EK_SW\RuneComposite_IconFire.png" />
+    <EmbeddedResource Include="Resources\EK_SW\RuneComposite_IconWater.png" />
+    <EmbeddedResource Include="Resources\LoA\CardComposite_ATK.png" />
+    <EmbeddedResource Include="Resources\LoA\CardComposite_FrameDemon.png" />
+    <EmbeddedResource Include="Resources\LoA\CardComposite_FrameForest.png" />
+    <EmbeddedResource Include="Resources\LoA\CardComposite_FrameForestEvolved.png" />
+    <EmbeddedResource Include="Resources\LoA\CardComposite_FrameHell.png" />
+    <EmbeddedResource Include="Resources\LoA\CardComposite_FrameHellEvolved.png" />
+    <EmbeddedResource Include="Resources\LoA\CardComposite_FrameKingdom.png" />
+    <EmbeddedResource Include="Resources\LoA\CardComposite_FrameKingdomEvolved.png" />
+    <EmbeddedResource Include="Resources\LoA\CardComposite_FrameResource.png" />
+    <EmbeddedResource Include="Resources\LoA\CardComposite_FrameWilderness.png" />
+    <EmbeddedResource Include="Resources\LoA\CardComposite_FrameWildernessEvolved.png" />
+    <EmbeddedResource Include="Resources\LoA\CardComposite_HP.png" />
+    <EmbeddedResource Include="Resources\LoA\CardComposite_WaitHourglass.png" />
+    <EmbeddedResource Include="Resources\LoA\CommonComposite_SecondaryShader.png" />
+    <EmbeddedResource Include="Resources\LoA\CommonComposite_SkillSC1.png" />
+    <EmbeddedResource Include="Resources\LoA\CommonComposite_SkillSC2.png" />
+    <EmbeddedResource Include="Resources\LoA\CommonComposite_SkillSC3.png" />
+    <EmbeddedResource Include="Resources\LoA\CommonComposite_SkillSC4.png" />
+    <EmbeddedResource Include="Resources\LoA\CommonComposite_SkillSC5.png" />
+    <EmbeddedResource Include="Resources\LoA\RuneComposite_Background.png" />
+    <EmbeddedResource Include="Resources\LoA\RuneComposite_Frame.png" />
+    <EmbeddedResource Include="Resources\LoA\RuneComposite_IconAir.png" />
+    <EmbeddedResource Include="Resources\LoA\RuneComposite_IconEarth.png" />
+    <EmbeddedResource Include="Resources\LoA\RuneComposite_IconFire.png" />
+    <EmbeddedResource Include="Resources\LoA\RuneComposite_IconWater.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IWshRuntimeLibrary">
+      <Guid>{F935DC20-1CF0-11D0-ADB9-00C04FD58A0B}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
