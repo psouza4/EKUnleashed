@@ -1590,18 +1590,45 @@ namespace EKUnleashed
 
                     //Utils.SetAppSetting("DemonInvasion_DeckSwap", SettingFromFile.GetData(GameClient.settings_file, "Demon Invasion", "DeckSwap"));
                     Utils.SetAppSetting("DemonInvasion_Deck", SettingFromFile.GetData(GameClient.settings_file, "Demon Invasion", "Deck"));
-                    Utils.SetAppSetting("DemonInvasion_Deucalion_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Deucalion", "DeckCards"));
-                    Utils.SetAppSetting("DemonInvasion_Deucalion_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Deucalion", "DeckRunes"));
-                    Utils.SetAppSetting("DemonInvasion_Mars_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Mars", "DeckCards"));
-                    Utils.SetAppSetting("DemonInvasion_Mars_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Mars", "DeckRunes"));
-                    Utils.SetAppSetting("DemonInvasion_PlagueOgryn_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Plague Ogryn", "DeckCards"));
-                    Utils.SetAppSetting("DemonInvasion_PlagueOgryn_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Plague Ogryn", "DeckRunes"));
+
+
+                    Utils.SetAppSetting("DemonInvasion_Azathoth_Deck", SettingFromFile.GetData(GameClient.settings_file, "Azathoth", "Deck"));
+                    Utils.SetAppSetting("DemonInvasion_Azathoth_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Azathoth", "DeckCards"));
+                    Utils.SetAppSetting("DemonInvasion_Azathoth_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Azathoth", "DeckRunes"));
+
+                    Utils.SetAppSetting("DemonInvasion_Bahamut_Deck", SettingFromFile.GetData(GameClient.settings_file, "Bahamut", "Deck"));
+                    Utils.SetAppSetting("DemonInvasion_Bahamut_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Bahamut", "DeckCards"));
+                    Utils.SetAppSetting("DemonInvasion_Bahamut_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Bahamut", "DeckRunes"));
+
+                    Utils.SetAppSetting("DemonInvasion_DarkTitan_Deck", SettingFromFile.GetData(GameClient.settings_file, "DarkTitan", "Deck"));
                     Utils.SetAppSetting("DemonInvasion_DarkTitan_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Dark Titan", "DeckCards"));
                     Utils.SetAppSetting("DemonInvasion_DarkTitan_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Dark Titan", "DeckRunes"));
-                    Utils.SetAppSetting("DemonInvasion_SeaKing_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Sea King", "DeckCards"));
-                    Utils.SetAppSetting("DemonInvasion_SeaKing_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Sea King", "DeckRunes"));
+
+                    Utils.SetAppSetting("DemonInvasion_Deucalion_Deck", SettingFromFile.GetData(GameClient.settings_file, "Deucalion", "Deck"));
+                    Utils.SetAppSetting("DemonInvasion_Deucalion_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Deucalion", "DeckCards"));
+                    Utils.SetAppSetting("DemonInvasion_Deucalion_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Deucalion", "DeckRunes"));
+
+                    Utils.SetAppSetting("DemonInvasion_Mars_Deck", SettingFromFile.GetData(GameClient.settings_file, "Mars", "Deck"));
+                    Utils.SetAppSetting("DemonInvasion_Mars_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Mars", "DeckCards"));
+                    Utils.SetAppSetting("DemonInvasion_Mars_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Mars", "DeckRunes"));
+
+                    Utils.SetAppSetting("DemonInvasion_Pandarus_Deck", SettingFromFile.GetData(GameClient.settings_file, "Pandarus", "Deck"));
                     Utils.SetAppSetting("DemonInvasion_Pandarus_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Pandarus", "DeckCards"));
                     Utils.SetAppSetting("DemonInvasion_Pandarus_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Pandarus", "DeckRunes"));
+
+                    Utils.SetAppSetting("DemonInvasion_Pazuzu_Deck", SettingFromFile.GetData(GameClient.settings_file, "Pazuzu", "Deck"));
+                    Utils.SetAppSetting("DemonInvasion_Pazuzu_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Pazuzu", "DeckCards"));
+                    Utils.SetAppSetting("DemonInvasion_Pazuzu_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Pazuzu", "DeckRunes"));
+
+                    Utils.SetAppSetting("DemonInvasion_Plague Ogryn_Deck", SettingFromFile.GetData(GameClient.settings_file, "Plague Ogryn", "Deck"));
+                    Utils.SetAppSetting("DemonInvasion_PlagueOgryn_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Plague Ogryn", "DeckCards"));
+                    Utils.SetAppSetting("DemonInvasion_PlagueOgryn_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Plague Ogryn", "DeckRunes"));
+
+                    Utils.SetAppSetting("DemonInvasion_Sea King_Deck", SettingFromFile.GetData(GameClient.settings_file, "Sea King", "Deck"));
+                    Utils.SetAppSetting("DemonInvasion_SeaKing_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Sea King", "DeckCards"));
+                    Utils.SetAppSetting("DemonInvasion_SeaKing_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Sea King", "DeckRunes"));
+
+                    
                 }
             }
 

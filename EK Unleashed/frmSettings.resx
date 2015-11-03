@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label9.Text" xml:space="preserve">
-    <value>A chat server connection is required for some game features to work, including all chat, instant notifications of rewards, new e-mails, friend requests, thieves, etc. as well as Demon Invasion and Kingdom War functionality.  If you are not using these features, you do not need to log into the chat server.  Logging into the chat server will disconnect you from any other device you may be playing from.</value>
+  <data name="label39.Text" xml:space="preserve">
+    <value>During demon invasion cooldown, this option will swap between your primary deck and demon invasion deck to avoid being sniped by someone with a ranked match/arena battle.  However, this option will significantly slow down attempts to gem the demon invasion event.  If you are gemming, you may want to leave this option off.</value>
   </data>
   <data name="label58.Text" xml:space="preserve">
     <value>An enchanting reserve of 5 means that any card that is eligible to enchant another card with will be spared if it would reduce the number remaining by this threshold.
@@ -132,11 +132,8 @@ Food cards will ignore the reserve and star rating options, but not the 'never u
   <data name="label25.Text" xml:space="preserve">
     <value>Please note that if a maze tower is not completed (all types of fights on all floors), EK Unleashed will not automatically use your free daily reset. Make sure if you disable fighting treasure chest or monster encounters that you manually reset maze towers daily.</value>
   </data>
-  <data name="label38.Text" xml:space="preserve">
-    <value>During demon invasion cooldown, this option will swap between your primary deck and demon invasion deck to avoid being sniped by someone with a ranked match/arena battle.  However, this option will significantly slow down attempts to gem the demon invasion event.  If you are gemming, you may want to leave this option off.</value>
-  </data>
-  <data name="label39.Text" xml:space="preserve">
-    <value>During demon invasion cooldown, this option will swap between your primary deck and demon invasion deck to avoid being sniped by someone with a ranked match/arena battle.  However, this option will significantly slow down attempts to gem the demon invasion event.  If you are gemming, you may want to leave this option off.</value>
+  <data name="label9.Text" xml:space="preserve">
+    <value>A chat server connection is required for some game features to work, including all chat, instant notifications of rewards, new e-mails, friend requests, thieves, etc. as well as Demon Invasion and Kingdom War functionality.  If you are not using these features, you do not need to log into the chat server.  Logging into the chat server will disconnect you from any other device you may be playing from.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

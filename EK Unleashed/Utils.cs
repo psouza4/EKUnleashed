@@ -328,6 +328,28 @@ namespace EKUnleashed
             return string.Empty;
         }
 
+        public static int CDeck(Object oData)
+        {
+            int iRetVal = 0;
+
+            string deck = oData.ToString().Trim().ToUpper();
+
+            if (deck == "KW")
+            {
+                oData = "Kingdom War";
+            }
+            else if (Utils.CInt(deck) > 0)
+            {
+                oData = "Deck " + deck;
+            }
+            else
+            {
+                oData = "";
+            }
+
+            return iRetVal;
+        }
+
         public static int CInt(Object oData)
         {
             int iRetVal = 0;
