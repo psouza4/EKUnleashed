@@ -2831,8 +2831,8 @@ namespace EKUnleashed
             if (demon == "Mars") deck = Utils.GetAppSetting("DemonInvasion_Mars_Deck");
             if (demon == "Pandarus") deck = Utils.GetAppSetting("DemonInvasion_Pandarus_Deck");
             if (demon == "Pazuzu") deck = Utils.GetAppSetting("DemonInvasion_Pazuzu_Deck");
-            if (demon == "PlagueOgryn") deck = Utils.GetAppSetting("DemonInvasion_Plague Ogryn_Deck");
-            if (demon == "Plague Ogryn") deck = Utils.GetAppSetting("DemonInvasion_Plague Ogryn_Deck");
+            if (demon == "PlagueOgryn") deck = Utils.GetAppSetting("DemonInvasion_PlagueOgryn_Deck");
+            if (demon == "Plague Ogryn") deck = Utils.GetAppSetting("DemonInvasion_PlagueOgryn_Deck");
             if (demon == "Sea King") deck = Utils.GetAppSetting("DemonInvasion_SeaKing_Deck");
             if (demon == "SeaKing") deck = Utils.GetAppSetting("DemonInvasion_SeaKing_Deck");
 

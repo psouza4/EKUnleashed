@@ -1620,11 +1620,11 @@ namespace EKUnleashed
                     Utils.SetAppSetting("DemonInvasion_Pazuzu_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Pazuzu", "DeckCards"));
                     Utils.SetAppSetting("DemonInvasion_Pazuzu_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Pazuzu", "DeckRunes"));
 
-                    Utils.SetAppSetting("DemonInvasion_Plague Ogryn_Deck", SettingFromFile.GetData(GameClient.settings_file, "Plague Ogryn", "Deck"));
+                    Utils.SetAppSetting("DemonInvasion_PlagueOgryn_Deck", SettingFromFile.GetData(GameClient.settings_file, "Plague Ogryn", "Deck"));
                     Utils.SetAppSetting("DemonInvasion_PlagueOgryn_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Plague Ogryn", "DeckCards"));
                     Utils.SetAppSetting("DemonInvasion_PlagueOgryn_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Plague Ogryn", "DeckRunes"));
 
-                    Utils.SetAppSetting("DemonInvasion_Sea King_Deck", SettingFromFile.GetData(GameClient.settings_file, "Sea King", "Deck"));
+                    Utils.SetAppSetting("DemonInvasion_SeaKing_Deck", SettingFromFile.GetData(GameClient.settings_file, "Sea King", "Deck"));
                     Utils.SetAppSetting("DemonInvasion_SeaKing_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Sea King", "DeckCards"));
                     Utils.SetAppSetting("DemonInvasion_SeaKing_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Sea King", "DeckRunes"));
 
