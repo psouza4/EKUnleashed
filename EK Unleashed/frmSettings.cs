@@ -182,6 +182,9 @@ namespace EKUnleashed
                 this.btnDemonInvasion_Deck_LoA.Text = di_deck;
                 this.btnDemonInvasion_Deck_LoA.Tag = di_deck;
 
+                this.chkDI_AvoidSniping_EK.Checked = Utils.True("DemonInvasion_AvoidSniping");
+                this.chkDI_AvoidSniping_LoA.Checked = Utils.True("DemonInvasion_AvoidSniping");
+
                 di_deck = Utils.GetAppSetting("DemonInvasion_Azathoth_Deck");
                 if (Utils.CDeck(di_deck) > 0) this.btn_Azathoth_Deck.Text = "Deck" + di_deck;                                    
                 this.btn_Azathoth_Deck.Tag = di_deck;
@@ -401,6 +404,7 @@ namespace EKUnleashed
                 }
                 else
                 {
+                    Utils.SetAppSetting("DemonInvasion_AvoidSniping", this.chkDI_AvoidSniping_EK.Checked.ToString());
                     Utils.SetAppSetting("DemonInvasion_Azathoth_Deck", this.btn_Azathoth_Deck.Tag.ToString());
                     Utils.SetAppSetting("DemonInvasion_Azathoth_DeckCards", this.txtDI_Azathoth_DeckCards.Text.Trim());
                     Utils.SetAppSetting("DemonInvasion_Azathoth_DeckRunes", this.txtDI_Azathoth_DeckRunes.Text.Trim());

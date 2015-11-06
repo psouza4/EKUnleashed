@@ -2605,6 +2605,8 @@ namespace EKUnleashed
 
                             if (boss_current_HP == 0)
                                 Utils.LoggerNotifications("<color=#ffa000>... this demon invasion has ended already!</color>");
+                            else if (boss_card_id == "") //let's re-run this if we don't have a demon 
+                                ShownBossInfo = false;
                         }
 
                         if (Utils.CInt(boss_info["data"]["BossFleeTime"].ToString()) <= 0) // boss escaped -- we're done here

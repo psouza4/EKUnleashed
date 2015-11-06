@@ -220,6 +220,7 @@
             this.txtAccount_GameAccount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tabsSettings = new System.Windows.Forms.TabControl();
+            this.chkDI_AvoidSniping_EK = new System.Windows.Forms.CheckBox();
             this.tabRaider.SuspendLayout();
             this.tabThieves.SuspendLayout();
             this.tabArena.SuspendLayout();
@@ -999,6 +1000,7 @@
             this.tabDemonInvasions_EK.AutoScroll = true;
             this.tabDemonInvasions_EK.AutoScrollMinSize = new System.Drawing.Size(0, 800);
             this.tabDemonInvasions_EK.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.tabDemonInvasions_EK.Controls.Add(this.chkDI_AvoidSniping_EK);
             this.tabDemonInvasions_EK.Controls.Add(this.groupBox18);
             this.tabDemonInvasions_EK.Controls.Add(this.groupBox17);
             this.tabDemonInvasions_EK.Controls.Add(this.groupBox16);
@@ -1550,7 +1552,7 @@
             this.btn_Azathoth_Deck.ForeColor = System.Drawing.Color.Black;
             this.btn_Azathoth_Deck.Location = new System.Drawing.Point(16, 24);
             this.btn_Azathoth_Deck.Name = "btn_Azathoth_Deck";
-            this.btn_Azathoth_Deck.Size = new System.Drawing.Size(131, 20);
+            this.btn_Azathoth_Deck.Size = new System.Drawing.Size(131, 22);
             this.btn_Azathoth_Deck.TabIndex = 50;
             this.btn_Azathoth_Deck.Text = "(select deck)";
             this.btn_Azathoth_Deck.UseVisualStyleBackColor = false;
@@ -2322,6 +2324,17 @@
             this.tabsSettings.Size = new System.Drawing.Size(872, 481);
             this.tabsSettings.TabIndex = 0;
             // 
+            // chkDI_AvoidSniping_EK
+            // 
+            this.chkDI_AvoidSniping_EK.AutoSize = true;
+            this.chkDI_AvoidSniping_EK.ForeColor = System.Drawing.Color.White;
+            this.chkDI_AvoidSniping_EK.Location = new System.Drawing.Point(749, 2);
+            this.chkDI_AvoidSniping_EK.Name = "chkDI_AvoidSniping_EK";
+            this.chkDI_AvoidSniping_EK.Size = new System.Drawing.Size(86, 17);
+            this.chkDI_AvoidSniping_EK.TabIndex = 59;
+            this.chkDI_AvoidSniping_EK.Text = "Toggle deck";
+            this.chkDI_AvoidSniping_EK.UseVisualStyleBackColor = true;
+            // 
             // frmSettings
             // 
             this.AcceptButton = this.btnSave;
@@ -2363,6 +2376,7 @@
             this.groupBox14.ResumeLayout(false);
             this.groupBox14.PerformLayout();
             this.tabDemonInvasions_EK.ResumeLayout(false);
+            this.tabDemonInvasions_EK.PerformLayout();
             this.groupBox18.ResumeLayout(false);
             this.groupBox18.PerformLayout();
             this.groupBox17.ResumeLayout(false);
@@ -2589,5 +2603,6 @@
         private System.Windows.Forms.TextBox txtAccount_GameAccount;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TabControl tabsSettings;
+        private System.Windows.Forms.CheckBox chkDI_AvoidSniping_EK;
     }
 }
