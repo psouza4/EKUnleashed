@@ -2605,6 +2605,8 @@ namespace EKUnleashed
 
                             if (boss_current_HP == 0)
                                 Utils.LoggerNotifications("<color=#ffa000>... this demon invasion has ended already!</color>");
+                            else if (boss_card_id == "") //let's re-run this if we don't have a demon 
+                                ShownBossInfo = false;
                         }
 
                         if (Utils.CInt(boss_info["data"]["BossFleeTime"].ToString()) <= 0) // boss escaped -- we're done here
@@ -2819,39 +2821,61 @@ namespace EKUnleashed
             return;
         }
 
+        public string DeckOfDemon(string demon)
+        {
+            string deck = "0";
+
+            if (demon == "Azathoth") deck = Utils.GetAppSetting("DemonInvasion_Azathoth_Deck");            
+            if (demon == "Bahamut") deck = Utils.GetAppSetting("DemonInvasion_Bahamut_Deck");
+            if (demon == "DarkTitan") deck = Utils.GetAppSetting("DemonInvasion_DarkTitan_Deck");
+            if (demon == "Dark Titan") deck = Utils.GetAppSetting("DemonInvasion_DarkTitan_Deck");
+            if (demon == "Deucalion") deck = Utils.GetAppSetting("DemonInvasion_Deucalion_Deck");
+            if (demon == "Mars") deck = Utils.GetAppSetting("DemonInvasion_Mars_Deck");
+            if (demon == "Pandarus") deck = Utils.GetAppSetting("DemonInvasion_Pandarus_Deck");
+            if (demon == "Pazuzu") deck = Utils.GetAppSetting("DemonInvasion_Pazuzu_Deck");
+            if (demon == "PlagueOgryn") deck = Utils.GetAppSetting("DemonInvasion_PlagueOgryn_Deck");
+            if (demon == "Plague Ogryn") deck = Utils.GetAppSetting("DemonInvasion_PlagueOgryn_Deck");
+            if (demon == "Sea King") deck = Utils.GetAppSetting("DemonInvasion_SeaKing_Deck");
+            if (demon == "SeaKing") deck = Utils.GetAppSetting("DemonInvasion_SeaKing_Deck");
+
+            return deck;
+        }
+
         public string NameOfDemon(string which_demon_invasion_cardID)
         {
+            string demon_name = "DI General";
             try
             {
                 JObject DemonCard = this.GetCardByID(Utils.CInt(which_demon_invasion_cardID));
                 if (DemonCard != null)
-                    return DemonCard["CardName"].ToString();
+                    demon_name = DemonCard["CardName"].ToString();
             }
             catch { }
 
             if (this.Service == GameService.Elemental_Kingdoms || this.Service == GameService.Shikoku_Wars || this.Service == GameService.Magic_Realms)
             {
-                if (which_demon_invasion_cardID == "9001") return "Deucalion";
-                if (which_demon_invasion_cardID == "9002") return "Mars";
-                if (which_demon_invasion_cardID == "9003") return "Plague Ogryn";
-                if (which_demon_invasion_cardID == "9004") return "Dark Titan";
-                if (which_demon_invasion_cardID == "9005") return "Sea King";
-                if (which_demon_invasion_cardID == "9006") return "Pandarus";
-                //if (which_demon_invasion_cardID == "9007") return "?"; // Azathoth ?
-                if (which_demon_invasion_cardID == "9008") return "Pazuzu";
-                if (which_demon_invasion_cardID == "9009") return "Bahamut";
+                if (which_demon_invasion_cardID == "9001") demon_name = "Deucalion";
+                if (which_demon_invasion_cardID == "9002") demon_name = "Mars";
+                if (which_demon_invasion_cardID == "9003") demon_name = "Plague Ogryn";
+                if (which_demon_invasion_cardID == "9004") demon_name = "Dark Titan";
+                if (which_demon_invasion_cardID == "9005") demon_name = "Sea King";
+                if (which_demon_invasion_cardID == "9006") demon_name = "Pandarus";
+                //if (which_demon_invasion_cardID == "9007") demon_name =  "?"; // Azathoth ?
+                if (which_demon_invasion_cardID == "9008") demon_name = "Pazuzu";
+                if (which_demon_invasion_cardID == "9009") demon_name = "Bahamut";
             }
             else if (this.Service == GameService.Lies_of_Astaroth || this.Service == GameService.Elves_Realm)
             {
-                if (which_demon_invasion_cardID == "9001") return "Mahr";
-                if (which_demon_invasion_cardID == "9002") return "Lord Shiva";
-                if (which_demon_invasion_cardID == "9003") return "SpiderQueen";
-                if (which_demon_invasion_cardID == "9004") return "Onaga";
-                if (which_demon_invasion_cardID == "9005") return "Nemesis";
-                if (which_demon_invasion_cardID == "9006") return "Demon Fiend";
+                if (which_demon_invasion_cardID == "9001") demon_name = "Mahr";
+                if (which_demon_invasion_cardID == "9002") demon_name = "Lord Shiva";
+                if (which_demon_invasion_cardID == "9003") demon_name = "SpiderQueen";
+                if (which_demon_invasion_cardID == "9004") demon_name = "Onaga";
+                if (which_demon_invasion_cardID == "9005") demon_name = "Nemesis";
+                if (which_demon_invasion_cardID == "9006") demon_name = "Demon Fiend";
             }
 
-            return "DI General";
+            demon_name = demon_name.Replace(" ", "");
+            return demon_name;
         }
 
         public string ShortCardInfo(int card_ID, int level, bool compact_view = false)
@@ -3278,14 +3302,21 @@ namespace EKUnleashed
         {
             if (this.Want_Deck_Swap)
             {
-                string deck_to_use = Utils.GetAppSetting("DemonInvasion_Deck");
-                string deck_cards = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_" + this.NameOfDemon(which_demon_invasion_cardID).Replace(" ", "") + "_DeckCards")).Replace(", ", ",");
-                string deck_runes = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_" + this.NameOfDemon(which_demon_invasion_cardID).Replace(" ", "") + "_DeckRunes")).Replace(", ", ",");
+                string demon = this.NameOfDemon(which_demon_invasion_cardID);
+                string deck_to_use = this.DeckOfDemon(demon);
+                string deck_cards = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_" + demon + "_DeckCards")).Replace(", ", ",");
+                string deck_runes = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_" + demon + "_DeckRunes")).Replace(", ", ",");
 
                 if (deck_to_use.ToUpper().Contains("KW")) deck_to_use = "KW";
                 if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
 
                 if ((deck_to_use != "KW") && (Utils.CInt(deck_to_use) <= 0)) return "0";
+
+                if (deck_cards == "" )
+                {
+                    Utils.LoggerNotifications("<color=#a07000>Using Deck " + deck_to_use + " for " + demon + "</color>");
+                    return this.GetDeckIDForOrdinal(deck_to_use);
+                }
 
                 List<string> card_ids_to_use = this.BuildDeckCards(new List<string>(Utils.SubStringsDups(deck_cards, ",")));
                 List<string> rune_ids_to_use = this.BuildDeckRunes(new List<string>(Utils.SubStringsDups(deck_runes, ",")));
