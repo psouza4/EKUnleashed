@@ -2821,22 +2821,31 @@ namespace EKUnleashed
             return;
         }
 
-        public string DeckOfDemon(string demon)
+        public string DemonDeckToUse(string demon)
         {
             string deck = "0";
 
-            if (demon == "Azathoth") deck = Utils.GetAppSetting("DemonInvasion_Azathoth_Deck");            
-            if (demon == "Bahamut") deck = Utils.GetAppSetting("DemonInvasion_Bahamut_Deck");
-            if (demon == "DarkTitan") deck = Utils.GetAppSetting("DemonInvasion_DarkTitan_Deck");
-            if (demon == "Dark Titan") deck = Utils.GetAppSetting("DemonInvasion_DarkTitan_Deck");
-            if (demon == "Deucalion") deck = Utils.GetAppSetting("DemonInvasion_Deucalion_Deck");
-            if (demon == "Mars") deck = Utils.GetAppSetting("DemonInvasion_Mars_Deck");
-            if (demon == "Pandarus") deck = Utils.GetAppSetting("DemonInvasion_Pandarus_Deck");
-            if (demon == "Pazuzu") deck = Utils.GetAppSetting("DemonInvasion_Pazuzu_Deck");
-            if (demon == "PlagueOgryn") deck = Utils.GetAppSetting("DemonInvasion_PlagueOgryn_Deck");
-            if (demon == "Plague Ogryn") deck = Utils.GetAppSetting("DemonInvasion_PlagueOgryn_Deck");
-            if (demon == "Sea King") deck = Utils.GetAppSetting("DemonInvasion_SeaKing_Deck");
-            if (demon == "SeaKing") deck = Utils.GetAppSetting("DemonInvasion_SeaKing_Deck");
+            // Elemental Kingdoms/Magic Realms
+            if (this.Service == GameService.Elemental_Kingdoms || this.Service == GameService.Shikoku_Wars || this.Service == GameService.Magic_Realms)
+            {
+                if (demon == "Azathoth") deck = Utils.GetAppSetting("DemonInvasion_Azathoth_Deck");
+                if (demon == "Bahamut") deck = Utils.GetAppSetting("DemonInvasion_Bahamut_Deck");
+                if (demon == "DarkTitan") deck = Utils.GetAppSetting("DemonInvasion_DarkTitan_Deck");
+                if (demon == "Dark Titan") deck = Utils.GetAppSetting("DemonInvasion_DarkTitan_Deck");
+                if (demon == "Deucalion") deck = Utils.GetAppSetting("DemonInvasion_Deucalion_Deck");
+                if (demon == "Mars") deck = Utils.GetAppSetting("DemonInvasion_Mars_Deck");
+                if (demon == "Pandarus") deck = Utils.GetAppSetting("DemonInvasion_Pandarus_Deck");
+                if (demon == "Pazuzu") deck = Utils.GetAppSetting("DemonInvasion_Pazuzu_Deck");
+                if (demon == "PlagueOgryn") deck = Utils.GetAppSetting("DemonInvasion_PlagueOgryn_Deck");
+                if (demon == "Plague Ogryn") deck = Utils.GetAppSetting("DemonInvasion_PlagueOgryn_Deck");
+                if (demon == "Sea King") deck = Utils.GetAppSetting("DemonInvasion_SeaKing_Deck");
+                if (demon == "SeaKing") deck = Utils.GetAppSetting("DemonInvasion_SeaKing_Deck");
+            }
+            // Lies of Astaroth
+            else if (this.Service == GameService.Lies_of_Astaroth || this.Service == GameService.Elves_Realm)
+            {
+                deck = Utils.GetAppSetting("DemonInvasion_Deck");
+            }
 
             return deck;
         }
@@ -3303,7 +3312,7 @@ namespace EKUnleashed
             if (this.Want_Deck_Swap)
             {
                 string demon = this.NameOfDemon(which_demon_invasion_cardID);
-                string deck_to_use = this.DeckOfDemon(demon);
+                string deck_to_use = this.DemonDeckToUse(demon);
                 string deck_cards = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_" + demon + "_DeckCards")).Replace(", ", ",");
                 string deck_runes = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_" + demon + "_DeckRunes")).Replace(", ", ",");
 

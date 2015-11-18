@@ -176,87 +176,58 @@ namespace EKUnleashed
                 this.chkAutomation_CardCrafting.Checked = Utils.False("Game_CardCrafting");
                 this.chkAutomation_Events_CheckedChanged(null, null);
 
-                // Demon Invasion tab
-                string di_deck = Utils.GetAppSetting("DemonInvasion_Deck");
-                Utils.CDeck(di_deck);
-                this.btnDemonInvasion_Deck_LoA.Text = di_deck;
-                this.btnDemonInvasion_Deck_LoA.Tag = di_deck;
-
+                // Elemental Kingdoms/Magic Realms Demon Invasion tab
                 this.chkDI_AvoidSniping_EK.Checked = Utils.True("DemonInvasion_AvoidSniping");
-                this.chkDI_AvoidSniping_LoA.Checked = Utils.True("DemonInvasion_AvoidSniping");
 
-                di_deck = Utils.GetAppSetting("DemonInvasion_Azathoth_Deck");
-                if (Utils.CDeck(di_deck) > 0) this.btn_Azathoth_Deck.Text = "Deck" + di_deck;                                    
-                this.btn_Azathoth_Deck.Tag = di_deck;
-
-                di_deck = Utils.GetAppSetting("DemonInvasion_Bahamut_Deck");
-                if (Utils.CDeck(di_deck) > 0) this.btn_Bahamut_Deck.Text = "Deck" + di_deck;
-                this.btn_Bahamut_Deck.Tag = di_deck;                
-
-                di_deck = Utils.GetAppSetting("DemonInvasion_DarkTitan_Deck");
-                if (Utils.CDeck(di_deck) > 0) this.btn_DarkTitan_Deck.Text = "Deck" + di_deck;                                  
-                this.btn_DarkTitan_Deck.Tag = di_deck;
-
-                di_deck = Utils.GetAppSetting("DemonInvasion_Deucalion_Deck");
-                if (Utils.CDeck(di_deck) > 0) this.btn_Deucalion_Deck.Text = "Deck" + di_deck;
-                this.btn_Deucalion_Deck.Tag = di_deck;
-
-                di_deck = Utils.GetAppSetting("DemonInvasion_Mars_Deck");
-                if (Utils.CDeck(di_deck) > 0) this.btn_Mars_Deck.Text = "Deck" + di_deck;
-                this.btn_Mars_Deck.Tag = di_deck;
-
-                di_deck = Utils.GetAppSetting("DemonInvasion_Pandarus_Deck");
-                if (Utils.CDeck(di_deck) > 0) this.btn_Pandarus_Deck.Text = "Deck" + di_deck;
-                this.btn_Pandarus_Deck.Tag = di_deck;
-
-                di_deck = Utils.GetAppSetting("DemonInvasion_Pazuzu_Deck");
-                if (Utils.CDeck(di_deck) > 0) this.btn_Pazuzu_Deck.Text = di_deck;
-                this.btn_Pazuzu_Deck.Tag = di_deck;
-
-                di_deck = Utils.GetAppSetting("DemonInvasion_PlagueOgryn_Deck");
-                if (Utils.CDeck(di_deck) > 0) this.btn_PlagueOgryn_Deck.Text = "Deck" + di_deck;
-                this.btn_PlagueOgryn_Deck.Tag = di_deck;
-
-                di_deck = Utils.GetAppSetting("DemonInvasion_SeaKing_Deck");
-                if (Utils.CDeck(di_deck) > 0) this.btn_SeaKing_Deck.Text = "Deck" + di_deck;
-                this.btn_SeaKing_Deck.Tag = di_deck;
-
-                this.btn_Azathoth_Deck.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Azathoth_Deck").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
+                this.btn_Azathoth_Deck.Tag = Utils.GetAppSetting("DemonInvasion_Azathoth_Deck");
+                this.btn_Azathoth_Deck.Text = DescribeDeck(this.btn_Azathoth_Deck.Tag);
                 this.txtDI_Azathoth_DeckCards.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Azathoth_DeckCards").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
                 this.txtDI_Azathoth_DeckRunes.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Azathoth_DeckRunes").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
 
-                this.btn_Bahamut_Deck.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Bahamut_Deck").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
+                this.btn_Bahamut_Deck.Tag = Utils.GetAppSetting("DemonInvasion_Bahamut_Deck");
+                this.btn_Bahamut_Deck.Text = DescribeDeck(this.btn_Bahamut_Deck.Tag);
                 this.txtDI_Bahamut_DeckCards.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Bahamut_DeckCards").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
                 this.txtDI_Bahamut_DeckRunes.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Bahamut_DeckRunes").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
 
-                this.btn_DarkTitan_Deck.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_DarkTitan_Deck").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
+                this.btn_DarkTitan_Deck.Tag = Utils.GetAppSetting("DemonInvasion_DarkTitan_Deck");
+                this.btn_DarkTitan_Deck.Text = DescribeDeck(this.btn_DarkTitan_Deck.Tag);
                 this.txtDI_DarkTitan_DeckCards.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_DarkTitan_DeckCards").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
                 this.txtDI_DarkTitan_DeckRunes.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_DarkTitan_DeckRunes").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
 
-                this.btn_Deucalion_Deck.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Deucalion_Deck").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
+                this.btn_Deucalion_Deck.Tag = Utils.GetAppSetting("DemonInvasion_Deucalion_Deck");
+                this.btn_Deucalion_Deck.Text = DescribeDeck(this.btn_Deucalion_Deck.Tag);
                 this.txtDI_Deucalion_DeckCards.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Deucalion_DeckCards").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
                 this.txtDI_Deucalion_DeckRunes.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Deucalion_DeckRunes").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");            
 
-                this.btn_Mars_Deck.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Mars_Deck").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
+                this.btn_Mars_Deck.Tag = Utils.GetAppSetting("DemonInvasion_Mars_Deck");
+                this.btn_Mars_Deck.Text = DescribeDeck(this.btn_Mars_Deck.Tag);
                 this.txtDI_Mars_DeckCards.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Mars_DeckCards").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
                 this.txtDI_Mars_DeckRunes.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Mars_DeckRunes").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
 
-                this.btn_Pandarus_Deck.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Pandarus_Deck").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
+                this.btn_Pandarus_Deck.Tag = Utils.GetAppSetting("DemonInvasion_Pandarus_Deck");
+                this.btn_Pandarus_Deck.Text = DescribeDeck(this.btn_Pandarus_Deck.Tag);
                 this.txtDI_Pandarus_DeckCards.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Pandarus_DeckCards").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
                 this.txtDI_Pandarus_DeckRunes.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Pandarus_DeckRunes").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
 
-                this.btn_Pazuzu_Deck.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Pazuzu_Deck").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
+                this.btn_Pazuzu_Deck.Tag = Utils.GetAppSetting("DemonInvasion_Pazuzu_Deck");
+                this.btn_Pazuzu_Deck.Text = DescribeDeck(this.btn_Pazuzu_Deck.Tag);
                 this.txtDI_Pazuzu_DeckCards.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Pazuzu_DeckCards").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
                 this.txtDI_Pazuzu_DeckRunes.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Pazuzu_DeckRunes").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
 
-                this.btn_PlagueOgryn_Deck.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_PlagueOgryn_Deck").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
+                this.btn_PlagueOgryn_Deck.Tag = Utils.GetAppSetting("DemonInvasion_PlagueOgryn_Deck");
+                this.btn_PlagueOgryn_Deck.Text = DescribeDeck(this.btn_PlagueOgryn_Deck.Tag);
                 this.txtDI_PlagueOgryn_DeckCards.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_PlagueOgryn_DeckCards").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
                 this.txtDI_PlagueOgryn_DeckRunes.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_PlagueOgryn_DeckRunes").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
 
-                this.btn_SeaKing_Deck.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_SeaKing_Deck").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
+                this.btn_SeaKing_Deck.Tag = Utils.GetAppSetting("DemonInvasion_SeaKing_Deck");
+                this.btn_SeaKing_Deck.Text = DescribeDeck(this.btn_SeaKing_Deck.Tag);
                 this.txtDI_SeaKing_DeckCards.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_SeaKing_DeckCards").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
                 this.txtDI_SeaKing_DeckRunes.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_SeaKing_DeckRunes").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
 
+                // Lies of Astaroth Demon Invasions tab
+                this.btnDemonInvasion_Deck_LoA.Tag = Utils.GetAppSetting("DemonInvasion_Deck");
+                this.btnDemonInvasion_Deck_LoA.Text = DescribeDeck(this.btnDemonInvasion_Deck_LoA.Tag);
+                this.chkDI_AvoidSniping_LoA.Checked = Utils.True("DemonInvasion_AvoidSniping");
                 this.txtDI_Mahr_DeckCards.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Mahr_DeckCards").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
                 this.txtDI_Mahr_DeckRunes.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Mahr_DeckRunes").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
                 this.txtDI_Destroyer_DeckCards.Text = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_Destroyer_DeckCards").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
@@ -277,12 +248,8 @@ namespace EKUnleashed
                 this.chkArenaStealthMethod.Checked = Utils.False("Arena_Stealth");
 
                 // Thieves tab
-                string thief_deck = Utils.GetAppSetting("Thief_Deck").Trim().ToUpper();
-                Utils.CDeck(thief_deck);
-                this.btnThiefDeck.Text = thief_deck;
-                this.btnThiefDeck.Tag = thief_deck;
-
-                this.btnThiefDeck.Tag = thief_deck;
+                this.btnThiefDeck.Tag = Utils.GetAppSetting("Thief_Deck").Trim().ToUpper();
+                this.btnThiefDeck.Text = DescribeDeck(this.btnThiefDeck.Tag);
                 this.txtThieves_DeckCards.Text = Utils.CondenseSpacing(Utils.GetAppSetting("Thief_DeckCards").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
                 this.txtThieves_DeckRunes.Text = Utils.CondenseSpacing(Utils.GetAppSetting("Thief_DeckRunes").Trim()).Replace(", ", ",").Replace(" ,", ",").Replace(",", ", ");
                 this.chkThieves_AlwaysFill.Checked = Utils.False("Thief_AlwaysFill");
@@ -517,6 +484,18 @@ namespace EKUnleashed
             this.chkAutomation_CardCrafting.Enabled = this.chkAutomation_Events.Checked;
         }
 
+        private static string DescribeDeck(object deck)
+        {
+            string deck_eval = deck.ToString().Trim().ToUpper();
+
+            if (deck_eval == "KW")
+                return "Kingdom War";
+            else if (Utils.CInt(deck_eval) > 0)
+                return "Deck " + Utils.CInt(deck_eval).ToString();
+
+            return "(select deck)";
+        }
+
         private void DeckSelector(ref Button btn)
         {
             GameClient.Current.CheckLogin();
@@ -612,13 +591,13 @@ namespace EKUnleashed
                         btn.Tag = Utils.CInt(Utils.ChopperBlank(btn.Text, " ", null)).ToString();
                     else
                     {
-                        btn.Text = "(click to select a deck)";
+                        btn.Text = "(select deck)";
                         btn.Tag = "";
                     }
                 }
                 else
                 {
-                    btn.Text = "(click to select a deck)";
+                    btn.Text = "(select deck)";
                     btn.Tag = "";
                 }
             }

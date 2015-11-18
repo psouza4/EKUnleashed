@@ -100,6 +100,7 @@
             this.btnDemonInvasion_Deck_LoA = new System.Windows.Forms.Button();
             this.label52 = new System.Windows.Forms.Label();
             this.tabDemonInvasions_EK = new System.Windows.Forms.TabPage();
+            this.chkDI_AvoidSniping_EK = new System.Windows.Forms.CheckBox();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
             this.label38 = new System.Windows.Forms.Label();
             this.btn_SeaKing_Deck = new System.Windows.Forms.Button();
@@ -220,7 +221,6 @@
             this.txtAccount_GameAccount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tabsSettings = new System.Windows.Forms.TabControl();
-            this.chkDI_AvoidSniping_EK = new System.Windows.Forms.CheckBox();
             this.tabRaider.SuspendLayout();
             this.tabThieves.SuspendLayout();
             this.tabArena.SuspendLayout();
@@ -447,7 +447,7 @@
             this.btnRaider_Deck.Name = "btnRaider_Deck";
             this.btnRaider_Deck.Size = new System.Drawing.Size(262, 23);
             this.btnRaider_Deck.TabIndex = 38;
-            this.btnRaider_Deck.Text = "(click to select a deck)";
+            this.btnRaider_Deck.Text = "(select a deck)";
             this.btnRaider_Deck.UseVisualStyleBackColor = false;
             this.btnRaider_Deck.Click += new System.EventHandler(this.btnRaider_Deck_Click);
             // 
@@ -1015,6 +1015,17 @@
             this.tabDemonInvasions_EK.Size = new System.Drawing.Size(864, 455);
             this.tabDemonInvasions_EK.TabIndex = 2;
             this.tabDemonInvasions_EK.Text = "Demon Invasions";
+            // 
+            // chkDI_AvoidSniping_EK
+            // 
+            this.chkDI_AvoidSniping_EK.AutoSize = true;
+            this.chkDI_AvoidSniping_EK.ForeColor = System.Drawing.Color.White;
+            this.chkDI_AvoidSniping_EK.Location = new System.Drawing.Point(749, 2);
+            this.chkDI_AvoidSniping_EK.Name = "chkDI_AvoidSniping_EK";
+            this.chkDI_AvoidSniping_EK.Size = new System.Drawing.Size(86, 17);
+            this.chkDI_AvoidSniping_EK.TabIndex = 59;
+            this.chkDI_AvoidSniping_EK.Text = "Toggle deck";
+            this.chkDI_AvoidSniping_EK.UseVisualStyleBackColor = true;
             // 
             // groupBox18
             // 
@@ -1874,7 +1885,7 @@
             this.chkGeneral_EnchantRuneWith3Stars.ForeColor = System.Drawing.Color.White;
             this.chkGeneral_EnchantRuneWith3Stars.Location = new System.Drawing.Point(6, 65);
             this.chkGeneral_EnchantRuneWith3Stars.Name = "chkGeneral_EnchantRuneWith3Stars";
-            this.chkGeneral_EnchantRuneWith3Stars.Size = new System.Drawing.Size(144, 17);
+            this.chkGeneral_EnchantRuneWith3Stars.Size = new System.Drawing.Size(141, 17);
             this.chkGeneral_EnchantRuneWith3Stars.TabIndex = 21;
             this.chkGeneral_EnchantRuneWith3Stars.Text = "Enchant using 3★ runes";
             this.chkGeneral_EnchantRuneWith3Stars.UseVisualStyleBackColor = true;
@@ -1885,7 +1896,7 @@
             this.chkGeneral_EnchantRuneWith2Stars.ForeColor = System.Drawing.Color.White;
             this.chkGeneral_EnchantRuneWith2Stars.Location = new System.Drawing.Point(6, 42);
             this.chkGeneral_EnchantRuneWith2Stars.Name = "chkGeneral_EnchantRuneWith2Stars";
-            this.chkGeneral_EnchantRuneWith2Stars.Size = new System.Drawing.Size(144, 17);
+            this.chkGeneral_EnchantRuneWith2Stars.Size = new System.Drawing.Size(141, 17);
             this.chkGeneral_EnchantRuneWith2Stars.TabIndex = 20;
             this.chkGeneral_EnchantRuneWith2Stars.Text = "Enchant using 2★ runes";
             this.chkGeneral_EnchantRuneWith2Stars.UseVisualStyleBackColor = true;
@@ -1896,7 +1907,7 @@
             this.chkGeneral_EnchantRuneWith1Star.ForeColor = System.Drawing.Color.White;
             this.chkGeneral_EnchantRuneWith1Star.Location = new System.Drawing.Point(6, 19);
             this.chkGeneral_EnchantRuneWith1Star.Name = "chkGeneral_EnchantRuneWith1Star";
-            this.chkGeneral_EnchantRuneWith1Star.Size = new System.Drawing.Size(144, 17);
+            this.chkGeneral_EnchantRuneWith1Star.Size = new System.Drawing.Size(141, 17);
             this.chkGeneral_EnchantRuneWith1Star.TabIndex = 19;
             this.chkGeneral_EnchantRuneWith1Star.Text = "Enchant using 1★ runes";
             this.chkGeneral_EnchantRuneWith1Star.UseVisualStyleBackColor = true;
@@ -2023,7 +2034,7 @@
             this.btnDefaultDeck.Name = "btnDefaultDeck";
             this.btnDefaultDeck.Size = new System.Drawing.Size(262, 23);
             this.btnDefaultDeck.TabIndex = 21;
-            this.btnDefaultDeck.Text = "(click to select a deck)";
+            this.btnDefaultDeck.Text = "(select a deck)";
             this.btnDefaultDeck.UseVisualStyleBackColor = false;
             this.btnDefaultDeck.Click += new System.EventHandler(this.btnDefaultDeck_Click);
             // 
@@ -2109,7 +2120,7 @@
             this.chkGeneral_EnchantCardWith3Star.ForeColor = System.Drawing.Color.White;
             this.chkGeneral_EnchantCardWith3Star.Location = new System.Drawing.Point(6, 65);
             this.chkGeneral_EnchantCardWith3Star.Name = "chkGeneral_EnchantCardWith3Star";
-            this.chkGeneral_EnchantCardWith3Star.Size = new System.Drawing.Size(144, 17);
+            this.chkGeneral_EnchantCardWith3Star.Size = new System.Drawing.Size(141, 17);
             this.chkGeneral_EnchantCardWith3Star.TabIndex = 21;
             this.chkGeneral_EnchantCardWith3Star.Text = "Enchant using 3★ cards";
             this.chkGeneral_EnchantCardWith3Star.UseVisualStyleBackColor = true;
@@ -2120,7 +2131,7 @@
             this.chkGeneral_EnchantCardWith2Star.ForeColor = System.Drawing.Color.White;
             this.chkGeneral_EnchantCardWith2Star.Location = new System.Drawing.Point(6, 42);
             this.chkGeneral_EnchantCardWith2Star.Name = "chkGeneral_EnchantCardWith2Star";
-            this.chkGeneral_EnchantCardWith2Star.Size = new System.Drawing.Size(144, 17);
+            this.chkGeneral_EnchantCardWith2Star.Size = new System.Drawing.Size(141, 17);
             this.chkGeneral_EnchantCardWith2Star.TabIndex = 20;
             this.chkGeneral_EnchantCardWith2Star.Text = "Enchant using 2★ cards";
             this.chkGeneral_EnchantCardWith2Star.UseVisualStyleBackColor = true;
@@ -2131,7 +2142,7 @@
             this.chkGeneral_EnchantCardWith1Star.ForeColor = System.Drawing.Color.White;
             this.chkGeneral_EnchantCardWith1Star.Location = new System.Drawing.Point(6, 19);
             this.chkGeneral_EnchantCardWith1Star.Name = "chkGeneral_EnchantCardWith1Star";
-            this.chkGeneral_EnchantCardWith1Star.Size = new System.Drawing.Size(144, 17);
+            this.chkGeneral_EnchantCardWith1Star.Size = new System.Drawing.Size(141, 17);
             this.chkGeneral_EnchantCardWith1Star.TabIndex = 19;
             this.chkGeneral_EnchantCardWith1Star.Text = "Enchant using 1★ cards";
             this.chkGeneral_EnchantCardWith1Star.UseVisualStyleBackColor = true;
@@ -2323,17 +2334,6 @@
             this.tabsSettings.SelectedIndex = 0;
             this.tabsSettings.Size = new System.Drawing.Size(872, 481);
             this.tabsSettings.TabIndex = 0;
-            // 
-            // chkDI_AvoidSniping_EK
-            // 
-            this.chkDI_AvoidSniping_EK.AutoSize = true;
-            this.chkDI_AvoidSniping_EK.ForeColor = System.Drawing.Color.White;
-            this.chkDI_AvoidSniping_EK.Location = new System.Drawing.Point(749, 2);
-            this.chkDI_AvoidSniping_EK.Name = "chkDI_AvoidSniping_EK";
-            this.chkDI_AvoidSniping_EK.Size = new System.Drawing.Size(86, 17);
-            this.chkDI_AvoidSniping_EK.TabIndex = 59;
-            this.chkDI_AvoidSniping_EK.Text = "Toggle deck";
-            this.chkDI_AvoidSniping_EK.UseVisualStyleBackColor = true;
             // 
             // frmSettings
             // 
