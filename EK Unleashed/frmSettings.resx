@@ -120,6 +120,9 @@
   <data name="label39.Text" xml:space="preserve">
     <value>During demon invasion cooldown, this option will swap between your primary deck and demon invasion deck to avoid being sniped by someone with a ranked match/arena battle.  However, this option will significantly slow down attempts to gem the demon invasion event.  If you are gemming, you may want to leave this option off.</value>
   </data>
+  <data name="label40.Text" xml:space="preserve">
+    <value>During demon invasion cooldown, this option will swap between your primary deck and demon invasion deck to avoid being sniped by someone with a ranked match/arena battle.  However, this option will significantly slow down attempts to gem the demon invasion event.  If you are gemming, you may want to leave this option off.</value>
+  </data>
   <data name="label58.Text" xml:space="preserve">
     <value>An enchanting reserve of 5 means that any card that is eligible to enchant another card with will be spared if it would reduce the number remaining by this threshold.
 

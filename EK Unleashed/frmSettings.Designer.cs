@@ -67,38 +67,6 @@
             this.tabDemonInvasions_LoA = new System.Windows.Forms.TabPage();
             this.label39 = new System.Windows.Forms.Label();
             this.chkDI_AvoidSniping_LoA = new System.Windows.Forms.CheckBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.txtDI_DemonFiend_DeckRunes = new System.Windows.Forms.TextBox();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.txtDI_DemonFiend_DeckCards = new System.Windows.Forms.TextBox();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.txtDI_Nemesis_DeckRunes = new System.Windows.Forms.TextBox();
-            this.label42 = new System.Windows.Forms.Label();
-            this.txtDI_Nemesis_DeckCards = new System.Windows.Forms.TextBox();
-            this.label43 = new System.Windows.Forms.Label();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.txtDI_Onaga_DeckRunes = new System.Windows.Forms.TextBox();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.txtDI_Onaga_DeckCards = new System.Windows.Forms.TextBox();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.txtDI_Destroyer_DeckRunes = new System.Windows.Forms.TextBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.txtDI_Destroyer_DeckCards = new System.Windows.Forms.TextBox();
-            this.label47 = new System.Windows.Forms.Label();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.txtDI_SpiderQueen_DeckRunes = new System.Windows.Forms.TextBox();
-            this.label48 = new System.Windows.Forms.Label();
-            this.txtDI_SpiderQueen_DeckCards = new System.Windows.Forms.TextBox();
-            this.label49 = new System.Windows.Forms.Label();
-            this.groupBox14 = new System.Windows.Forms.GroupBox();
-            this.txtDI_Mahr_DeckRunes = new System.Windows.Forms.TextBox();
-            this.label50 = new System.Windows.Forms.Label();
-            this.txtDI_Mahr_DeckCards = new System.Windows.Forms.TextBox();
-            this.label51 = new System.Windows.Forms.Label();
-            this.btnDemonInvasion_Deck_LoA = new System.Windows.Forms.Button();
-            this.label52 = new System.Windows.Forms.Label();
             this.tabDemonInvasions_EK = new System.Windows.Forms.TabPage();
             this.chkDI_AvoidSniping_EK = new System.Windows.Forms.CheckBox();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
@@ -220,17 +188,48 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtAccount_GameAccount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.tabsSettings = new System.Windows.Forms.TabControl();
+            this.tabctrlSettings = new System.Windows.Forms.TabControl();
+            this.label40 = new System.Windows.Forms.Label();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.btn_Mahr_Deck = new System.Windows.Forms.Button();
+            this.txtDI_Mahr_DeckRunes = new System.Windows.Forms.TextBox();
+            this.txtDI_Mahr_DeckCards = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.btn_Destroyer_Deck = new System.Windows.Forms.Button();
+            this.txtDI_Destroyer_DeckRunes = new System.Windows.Forms.TextBox();
+            this.txtDI_Destroyer_DeckCards = new System.Windows.Forms.TextBox();
+            this.label44 = new System.Windows.Forms.Label();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.btn_SpiderQueen_Deck = new System.Windows.Forms.Button();
+            this.txtDI_SpiderQueen_DeckRunes = new System.Windows.Forms.TextBox();
+            this.txtDI_SpiderQueen_DeckCards = new System.Windows.Forms.TextBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.label47 = new System.Windows.Forms.Label();
+            this.btn_Onaga_Deck = new System.Windows.Forms.Button();
+            this.txtDI_Onaga_DeckRunes = new System.Windows.Forms.TextBox();
+            this.txtDI_Onaga_DeckCards = new System.Windows.Forms.TextBox();
+            this.label48 = new System.Windows.Forms.Label();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.label49 = new System.Windows.Forms.Label();
+            this.btn_Nemesis_Deck = new System.Windows.Forms.Button();
+            this.txtDI_Nemesis_DeckRunes = new System.Windows.Forms.TextBox();
+            this.txtDI_Nemesis_DeckCards = new System.Windows.Forms.TextBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.groupBox14 = new System.Windows.Forms.GroupBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.btn_DemonFiend_Deck = new System.Windows.Forms.Button();
+            this.txtDI_DemonFiend_DeckRunes = new System.Windows.Forms.TextBox();
+            this.txtDI_DemonFiend_DeckCards = new System.Windows.Forms.TextBox();
+            this.label52 = new System.Windows.Forms.Label();
             this.tabRaider.SuspendLayout();
             this.tabThieves.SuspendLayout();
             this.tabArena.SuspendLayout();
             this.tabDemonInvasions_LoA.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            this.groupBox10.SuspendLayout();
-            this.groupBox11.SuspendLayout();
-            this.groupBox12.SuspendLayout();
-            this.groupBox13.SuspendLayout();
-            this.groupBox14.SuspendLayout();
             this.tabDemonInvasions_EK.SuspendLayout();
             this.groupBox18.SuspendLayout();
             this.groupBox17.SuspendLayout();
@@ -247,7 +246,13 @@
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabAccount.SuspendLayout();
-            this.tabsSettings.SuspendLayout();
+            this.tabctrlSettings.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox14.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
@@ -635,17 +640,16 @@
             // 
             // tabDemonInvasions_LoA
             // 
+            this.tabDemonInvasions_LoA.AutoScroll = true;
             this.tabDemonInvasions_LoA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.tabDemonInvasions_LoA.Controls.Add(this.groupBox14);
+            this.tabDemonInvasions_LoA.Controls.Add(this.groupBox13);
+            this.tabDemonInvasions_LoA.Controls.Add(this.groupBox12);
+            this.tabDemonInvasions_LoA.Controls.Add(this.groupBox11);
+            this.tabDemonInvasions_LoA.Controls.Add(this.groupBox10);
+            this.tabDemonInvasions_LoA.Controls.Add(this.groupBox9);
             this.tabDemonInvasions_LoA.Controls.Add(this.label39);
             this.tabDemonInvasions_LoA.Controls.Add(this.chkDI_AvoidSniping_LoA);
-            this.tabDemonInvasions_LoA.Controls.Add(this.groupBox9);
-            this.tabDemonInvasions_LoA.Controls.Add(this.groupBox10);
-            this.tabDemonInvasions_LoA.Controls.Add(this.groupBox11);
-            this.tabDemonInvasions_LoA.Controls.Add(this.groupBox12);
-            this.tabDemonInvasions_LoA.Controls.Add(this.groupBox13);
-            this.tabDemonInvasions_LoA.Controls.Add(this.groupBox14);
-            this.tabDemonInvasions_LoA.Controls.Add(this.btnDemonInvasion_Deck_LoA);
-            this.tabDemonInvasions_LoA.Controls.Add(this.label52);
             this.tabDemonInvasions_LoA.Location = new System.Drawing.Point(4, 22);
             this.tabDemonInvasions_LoA.Name = "tabDemonInvasions_LoA";
             this.tabDemonInvasions_LoA.Padding = new System.Windows.Forms.Padding(3);
@@ -656,9 +660,9 @@
             // label39
             // 
             this.label39.ForeColor = System.Drawing.Color.White;
-            this.label39.Location = new System.Drawing.Point(439, 42);
+            this.label39.Location = new System.Drawing.Point(291, 12);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(410, 58);
+            this.label39.Size = new System.Drawing.Size(539, 43);
             this.label39.TabIndex = 41;
             this.label39.Text = resources.GetString("label39.Text");
             // 
@@ -666,334 +670,12 @@
             // 
             this.chkDI_AvoidSniping_LoA.AutoSize = true;
             this.chkDI_AvoidSniping_LoA.ForeColor = System.Drawing.Color.White;
-            this.chkDI_AvoidSniping_LoA.Location = new System.Drawing.Point(439, 18);
+            this.chkDI_AvoidSniping_LoA.Location = new System.Drawing.Point(16, 12);
             this.chkDI_AvoidSniping_LoA.Name = "chkDI_AvoidSniping_LoA";
             this.chkDI_AvoidSniping_LoA.Size = new System.Drawing.Size(269, 17);
             this.chkDI_AvoidSniping_LoA.TabIndex = 40;
             this.chkDI_AvoidSniping_LoA.Text = "Switch decks between fights to avoid arena sniping";
             this.chkDI_AvoidSniping_LoA.UseVisualStyleBackColor = true;
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.txtDI_DemonFiend_DeckRunes);
-            this.groupBox9.Controls.Add(this.label40);
-            this.groupBox9.Controls.Add(this.label41);
-            this.groupBox9.Controls.Add(this.txtDI_DemonFiend_DeckCards);
-            this.groupBox9.ForeColor = System.Drawing.Color.White;
-            this.groupBox9.Location = new System.Drawing.Point(439, 338);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(410, 100);
-            this.groupBox9.TabIndex = 39;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Demon Fiend";
-            // 
-            // txtDI_DemonFiend_DeckRunes
-            // 
-            this.txtDI_DemonFiend_DeckRunes.Location = new System.Drawing.Point(54, 62);
-            this.txtDI_DemonFiend_DeckRunes.Name = "txtDI_DemonFiend_DeckRunes";
-            this.txtDI_DemonFiend_DeckRunes.Size = new System.Drawing.Size(343, 20);
-            this.txtDI_DemonFiend_DeckRunes.TabIndex = 59;
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.ForeColor = System.Drawing.Color.White;
-            this.label40.Location = new System.Drawing.Point(12, 28);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(37, 13);
-            this.label40.TabIndex = 56;
-            this.label40.Text = "Cards:";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.ForeColor = System.Drawing.Color.White;
-            this.label41.Location = new System.Drawing.Point(12, 65);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(41, 13);
-            this.label41.TabIndex = 58;
-            this.label41.Text = "Runes:";
-            // 
-            // txtDI_DemonFiend_DeckCards
-            // 
-            this.txtDI_DemonFiend_DeckCards.Location = new System.Drawing.Point(54, 25);
-            this.txtDI_DemonFiend_DeckCards.Name = "txtDI_DemonFiend_DeckCards";
-            this.txtDI_DemonFiend_DeckCards.Size = new System.Drawing.Size(343, 20);
-            this.txtDI_DemonFiend_DeckCards.TabIndex = 57;
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.txtDI_Nemesis_DeckRunes);
-            this.groupBox10.Controls.Add(this.label42);
-            this.groupBox10.Controls.Add(this.txtDI_Nemesis_DeckCards);
-            this.groupBox10.Controls.Add(this.label43);
-            this.groupBox10.ForeColor = System.Drawing.Color.White;
-            this.groupBox10.Location = new System.Drawing.Point(15, 338);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(410, 100);
-            this.groupBox10.TabIndex = 38;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Nemesis";
-            // 
-            // txtDI_Nemesis_DeckRunes
-            // 
-            this.txtDI_Nemesis_DeckRunes.Location = new System.Drawing.Point(53, 62);
-            this.txtDI_Nemesis_DeckRunes.Name = "txtDI_Nemesis_DeckRunes";
-            this.txtDI_Nemesis_DeckRunes.Size = new System.Drawing.Size(343, 20);
-            this.txtDI_Nemesis_DeckRunes.TabIndex = 51;
-            // 
-            // label42
-            // 
-            this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.ForeColor = System.Drawing.Color.White;
-            this.label42.Location = new System.Drawing.Point(11, 65);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(41, 13);
-            this.label42.TabIndex = 50;
-            this.label42.Text = "Runes:";
-            // 
-            // txtDI_Nemesis_DeckCards
-            // 
-            this.txtDI_Nemesis_DeckCards.Location = new System.Drawing.Point(53, 25);
-            this.txtDI_Nemesis_DeckCards.Name = "txtDI_Nemesis_DeckCards";
-            this.txtDI_Nemesis_DeckCards.Size = new System.Drawing.Size(343, 20);
-            this.txtDI_Nemesis_DeckCards.TabIndex = 49;
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.ForeColor = System.Drawing.Color.White;
-            this.label43.Location = new System.Drawing.Point(11, 28);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(37, 13);
-            this.label43.TabIndex = 48;
-            this.label43.Text = "Cards:";
-            // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.txtDI_Onaga_DeckRunes);
-            this.groupBox11.Controls.Add(this.label44);
-            this.groupBox11.Controls.Add(this.label45);
-            this.groupBox11.Controls.Add(this.txtDI_Onaga_DeckCards);
-            this.groupBox11.ForeColor = System.Drawing.Color.White;
-            this.groupBox11.Location = new System.Drawing.Point(439, 220);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(410, 100);
-            this.groupBox11.TabIndex = 37;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Onaga";
-            // 
-            // txtDI_Onaga_DeckRunes
-            // 
-            this.txtDI_Onaga_DeckRunes.Location = new System.Drawing.Point(54, 62);
-            this.txtDI_Onaga_DeckRunes.Name = "txtDI_Onaga_DeckRunes";
-            this.txtDI_Onaga_DeckRunes.Size = new System.Drawing.Size(343, 20);
-            this.txtDI_Onaga_DeckRunes.TabIndex = 55;
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.ForeColor = System.Drawing.Color.White;
-            this.label44.Location = new System.Drawing.Point(12, 28);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(37, 13);
-            this.label44.TabIndex = 52;
-            this.label44.Text = "Cards:";
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.ForeColor = System.Drawing.Color.White;
-            this.label45.Location = new System.Drawing.Point(12, 65);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(41, 13);
-            this.label45.TabIndex = 54;
-            this.label45.Text = "Runes:";
-            // 
-            // txtDI_Onaga_DeckCards
-            // 
-            this.txtDI_Onaga_DeckCards.Location = new System.Drawing.Point(54, 25);
-            this.txtDI_Onaga_DeckCards.Name = "txtDI_Onaga_DeckCards";
-            this.txtDI_Onaga_DeckCards.Size = new System.Drawing.Size(343, 20);
-            this.txtDI_Onaga_DeckCards.TabIndex = 53;
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.txtDI_Destroyer_DeckRunes);
-            this.groupBox12.Controls.Add(this.label46);
-            this.groupBox12.Controls.Add(this.txtDI_Destroyer_DeckCards);
-            this.groupBox12.Controls.Add(this.label47);
-            this.groupBox12.ForeColor = System.Drawing.Color.White;
-            this.groupBox12.Location = new System.Drawing.Point(439, 104);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(410, 100);
-            this.groupBox12.TabIndex = 35;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Destroyer";
-            // 
-            // txtDI_Destroyer_DeckRunes
-            // 
-            this.txtDI_Destroyer_DeckRunes.Location = new System.Drawing.Point(54, 62);
-            this.txtDI_Destroyer_DeckRunes.Name = "txtDI_Destroyer_DeckRunes";
-            this.txtDI_Destroyer_DeckRunes.Size = new System.Drawing.Size(343, 20);
-            this.txtDI_Destroyer_DeckRunes.TabIndex = 51;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.ForeColor = System.Drawing.Color.White;
-            this.label46.Location = new System.Drawing.Point(12, 65);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(41, 13);
-            this.label46.TabIndex = 50;
-            this.label46.Text = "Runes:";
-            // 
-            // txtDI_Destroyer_DeckCards
-            // 
-            this.txtDI_Destroyer_DeckCards.Location = new System.Drawing.Point(54, 25);
-            this.txtDI_Destroyer_DeckCards.Name = "txtDI_Destroyer_DeckCards";
-            this.txtDI_Destroyer_DeckCards.Size = new System.Drawing.Size(343, 20);
-            this.txtDI_Destroyer_DeckCards.TabIndex = 49;
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.ForeColor = System.Drawing.Color.White;
-            this.label47.Location = new System.Drawing.Point(12, 28);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(37, 13);
-            this.label47.TabIndex = 48;
-            this.label47.Text = "Cards:";
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.txtDI_SpiderQueen_DeckRunes);
-            this.groupBox13.Controls.Add(this.label48);
-            this.groupBox13.Controls.Add(this.txtDI_SpiderQueen_DeckCards);
-            this.groupBox13.Controls.Add(this.label49);
-            this.groupBox13.ForeColor = System.Drawing.Color.White;
-            this.groupBox13.Location = new System.Drawing.Point(15, 220);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(410, 100);
-            this.groupBox13.TabIndex = 36;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "SpiderQueen";
-            // 
-            // txtDI_SpiderQueen_DeckRunes
-            // 
-            this.txtDI_SpiderQueen_DeckRunes.Location = new System.Drawing.Point(53, 62);
-            this.txtDI_SpiderQueen_DeckRunes.Name = "txtDI_SpiderQueen_DeckRunes";
-            this.txtDI_SpiderQueen_DeckRunes.Size = new System.Drawing.Size(343, 20);
-            this.txtDI_SpiderQueen_DeckRunes.TabIndex = 51;
-            // 
-            // label48
-            // 
-            this.label48.AutoSize = true;
-            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.ForeColor = System.Drawing.Color.White;
-            this.label48.Location = new System.Drawing.Point(11, 65);
-            this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(41, 13);
-            this.label48.TabIndex = 50;
-            this.label48.Text = "Runes:";
-            // 
-            // txtDI_SpiderQueen_DeckCards
-            // 
-            this.txtDI_SpiderQueen_DeckCards.Location = new System.Drawing.Point(53, 25);
-            this.txtDI_SpiderQueen_DeckCards.Name = "txtDI_SpiderQueen_DeckCards";
-            this.txtDI_SpiderQueen_DeckCards.Size = new System.Drawing.Size(343, 20);
-            this.txtDI_SpiderQueen_DeckCards.TabIndex = 49;
-            // 
-            // label49
-            // 
-            this.label49.AutoSize = true;
-            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.ForeColor = System.Drawing.Color.White;
-            this.label49.Location = new System.Drawing.Point(11, 28);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(37, 13);
-            this.label49.TabIndex = 48;
-            this.label49.Text = "Cards:";
-            // 
-            // groupBox14
-            // 
-            this.groupBox14.Controls.Add(this.txtDI_Mahr_DeckRunes);
-            this.groupBox14.Controls.Add(this.label50);
-            this.groupBox14.Controls.Add(this.txtDI_Mahr_DeckCards);
-            this.groupBox14.Controls.Add(this.label51);
-            this.groupBox14.ForeColor = System.Drawing.Color.White;
-            this.groupBox14.Location = new System.Drawing.Point(15, 104);
-            this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Size = new System.Drawing.Size(410, 100);
-            this.groupBox14.TabIndex = 34;
-            this.groupBox14.TabStop = false;
-            this.groupBox14.Text = "Mahr";
-            // 
-            // txtDI_Mahr_DeckRunes
-            // 
-            this.txtDI_Mahr_DeckRunes.Location = new System.Drawing.Point(53, 62);
-            this.txtDI_Mahr_DeckRunes.Name = "txtDI_Mahr_DeckRunes";
-            this.txtDI_Mahr_DeckRunes.Size = new System.Drawing.Size(343, 20);
-            this.txtDI_Mahr_DeckRunes.TabIndex = 47;
-            // 
-            // label50
-            // 
-            this.label50.AutoSize = true;
-            this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label50.ForeColor = System.Drawing.Color.White;
-            this.label50.Location = new System.Drawing.Point(11, 65);
-            this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(41, 13);
-            this.label50.TabIndex = 46;
-            this.label50.Text = "Runes:";
-            // 
-            // txtDI_Mahr_DeckCards
-            // 
-            this.txtDI_Mahr_DeckCards.Location = new System.Drawing.Point(53, 25);
-            this.txtDI_Mahr_DeckCards.Name = "txtDI_Mahr_DeckCards";
-            this.txtDI_Mahr_DeckCards.Size = new System.Drawing.Size(343, 20);
-            this.txtDI_Mahr_DeckCards.TabIndex = 45;
-            // 
-            // label51
-            // 
-            this.label51.AutoSize = true;
-            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.ForeColor = System.Drawing.Color.White;
-            this.label51.Location = new System.Drawing.Point(11, 28);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(37, 13);
-            this.label51.TabIndex = 44;
-            this.label51.Text = "Cards:";
-            // 
-            // btnDemonInvasion_Deck_LoA
-            // 
-            this.btnDemonInvasion_Deck_LoA.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnDemonInvasion_Deck_LoA.Location = new System.Drawing.Point(131, 14);
-            this.btnDemonInvasion_Deck_LoA.Name = "btnDemonInvasion_Deck_LoA";
-            this.btnDemonInvasion_Deck_LoA.Size = new System.Drawing.Size(294, 23);
-            this.btnDemonInvasion_Deck_LoA.TabIndex = 33;
-            this.btnDemonInvasion_Deck_LoA.Text = "(click to select a deck)";
-            this.btnDemonInvasion_Deck_LoA.UseVisualStyleBackColor = false;
-            this.btnDemonInvasion_Deck_LoA.Click += new System.EventHandler(this.btnDemonInvasion_Deck_LoA_Click);
-            // 
-            // label52
-            // 
-            this.label52.AutoSize = true;
-            this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label52.ForeColor = System.Drawing.Color.White;
-            this.label52.Location = new System.Drawing.Point(12, 19);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(113, 13);
-            this.label52.TabIndex = 32;
-            this.label52.Text = "Demon invasion deck:";
             // 
             // tabDemonInvasions_EK
             // 
@@ -1010,6 +692,7 @@
             this.tabDemonInvasions_EK.Controls.Add(this.groupBox5);
             this.tabDemonInvasions_EK.Controls.Add(this.groupBox4);
             this.tabDemonInvasions_EK.Controls.Add(this.groupBox3);
+            this.tabDemonInvasions_EK.Controls.Add(this.label40);
             this.tabDemonInvasions_EK.Location = new System.Drawing.Point(4, 22);
             this.tabDemonInvasions_EK.Name = "tabDemonInvasions_EK";
             this.tabDemonInvasions_EK.Size = new System.Drawing.Size(864, 455);
@@ -1020,11 +703,11 @@
             // 
             this.chkDI_AvoidSniping_EK.AutoSize = true;
             this.chkDI_AvoidSniping_EK.ForeColor = System.Drawing.Color.White;
-            this.chkDI_AvoidSniping_EK.Location = new System.Drawing.Point(749, 2);
+            this.chkDI_AvoidSniping_EK.Location = new System.Drawing.Point(16, 12);
             this.chkDI_AvoidSniping_EK.Name = "chkDI_AvoidSniping_EK";
-            this.chkDI_AvoidSniping_EK.Size = new System.Drawing.Size(86, 17);
+            this.chkDI_AvoidSniping_EK.Size = new System.Drawing.Size(269, 17);
             this.chkDI_AvoidSniping_EK.TabIndex = 59;
-            this.chkDI_AvoidSniping_EK.Text = "Toggle deck";
+            this.chkDI_AvoidSniping_EK.Text = "Switch decks between fights to avoid arena sniping";
             this.chkDI_AvoidSniping_EK.UseVisualStyleBackColor = true;
             // 
             // groupBox18
@@ -1035,7 +718,7 @@
             this.groupBox18.Controls.Add(this.txtDI_SeaKing_DeckCards);
             this.groupBox18.Controls.Add(this.label59);
             this.groupBox18.ForeColor = System.Drawing.Color.White;
-            this.groupBox18.Location = new System.Drawing.Point(16, 796);
+            this.groupBox18.Location = new System.Drawing.Point(16, 841);
             this.groupBox18.Name = "groupBox18";
             this.groupBox18.Size = new System.Drawing.Size(814, 92);
             this.groupBox18.TabIndex = 57;
@@ -1047,7 +730,7 @@
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label38.ForeColor = System.Drawing.Color.White;
-            this.label38.Location = new System.Drawing.Point(211, 28);
+            this.label38.Location = new System.Drawing.Point(209, 66);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(41, 13);
             this.label38.TabIndex = 51;
@@ -1067,16 +750,16 @@
             // 
             // txtDI_SeaKing_DeckRunes
             // 
-            this.txtDI_SeaKing_DeckRunes.Location = new System.Drawing.Point(258, 21);
+            this.txtDI_SeaKing_DeckRunes.Location = new System.Drawing.Point(256, 59);
             this.txtDI_SeaKing_DeckRunes.Name = "txtDI_SeaKing_DeckRunes";
             this.txtDI_SeaKing_DeckRunes.Size = new System.Drawing.Size(550, 20);
             this.txtDI_SeaKing_DeckRunes.TabIndex = 47;
             // 
             // txtDI_SeaKing_DeckCards
             // 
-            this.txtDI_SeaKing_DeckCards.Location = new System.Drawing.Point(60, 59);
+            this.txtDI_SeaKing_DeckCards.Location = new System.Drawing.Point(256, 21);
             this.txtDI_SeaKing_DeckCards.Name = "txtDI_SeaKing_DeckCards";
-            this.txtDI_SeaKing_DeckCards.Size = new System.Drawing.Size(748, 20);
+            this.txtDI_SeaKing_DeckCards.Size = new System.Drawing.Size(550, 20);
             this.txtDI_SeaKing_DeckCards.TabIndex = 45;
             // 
             // label59
@@ -1084,7 +767,7 @@
             this.label59.AutoSize = true;
             this.label59.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label59.ForeColor = System.Drawing.Color.White;
-            this.label59.Location = new System.Drawing.Point(18, 62);
+            this.label59.Location = new System.Drawing.Point(211, 24);
             this.label59.Name = "label59";
             this.label59.Size = new System.Drawing.Size(37, 13);
             this.label59.TabIndex = 44;
@@ -1098,7 +781,7 @@
             this.groupBox17.Controls.Add(this.txtDI_PlagueOgryn_DeckCards);
             this.groupBox17.Controls.Add(this.label37);
             this.groupBox17.ForeColor = System.Drawing.Color.White;
-            this.groupBox17.Location = new System.Drawing.Point(16, 699);
+            this.groupBox17.Location = new System.Drawing.Point(16, 744);
             this.groupBox17.Name = "groupBox17";
             this.groupBox17.Size = new System.Drawing.Size(814, 92);
             this.groupBox17.TabIndex = 57;
@@ -1110,7 +793,7 @@
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label36.ForeColor = System.Drawing.Color.White;
-            this.label36.Location = new System.Drawing.Point(211, 29);
+            this.label36.Location = new System.Drawing.Point(209, 67);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(41, 13);
             this.label36.TabIndex = 51;
@@ -1130,16 +813,16 @@
             // 
             // txtDI_PlagueOgryn_DeckRunes
             // 
-            this.txtDI_PlagueOgryn_DeckRunes.Location = new System.Drawing.Point(258, 21);
+            this.txtDI_PlagueOgryn_DeckRunes.Location = new System.Drawing.Point(256, 59);
             this.txtDI_PlagueOgryn_DeckRunes.Name = "txtDI_PlagueOgryn_DeckRunes";
             this.txtDI_PlagueOgryn_DeckRunes.Size = new System.Drawing.Size(550, 20);
             this.txtDI_PlagueOgryn_DeckRunes.TabIndex = 47;
             // 
             // txtDI_PlagueOgryn_DeckCards
             // 
-            this.txtDI_PlagueOgryn_DeckCards.Location = new System.Drawing.Point(60, 59);
+            this.txtDI_PlagueOgryn_DeckCards.Location = new System.Drawing.Point(256, 21);
             this.txtDI_PlagueOgryn_DeckCards.Name = "txtDI_PlagueOgryn_DeckCards";
-            this.txtDI_PlagueOgryn_DeckCards.Size = new System.Drawing.Size(748, 20);
+            this.txtDI_PlagueOgryn_DeckCards.Size = new System.Drawing.Size(550, 20);
             this.txtDI_PlagueOgryn_DeckCards.TabIndex = 45;
             // 
             // label37
@@ -1147,7 +830,7 @@
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label37.ForeColor = System.Drawing.Color.White;
-            this.label37.Location = new System.Drawing.Point(18, 62);
+            this.label37.Location = new System.Drawing.Point(211, 24);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(37, 13);
             this.label37.TabIndex = 44;
@@ -1161,7 +844,7 @@
             this.groupBox16.Controls.Add(this.txtDI_Pazuzu_DeckCards);
             this.groupBox16.Controls.Add(this.label35);
             this.groupBox16.ForeColor = System.Drawing.Color.White;
-            this.groupBox16.Location = new System.Drawing.Point(16, 601);
+            this.groupBox16.Location = new System.Drawing.Point(16, 646);
             this.groupBox16.Name = "groupBox16";
             this.groupBox16.Size = new System.Drawing.Size(814, 92);
             this.groupBox16.TabIndex = 58;
@@ -1173,7 +856,7 @@
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label34.ForeColor = System.Drawing.Color.White;
-            this.label34.Location = new System.Drawing.Point(211, 28);
+            this.label34.Location = new System.Drawing.Point(209, 66);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(41, 13);
             this.label34.TabIndex = 51;
@@ -1193,16 +876,16 @@
             // 
             // txtDI_Pazuzu_DeckRunes
             // 
-            this.txtDI_Pazuzu_DeckRunes.Location = new System.Drawing.Point(258, 21);
+            this.txtDI_Pazuzu_DeckRunes.Location = new System.Drawing.Point(256, 59);
             this.txtDI_Pazuzu_DeckRunes.Name = "txtDI_Pazuzu_DeckRunes";
             this.txtDI_Pazuzu_DeckRunes.Size = new System.Drawing.Size(550, 20);
             this.txtDI_Pazuzu_DeckRunes.TabIndex = 47;
             // 
             // txtDI_Pazuzu_DeckCards
             // 
-            this.txtDI_Pazuzu_DeckCards.Location = new System.Drawing.Point(60, 59);
+            this.txtDI_Pazuzu_DeckCards.Location = new System.Drawing.Point(256, 21);
             this.txtDI_Pazuzu_DeckCards.Name = "txtDI_Pazuzu_DeckCards";
-            this.txtDI_Pazuzu_DeckCards.Size = new System.Drawing.Size(748, 20);
+            this.txtDI_Pazuzu_DeckCards.Size = new System.Drawing.Size(550, 20);
             this.txtDI_Pazuzu_DeckCards.TabIndex = 45;
             // 
             // label35
@@ -1210,7 +893,7 @@
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label35.ForeColor = System.Drawing.Color.White;
-            this.label35.Location = new System.Drawing.Point(18, 62);
+            this.label35.Location = new System.Drawing.Point(211, 24);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(37, 13);
             this.label35.TabIndex = 44;
@@ -1224,7 +907,7 @@
             this.groupBox8.Controls.Add(this.txtDI_Pandarus_DeckCards);
             this.groupBox8.Controls.Add(this.label33);
             this.groupBox8.ForeColor = System.Drawing.Color.White;
-            this.groupBox8.Location = new System.Drawing.Point(16, 503);
+            this.groupBox8.Location = new System.Drawing.Point(16, 548);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(814, 92);
             this.groupBox8.TabIndex = 57;
@@ -1236,7 +919,7 @@
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label32.ForeColor = System.Drawing.Color.White;
-            this.label32.Location = new System.Drawing.Point(211, 26);
+            this.label32.Location = new System.Drawing.Point(209, 64);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(41, 13);
             this.label32.TabIndex = 51;
@@ -1256,16 +939,16 @@
             // 
             // txtDI_Pandarus_DeckRunes
             // 
-            this.txtDI_Pandarus_DeckRunes.Location = new System.Drawing.Point(258, 22);
+            this.txtDI_Pandarus_DeckRunes.Location = new System.Drawing.Point(256, 60);
             this.txtDI_Pandarus_DeckRunes.Name = "txtDI_Pandarus_DeckRunes";
             this.txtDI_Pandarus_DeckRunes.Size = new System.Drawing.Size(550, 20);
             this.txtDI_Pandarus_DeckRunes.TabIndex = 47;
             // 
             // txtDI_Pandarus_DeckCards
             // 
-            this.txtDI_Pandarus_DeckCards.Location = new System.Drawing.Point(60, 59);
+            this.txtDI_Pandarus_DeckCards.Location = new System.Drawing.Point(256, 21);
             this.txtDI_Pandarus_DeckCards.Name = "txtDI_Pandarus_DeckCards";
-            this.txtDI_Pandarus_DeckCards.Size = new System.Drawing.Size(748, 20);
+            this.txtDI_Pandarus_DeckCards.Size = new System.Drawing.Size(550, 20);
             this.txtDI_Pandarus_DeckCards.TabIndex = 45;
             // 
             // label33
@@ -1273,7 +956,7 @@
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label33.ForeColor = System.Drawing.Color.White;
-            this.label33.Location = new System.Drawing.Point(18, 62);
+            this.label33.Location = new System.Drawing.Point(211, 24);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(37, 13);
             this.label33.TabIndex = 44;
@@ -1287,7 +970,7 @@
             this.groupBox7.Controls.Add(this.txtDI_Mars_DeckCards);
             this.groupBox7.Controls.Add(this.label31);
             this.groupBox7.ForeColor = System.Drawing.Color.White;
-            this.groupBox7.Location = new System.Drawing.Point(16, 405);
+            this.groupBox7.Location = new System.Drawing.Point(16, 450);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(814, 92);
             this.groupBox7.TabIndex = 56;
@@ -1299,7 +982,7 @@
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.Color.White;
-            this.label30.Location = new System.Drawing.Point(211, 24);
+            this.label30.Location = new System.Drawing.Point(209, 62);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(41, 13);
             this.label30.TabIndex = 51;
@@ -1319,16 +1002,16 @@
             // 
             // txtDI_Mars_DeckRunes
             // 
-            this.txtDI_Mars_DeckRunes.Location = new System.Drawing.Point(258, 22);
+            this.txtDI_Mars_DeckRunes.Location = new System.Drawing.Point(256, 60);
             this.txtDI_Mars_DeckRunes.Name = "txtDI_Mars_DeckRunes";
             this.txtDI_Mars_DeckRunes.Size = new System.Drawing.Size(550, 20);
             this.txtDI_Mars_DeckRunes.TabIndex = 47;
             // 
             // txtDI_Mars_DeckCards
             // 
-            this.txtDI_Mars_DeckCards.Location = new System.Drawing.Point(60, 59);
+            this.txtDI_Mars_DeckCards.Location = new System.Drawing.Point(256, 21);
             this.txtDI_Mars_DeckCards.Name = "txtDI_Mars_DeckCards";
-            this.txtDI_Mars_DeckCards.Size = new System.Drawing.Size(748, 20);
+            this.txtDI_Mars_DeckCards.Size = new System.Drawing.Size(550, 20);
             this.txtDI_Mars_DeckCards.TabIndex = 45;
             // 
             // label31
@@ -1336,7 +1019,7 @@
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label31.ForeColor = System.Drawing.Color.White;
-            this.label31.Location = new System.Drawing.Point(18, 62);
+            this.label31.Location = new System.Drawing.Point(211, 24);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(37, 13);
             this.label31.TabIndex = 44;
@@ -1350,7 +1033,7 @@
             this.groupBox6.Controls.Add(this.txtDI_Deucalion_DeckCards);
             this.groupBox6.Controls.Add(this.label29);
             this.groupBox6.ForeColor = System.Drawing.Color.White;
-            this.groupBox6.Location = new System.Drawing.Point(16, 307);
+            this.groupBox6.Location = new System.Drawing.Point(16, 352);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(814, 92);
             this.groupBox6.TabIndex = 55;
@@ -1362,7 +1045,7 @@
             this.label28.AutoSize = true;
             this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label28.ForeColor = System.Drawing.Color.White;
-            this.label28.Location = new System.Drawing.Point(211, 25);
+            this.label28.Location = new System.Drawing.Point(209, 63);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(41, 13);
             this.label28.TabIndex = 51;
@@ -1382,16 +1065,16 @@
             // 
             // txtDI_Deucalion_DeckRunes
             // 
-            this.txtDI_Deucalion_DeckRunes.Location = new System.Drawing.Point(258, 22);
+            this.txtDI_Deucalion_DeckRunes.Location = new System.Drawing.Point(256, 60);
             this.txtDI_Deucalion_DeckRunes.Name = "txtDI_Deucalion_DeckRunes";
             this.txtDI_Deucalion_DeckRunes.Size = new System.Drawing.Size(550, 20);
             this.txtDI_Deucalion_DeckRunes.TabIndex = 47;
             // 
             // txtDI_Deucalion_DeckCards
             // 
-            this.txtDI_Deucalion_DeckCards.Location = new System.Drawing.Point(60, 59);
+            this.txtDI_Deucalion_DeckCards.Location = new System.Drawing.Point(256, 21);
             this.txtDI_Deucalion_DeckCards.Name = "txtDI_Deucalion_DeckCards";
-            this.txtDI_Deucalion_DeckCards.Size = new System.Drawing.Size(748, 20);
+            this.txtDI_Deucalion_DeckCards.Size = new System.Drawing.Size(550, 20);
             this.txtDI_Deucalion_DeckCards.TabIndex = 45;
             // 
             // label29
@@ -1399,7 +1082,7 @@
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label29.ForeColor = System.Drawing.Color.White;
-            this.label29.Location = new System.Drawing.Point(18, 62);
+            this.label29.Location = new System.Drawing.Point(211, 24);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(37, 13);
             this.label29.TabIndex = 44;
@@ -1413,7 +1096,7 @@
             this.groupBox5.Controls.Add(this.txtDI_DarkTitan_DeckCards);
             this.groupBox5.Controls.Add(this.label12);
             this.groupBox5.ForeColor = System.Drawing.Color.White;
-            this.groupBox5.Location = new System.Drawing.Point(16, 209);
+            this.groupBox5.Location = new System.Drawing.Point(16, 254);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(814, 92);
             this.groupBox5.TabIndex = 54;
@@ -1425,7 +1108,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(211, 29);
+            this.label3.Location = new System.Drawing.Point(209, 67);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 13);
             this.label3.TabIndex = 51;
@@ -1445,16 +1128,16 @@
             // 
             // txtDI_DarkTitan_DeckRunes
             // 
-            this.txtDI_DarkTitan_DeckRunes.Location = new System.Drawing.Point(258, 22);
+            this.txtDI_DarkTitan_DeckRunes.Location = new System.Drawing.Point(256, 60);
             this.txtDI_DarkTitan_DeckRunes.Name = "txtDI_DarkTitan_DeckRunes";
             this.txtDI_DarkTitan_DeckRunes.Size = new System.Drawing.Size(550, 20);
             this.txtDI_DarkTitan_DeckRunes.TabIndex = 47;
             // 
             // txtDI_DarkTitan_DeckCards
             // 
-            this.txtDI_DarkTitan_DeckCards.Location = new System.Drawing.Point(60, 59);
+            this.txtDI_DarkTitan_DeckCards.Location = new System.Drawing.Point(256, 21);
             this.txtDI_DarkTitan_DeckCards.Name = "txtDI_DarkTitan_DeckCards";
-            this.txtDI_DarkTitan_DeckCards.Size = new System.Drawing.Size(748, 20);
+            this.txtDI_DarkTitan_DeckCards.Size = new System.Drawing.Size(550, 20);
             this.txtDI_DarkTitan_DeckCards.TabIndex = 45;
             // 
             // label12
@@ -1462,7 +1145,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(18, 62);
+            this.label12.Location = new System.Drawing.Point(211, 24);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(37, 13);
             this.label12.TabIndex = 44;
@@ -1476,7 +1159,7 @@
             this.groupBox4.Controls.Add(this.txtDI_Bahamut_DeckCards);
             this.groupBox4.Controls.Add(this.label2);
             this.groupBox4.ForeColor = System.Drawing.Color.White;
-            this.groupBox4.Location = new System.Drawing.Point(16, 111);
+            this.groupBox4.Location = new System.Drawing.Point(16, 156);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(814, 92);
             this.groupBox4.TabIndex = 53;
@@ -1488,7 +1171,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(211, 24);
+            this.label1.Location = new System.Drawing.Point(209, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 51;
@@ -1508,16 +1191,16 @@
             // 
             // txtDI_Bahamut_DeckRunes
             // 
-            this.txtDI_Bahamut_DeckRunes.Location = new System.Drawing.Point(258, 21);
+            this.txtDI_Bahamut_DeckRunes.Location = new System.Drawing.Point(256, 59);
             this.txtDI_Bahamut_DeckRunes.Name = "txtDI_Bahamut_DeckRunes";
             this.txtDI_Bahamut_DeckRunes.Size = new System.Drawing.Size(550, 20);
             this.txtDI_Bahamut_DeckRunes.TabIndex = 47;
             // 
             // txtDI_Bahamut_DeckCards
             // 
-            this.txtDI_Bahamut_DeckCards.Location = new System.Drawing.Point(60, 59);
+            this.txtDI_Bahamut_DeckCards.Location = new System.Drawing.Point(256, 21);
             this.txtDI_Bahamut_DeckCards.Name = "txtDI_Bahamut_DeckCards";
-            this.txtDI_Bahamut_DeckCards.Size = new System.Drawing.Size(748, 20);
+            this.txtDI_Bahamut_DeckCards.Size = new System.Drawing.Size(550, 20);
             this.txtDI_Bahamut_DeckCards.TabIndex = 45;
             // 
             // label2
@@ -1525,7 +1208,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(18, 62);
+            this.label2.Location = new System.Drawing.Point(211, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 44;
@@ -1539,7 +1222,7 @@
             this.groupBox3.Controls.Add(this.txtDI_Azathoth_DeckCards);
             this.groupBox3.Controls.Add(this.label27);
             this.groupBox3.ForeColor = System.Drawing.Color.White;
-            this.groupBox3.Location = new System.Drawing.Point(16, 13);
+            this.groupBox3.Location = new System.Drawing.Point(16, 58);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(814, 92);
             this.groupBox3.TabIndex = 49;
@@ -1551,7 +1234,7 @@
             this.label26.AutoSize = true;
             this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label26.ForeColor = System.Drawing.Color.White;
-            this.label26.Location = new System.Drawing.Point(211, 27);
+            this.label26.Location = new System.Drawing.Point(209, 65);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(41, 13);
             this.label26.TabIndex = 51;
@@ -1571,16 +1254,16 @@
             // 
             // txtDI_Azathoth_DeckRunes
             // 
-            this.txtDI_Azathoth_DeckRunes.Location = new System.Drawing.Point(258, 24);
+            this.txtDI_Azathoth_DeckRunes.Location = new System.Drawing.Point(256, 62);
             this.txtDI_Azathoth_DeckRunes.Name = "txtDI_Azathoth_DeckRunes";
             this.txtDI_Azathoth_DeckRunes.Size = new System.Drawing.Size(550, 20);
             this.txtDI_Azathoth_DeckRunes.TabIndex = 47;
             // 
             // txtDI_Azathoth_DeckCards
             // 
-            this.txtDI_Azathoth_DeckCards.Location = new System.Drawing.Point(60, 59);
+            this.txtDI_Azathoth_DeckCards.Location = new System.Drawing.Point(256, 21);
             this.txtDI_Azathoth_DeckCards.Name = "txtDI_Azathoth_DeckCards";
-            this.txtDI_Azathoth_DeckCards.Size = new System.Drawing.Size(748, 20);
+            this.txtDI_Azathoth_DeckCards.Size = new System.Drawing.Size(550, 20);
             this.txtDI_Azathoth_DeckCards.TabIndex = 45;
             // 
             // label27
@@ -1588,7 +1271,7 @@
             this.label27.AutoSize = true;
             this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label27.ForeColor = System.Drawing.Color.White;
-            this.label27.Location = new System.Drawing.Point(18, 62);
+            this.label27.Location = new System.Drawing.Point(211, 24);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(37, 13);
             this.label27.TabIndex = 44;
@@ -2319,21 +2002,408 @@
             this.label5.TabIndex = 7;
             this.label5.Text = "Game account/e-mail login:";
             // 
-            // tabsSettings
+            // tabctrlSettings
             // 
-            this.tabsSettings.Controls.Add(this.tabAccount);
-            this.tabsSettings.Controls.Add(this.tabGeneral);
-            this.tabsSettings.Controls.Add(this.tabAutomation);
-            this.tabsSettings.Controls.Add(this.tabDemonInvasions_EK);
-            this.tabsSettings.Controls.Add(this.tabDemonInvasions_LoA);
-            this.tabsSettings.Controls.Add(this.tabArena);
-            this.tabsSettings.Controls.Add(this.tabThieves);
-            this.tabsSettings.Controls.Add(this.tabRaider);
-            this.tabsSettings.Location = new System.Drawing.Point(13, 13);
-            this.tabsSettings.Name = "tabsSettings";
-            this.tabsSettings.SelectedIndex = 0;
-            this.tabsSettings.Size = new System.Drawing.Size(872, 481);
-            this.tabsSettings.TabIndex = 0;
+            this.tabctrlSettings.Controls.Add(this.tabAccount);
+            this.tabctrlSettings.Controls.Add(this.tabGeneral);
+            this.tabctrlSettings.Controls.Add(this.tabAutomation);
+            this.tabctrlSettings.Controls.Add(this.tabDemonInvasions_EK);
+            this.tabctrlSettings.Controls.Add(this.tabDemonInvasions_LoA);
+            this.tabctrlSettings.Controls.Add(this.tabArena);
+            this.tabctrlSettings.Controls.Add(this.tabThieves);
+            this.tabctrlSettings.Controls.Add(this.tabRaider);
+            this.tabctrlSettings.Location = new System.Drawing.Point(13, 13);
+            this.tabctrlSettings.Name = "tabctrlSettings";
+            this.tabctrlSettings.SelectedIndex = 0;
+            this.tabctrlSettings.Size = new System.Drawing.Size(872, 481);
+            this.tabctrlSettings.TabIndex = 0;
+            // 
+            // label40
+            // 
+            this.label40.ForeColor = System.Drawing.Color.White;
+            this.label40.Location = new System.Drawing.Point(291, 12);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(539, 43);
+            this.label40.TabIndex = 60;
+            this.label40.Text = resources.GetString("label40.Text");
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.label41);
+            this.groupBox9.Controls.Add(this.btn_Mahr_Deck);
+            this.groupBox9.Controls.Add(this.txtDI_Mahr_DeckRunes);
+            this.groupBox9.Controls.Add(this.txtDI_Mahr_DeckCards);
+            this.groupBox9.Controls.Add(this.label42);
+            this.groupBox9.ForeColor = System.Drawing.Color.White;
+            this.groupBox9.Location = new System.Drawing.Point(16, 58);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(814, 92);
+            this.groupBox9.TabIndex = 50;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Mahr";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.ForeColor = System.Drawing.Color.White;
+            this.label41.Location = new System.Drawing.Point(211, 62);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(41, 13);
+            this.label41.TabIndex = 51;
+            this.label41.Text = "Runes:";
+            // 
+            // btn_Mahr_Deck
+            // 
+            this.btn_Mahr_Deck.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_Mahr_Deck.ForeColor = System.Drawing.Color.Black;
+            this.btn_Mahr_Deck.Location = new System.Drawing.Point(16, 24);
+            this.btn_Mahr_Deck.Name = "btn_Mahr_Deck";
+            this.btn_Mahr_Deck.Size = new System.Drawing.Size(131, 22);
+            this.btn_Mahr_Deck.TabIndex = 50;
+            this.btn_Mahr_Deck.Text = "(select deck)";
+            this.btn_Mahr_Deck.UseVisualStyleBackColor = false;
+            this.btn_Mahr_Deck.Click += new System.EventHandler(this.btn_Mahr_Deck_Click);
+            // 
+            // txtDI_Mahr_DeckRunes
+            // 
+            this.txtDI_Mahr_DeckRunes.Location = new System.Drawing.Point(258, 59);
+            this.txtDI_Mahr_DeckRunes.Name = "txtDI_Mahr_DeckRunes";
+            this.txtDI_Mahr_DeckRunes.Size = new System.Drawing.Size(550, 20);
+            this.txtDI_Mahr_DeckRunes.TabIndex = 47;
+            // 
+            // txtDI_Mahr_DeckCards
+            // 
+            this.txtDI_Mahr_DeckCards.Location = new System.Drawing.Point(258, 24);
+            this.txtDI_Mahr_DeckCards.Name = "txtDI_Mahr_DeckCards";
+            this.txtDI_Mahr_DeckCards.Size = new System.Drawing.Size(550, 20);
+            this.txtDI_Mahr_DeckCards.TabIndex = 45;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.ForeColor = System.Drawing.Color.White;
+            this.label42.Location = new System.Drawing.Point(213, 27);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(37, 13);
+            this.label42.TabIndex = 44;
+            this.label42.Text = "Cards:";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.label43);
+            this.groupBox10.Controls.Add(this.btn_Destroyer_Deck);
+            this.groupBox10.Controls.Add(this.txtDI_Destroyer_DeckRunes);
+            this.groupBox10.Controls.Add(this.txtDI_Destroyer_DeckCards);
+            this.groupBox10.Controls.Add(this.label44);
+            this.groupBox10.ForeColor = System.Drawing.Color.White;
+            this.groupBox10.Location = new System.Drawing.Point(16, 156);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(814, 92);
+            this.groupBox10.TabIndex = 52;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Destroyer";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.ForeColor = System.Drawing.Color.White;
+            this.label43.Location = new System.Drawing.Point(211, 62);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(41, 13);
+            this.label43.TabIndex = 51;
+            this.label43.Text = "Runes:";
+            // 
+            // btn_Destroyer_Deck
+            // 
+            this.btn_Destroyer_Deck.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_Destroyer_Deck.ForeColor = System.Drawing.Color.Black;
+            this.btn_Destroyer_Deck.Location = new System.Drawing.Point(16, 24);
+            this.btn_Destroyer_Deck.Name = "btn_Destroyer_Deck";
+            this.btn_Destroyer_Deck.Size = new System.Drawing.Size(131, 22);
+            this.btn_Destroyer_Deck.TabIndex = 50;
+            this.btn_Destroyer_Deck.Text = "(select deck)";
+            this.btn_Destroyer_Deck.UseVisualStyleBackColor = false;
+            this.btn_Destroyer_Deck.Click += new System.EventHandler(this.btn_Destroyer_Deck_Click);
+            // 
+            // txtDI_Destroyer_DeckRunes
+            // 
+            this.txtDI_Destroyer_DeckRunes.Location = new System.Drawing.Point(258, 59);
+            this.txtDI_Destroyer_DeckRunes.Name = "txtDI_Destroyer_DeckRunes";
+            this.txtDI_Destroyer_DeckRunes.Size = new System.Drawing.Size(550, 20);
+            this.txtDI_Destroyer_DeckRunes.TabIndex = 47;
+            // 
+            // txtDI_Destroyer_DeckCards
+            // 
+            this.txtDI_Destroyer_DeckCards.Location = new System.Drawing.Point(258, 24);
+            this.txtDI_Destroyer_DeckCards.Name = "txtDI_Destroyer_DeckCards";
+            this.txtDI_Destroyer_DeckCards.Size = new System.Drawing.Size(550, 20);
+            this.txtDI_Destroyer_DeckCards.TabIndex = 45;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.ForeColor = System.Drawing.Color.White;
+            this.label44.Location = new System.Drawing.Point(213, 27);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(37, 13);
+            this.label44.TabIndex = 44;
+            this.label44.Text = "Cards:";
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.label45);
+            this.groupBox11.Controls.Add(this.btn_SpiderQueen_Deck);
+            this.groupBox11.Controls.Add(this.txtDI_SpiderQueen_DeckRunes);
+            this.groupBox11.Controls.Add(this.txtDI_SpiderQueen_DeckCards);
+            this.groupBox11.Controls.Add(this.label46);
+            this.groupBox11.ForeColor = System.Drawing.Color.White;
+            this.groupBox11.Location = new System.Drawing.Point(16, 254);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(814, 92);
+            this.groupBox11.TabIndex = 53;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Spider Queen";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.ForeColor = System.Drawing.Color.White;
+            this.label45.Location = new System.Drawing.Point(211, 62);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(41, 13);
+            this.label45.TabIndex = 51;
+            this.label45.Text = "Runes:";
+            // 
+            // btn_SpiderQueen_Deck
+            // 
+            this.btn_SpiderQueen_Deck.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_SpiderQueen_Deck.ForeColor = System.Drawing.Color.Black;
+            this.btn_SpiderQueen_Deck.Location = new System.Drawing.Point(16, 24);
+            this.btn_SpiderQueen_Deck.Name = "btn_SpiderQueen_Deck";
+            this.btn_SpiderQueen_Deck.Size = new System.Drawing.Size(131, 22);
+            this.btn_SpiderQueen_Deck.TabIndex = 50;
+            this.btn_SpiderQueen_Deck.Text = "(select deck)";
+            this.btn_SpiderQueen_Deck.UseVisualStyleBackColor = false;
+            this.btn_SpiderQueen_Deck.Click += new System.EventHandler(this.btn_SpiderQueen_Deck_Click);
+            // 
+            // txtDI_SpiderQueen_DeckRunes
+            // 
+            this.txtDI_SpiderQueen_DeckRunes.Location = new System.Drawing.Point(258, 59);
+            this.txtDI_SpiderQueen_DeckRunes.Name = "txtDI_SpiderQueen_DeckRunes";
+            this.txtDI_SpiderQueen_DeckRunes.Size = new System.Drawing.Size(550, 20);
+            this.txtDI_SpiderQueen_DeckRunes.TabIndex = 47;
+            // 
+            // txtDI_SpiderQueen_DeckCards
+            // 
+            this.txtDI_SpiderQueen_DeckCards.Location = new System.Drawing.Point(258, 24);
+            this.txtDI_SpiderQueen_DeckCards.Name = "txtDI_SpiderQueen_DeckCards";
+            this.txtDI_SpiderQueen_DeckCards.Size = new System.Drawing.Size(550, 20);
+            this.txtDI_SpiderQueen_DeckCards.TabIndex = 45;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.ForeColor = System.Drawing.Color.White;
+            this.label46.Location = new System.Drawing.Point(213, 27);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(37, 13);
+            this.label46.TabIndex = 44;
+            this.label46.Text = "Cards:";
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.label47);
+            this.groupBox12.Controls.Add(this.btn_Onaga_Deck);
+            this.groupBox12.Controls.Add(this.txtDI_Onaga_DeckRunes);
+            this.groupBox12.Controls.Add(this.txtDI_Onaga_DeckCards);
+            this.groupBox12.Controls.Add(this.label48);
+            this.groupBox12.ForeColor = System.Drawing.Color.White;
+            this.groupBox12.Location = new System.Drawing.Point(16, 352);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(814, 92);
+            this.groupBox12.TabIndex = 54;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Onaga";
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.ForeColor = System.Drawing.Color.White;
+            this.label47.Location = new System.Drawing.Point(211, 62);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(41, 13);
+            this.label47.TabIndex = 51;
+            this.label47.Text = "Runes:";
+            // 
+            // btn_Onaga_Deck
+            // 
+            this.btn_Onaga_Deck.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_Onaga_Deck.ForeColor = System.Drawing.Color.Black;
+            this.btn_Onaga_Deck.Location = new System.Drawing.Point(16, 24);
+            this.btn_Onaga_Deck.Name = "btn_Onaga_Deck";
+            this.btn_Onaga_Deck.Size = new System.Drawing.Size(131, 22);
+            this.btn_Onaga_Deck.TabIndex = 50;
+            this.btn_Onaga_Deck.Text = "(select deck)";
+            this.btn_Onaga_Deck.UseVisualStyleBackColor = false;
+            this.btn_Onaga_Deck.Click += new System.EventHandler(this.btn_Onaga_Deck_Click);
+            // 
+            // txtDI_Onaga_DeckRunes
+            // 
+            this.txtDI_Onaga_DeckRunes.Location = new System.Drawing.Point(258, 59);
+            this.txtDI_Onaga_DeckRunes.Name = "txtDI_Onaga_DeckRunes";
+            this.txtDI_Onaga_DeckRunes.Size = new System.Drawing.Size(550, 20);
+            this.txtDI_Onaga_DeckRunes.TabIndex = 47;
+            // 
+            // txtDI_Onaga_DeckCards
+            // 
+            this.txtDI_Onaga_DeckCards.Location = new System.Drawing.Point(258, 24);
+            this.txtDI_Onaga_DeckCards.Name = "txtDI_Onaga_DeckCards";
+            this.txtDI_Onaga_DeckCards.Size = new System.Drawing.Size(550, 20);
+            this.txtDI_Onaga_DeckCards.TabIndex = 45;
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label48.ForeColor = System.Drawing.Color.White;
+            this.label48.Location = new System.Drawing.Point(213, 27);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(37, 13);
+            this.label48.TabIndex = 44;
+            this.label48.Text = "Cards:";
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.label49);
+            this.groupBox13.Controls.Add(this.btn_Nemesis_Deck);
+            this.groupBox13.Controls.Add(this.txtDI_Nemesis_DeckRunes);
+            this.groupBox13.Controls.Add(this.txtDI_Nemesis_DeckCards);
+            this.groupBox13.Controls.Add(this.label50);
+            this.groupBox13.ForeColor = System.Drawing.Color.White;
+            this.groupBox13.Location = new System.Drawing.Point(16, 450);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(814, 92);
+            this.groupBox13.TabIndex = 55;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Nemesis";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.ForeColor = System.Drawing.Color.White;
+            this.label49.Location = new System.Drawing.Point(211, 62);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(41, 13);
+            this.label49.TabIndex = 51;
+            this.label49.Text = "Runes:";
+            // 
+            // btn_Nemesis_Deck
+            // 
+            this.btn_Nemesis_Deck.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_Nemesis_Deck.ForeColor = System.Drawing.Color.Black;
+            this.btn_Nemesis_Deck.Location = new System.Drawing.Point(16, 24);
+            this.btn_Nemesis_Deck.Name = "btn_Nemesis_Deck";
+            this.btn_Nemesis_Deck.Size = new System.Drawing.Size(131, 22);
+            this.btn_Nemesis_Deck.TabIndex = 50;
+            this.btn_Nemesis_Deck.Text = "(select deck)";
+            this.btn_Nemesis_Deck.UseVisualStyleBackColor = false;
+            this.btn_Nemesis_Deck.Click += new System.EventHandler(this.btn_Nemesis_Deck_Click);
+            // 
+            // txtDI_Nemesis_DeckRunes
+            // 
+            this.txtDI_Nemesis_DeckRunes.Location = new System.Drawing.Point(258, 59);
+            this.txtDI_Nemesis_DeckRunes.Name = "txtDI_Nemesis_DeckRunes";
+            this.txtDI_Nemesis_DeckRunes.Size = new System.Drawing.Size(550, 20);
+            this.txtDI_Nemesis_DeckRunes.TabIndex = 47;
+            // 
+            // txtDI_Nemesis_DeckCards
+            // 
+            this.txtDI_Nemesis_DeckCards.Location = new System.Drawing.Point(258, 24);
+            this.txtDI_Nemesis_DeckCards.Name = "txtDI_Nemesis_DeckCards";
+            this.txtDI_Nemesis_DeckCards.Size = new System.Drawing.Size(550, 20);
+            this.txtDI_Nemesis_DeckCards.TabIndex = 45;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label50.ForeColor = System.Drawing.Color.White;
+            this.label50.Location = new System.Drawing.Point(213, 27);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(37, 13);
+            this.label50.TabIndex = 44;
+            this.label50.Text = "Cards:";
+            // 
+            // groupBox14
+            // 
+            this.groupBox14.Controls.Add(this.label51);
+            this.groupBox14.Controls.Add(this.btn_DemonFiend_Deck);
+            this.groupBox14.Controls.Add(this.txtDI_DemonFiend_DeckRunes);
+            this.groupBox14.Controls.Add(this.txtDI_DemonFiend_DeckCards);
+            this.groupBox14.Controls.Add(this.label52);
+            this.groupBox14.ForeColor = System.Drawing.Color.White;
+            this.groupBox14.Location = new System.Drawing.Point(16, 548);
+            this.groupBox14.Name = "groupBox14";
+            this.groupBox14.Size = new System.Drawing.Size(814, 92);
+            this.groupBox14.TabIndex = 56;
+            this.groupBox14.TabStop = false;
+            this.groupBox14.Text = "Demon Fiend";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.ForeColor = System.Drawing.Color.White;
+            this.label51.Location = new System.Drawing.Point(211, 62);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(41, 13);
+            this.label51.TabIndex = 51;
+            this.label51.Text = "Runes:";
+            // 
+            // btn_DemonFiend_Deck
+            // 
+            this.btn_DemonFiend_Deck.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_DemonFiend_Deck.ForeColor = System.Drawing.Color.Black;
+            this.btn_DemonFiend_Deck.Location = new System.Drawing.Point(16, 24);
+            this.btn_DemonFiend_Deck.Name = "btn_DemonFiend_Deck";
+            this.btn_DemonFiend_Deck.Size = new System.Drawing.Size(131, 22);
+            this.btn_DemonFiend_Deck.TabIndex = 50;
+            this.btn_DemonFiend_Deck.Text = "(select deck)";
+            this.btn_DemonFiend_Deck.UseVisualStyleBackColor = false;
+            this.btn_DemonFiend_Deck.Click += new System.EventHandler(this.btn_DemonFiend_Deck_Click);
+            // 
+            // txtDI_DemonFiend_DeckRunes
+            // 
+            this.txtDI_DemonFiend_DeckRunes.Location = new System.Drawing.Point(258, 59);
+            this.txtDI_DemonFiend_DeckRunes.Name = "txtDI_DemonFiend_DeckRunes";
+            this.txtDI_DemonFiend_DeckRunes.Size = new System.Drawing.Size(550, 20);
+            this.txtDI_DemonFiend_DeckRunes.TabIndex = 47;
+            // 
+            // txtDI_DemonFiend_DeckCards
+            // 
+            this.txtDI_DemonFiend_DeckCards.Location = new System.Drawing.Point(258, 24);
+            this.txtDI_DemonFiend_DeckCards.Name = "txtDI_DemonFiend_DeckCards";
+            this.txtDI_DemonFiend_DeckCards.Size = new System.Drawing.Size(550, 20);
+            this.txtDI_DemonFiend_DeckCards.TabIndex = 45;
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label52.ForeColor = System.Drawing.Color.White;
+            this.label52.Location = new System.Drawing.Point(213, 27);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(37, 13);
+            this.label52.TabIndex = 44;
+            this.label52.Text = "Cards:";
             // 
             // frmSettings
             // 
@@ -2344,7 +2414,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(897, 540);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.tabsSettings);
+            this.Controls.Add(this.tabctrlSettings);
             this.Controls.Add(this.btnCancel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -2363,18 +2433,6 @@
             this.tabArena.PerformLayout();
             this.tabDemonInvasions_LoA.ResumeLayout(false);
             this.tabDemonInvasions_LoA.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox11.PerformLayout();
-            this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
-            this.groupBox13.ResumeLayout(false);
-            this.groupBox13.PerformLayout();
-            this.groupBox14.ResumeLayout(false);
-            this.groupBox14.PerformLayout();
             this.tabDemonInvasions_EK.ResumeLayout(false);
             this.tabDemonInvasions_EK.PerformLayout();
             this.groupBox18.ResumeLayout(false);
@@ -2406,7 +2464,19 @@
             this.groupBox1.PerformLayout();
             this.tabAccount.ResumeLayout(false);
             this.tabAccount.PerformLayout();
-            this.tabsSettings.ResumeLayout(false);
+            this.tabctrlSettings.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            this.groupBox14.ResumeLayout(false);
+            this.groupBox14.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2450,38 +2520,6 @@
         private System.Windows.Forms.TabPage tabDemonInvasions_LoA;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.CheckBox chkDI_AvoidSniping_LoA;
-        private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.TextBox txtDI_DemonFiend_DeckRunes;
-        private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.TextBox txtDI_DemonFiend_DeckCards;
-        private System.Windows.Forms.GroupBox groupBox10;
-        private System.Windows.Forms.TextBox txtDI_Nemesis_DeckRunes;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.TextBox txtDI_Nemesis_DeckCards;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.GroupBox groupBox11;
-        private System.Windows.Forms.TextBox txtDI_Onaga_DeckRunes;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.Label label45;
-        private System.Windows.Forms.TextBox txtDI_Onaga_DeckCards;
-        private System.Windows.Forms.GroupBox groupBox12;
-        private System.Windows.Forms.TextBox txtDI_Destroyer_DeckRunes;
-        private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.TextBox txtDI_Destroyer_DeckCards;
-        private System.Windows.Forms.Label label47;
-        private System.Windows.Forms.GroupBox groupBox13;
-        private System.Windows.Forms.TextBox txtDI_SpiderQueen_DeckRunes;
-        private System.Windows.Forms.Label label48;
-        private System.Windows.Forms.TextBox txtDI_SpiderQueen_DeckCards;
-        private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.GroupBox groupBox14;
-        private System.Windows.Forms.TextBox txtDI_Mahr_DeckRunes;
-        private System.Windows.Forms.Label label50;
-        private System.Windows.Forms.TextBox txtDI_Mahr_DeckCards;
-        private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.Button btnDemonInvasion_Deck_LoA;
-        private System.Windows.Forms.Label label52;
         private System.Windows.Forms.TabPage tabDemonInvasions_EK;
         private System.Windows.Forms.GroupBox groupBox18;
         private System.Windows.Forms.Label label38;
@@ -2602,7 +2640,44 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtAccount_GameAccount;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TabControl tabsSettings;
+        private System.Windows.Forms.TabControl tabctrlSettings;
         private System.Windows.Forms.CheckBox chkDI_AvoidSniping_EK;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Button btn_Mahr_Deck;
+        private System.Windows.Forms.TextBox txtDI_Mahr_DeckRunes;
+        private System.Windows.Forms.TextBox txtDI_Mahr_DeckCards;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.GroupBox groupBox14;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Button btn_DemonFiend_Deck;
+        private System.Windows.Forms.TextBox txtDI_DemonFiend_DeckRunes;
+        private System.Windows.Forms.TextBox txtDI_DemonFiend_DeckCards;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.GroupBox groupBox13;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Button btn_Nemesis_Deck;
+        private System.Windows.Forms.TextBox txtDI_Nemesis_DeckRunes;
+        private System.Windows.Forms.TextBox txtDI_Nemesis_DeckCards;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Button btn_Onaga_Deck;
+        private System.Windows.Forms.TextBox txtDI_Onaga_DeckRunes;
+        private System.Windows.Forms.TextBox txtDI_Onaga_DeckCards;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Button btn_SpiderQueen_Deck;
+        private System.Windows.Forms.TextBox txtDI_SpiderQueen_DeckRunes;
+        private System.Windows.Forms.TextBox txtDI_SpiderQueen_DeckCards;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Button btn_Destroyer_Deck;
+        private System.Windows.Forms.TextBox txtDI_Destroyer_DeckRunes;
+        private System.Windows.Forms.TextBox txtDI_Destroyer_DeckCards;
+        private System.Windows.Forms.Label label44;
     }
 }

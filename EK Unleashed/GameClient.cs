@@ -30,20 +30,6 @@ namespace EKUnleashed
 
         public object locker_gamedata = new object();
 
-        public bool Want_Deck_Swap
-        {
-            get
-            {
-                if (Utils.GetAppSetting("DemonInvasion_Deck") == "KW")
-                    return true;
-
-                if (Utils.CInt(Utils.GetAppSetting("DemonInvasion_Deck")) > 0)
-                    return true;
-
-                return false;
-            }
-        }
-
         public GameChat Chat = null;
         public string All_Cards_JSON = "";
         public string All_Runes_JSON = "";
@@ -2823,31 +2809,9 @@ namespace EKUnleashed
 
         public string DemonDeckToUse(string demon)
         {
-            string deck = "0";
+            string deck = Utils.GetAppSetting("DemonInvasion_" + demon.Replace(" ", "").Trim() + "_Deck");
 
-            // Elemental Kingdoms/Magic Realms
-            if (this.Service == GameService.Elemental_Kingdoms || this.Service == GameService.Shikoku_Wars || this.Service == GameService.Magic_Realms)
-            {
-                if (demon == "Azathoth") deck = Utils.GetAppSetting("DemonInvasion_Azathoth_Deck");
-                if (demon == "Bahamut") deck = Utils.GetAppSetting("DemonInvasion_Bahamut_Deck");
-                if (demon == "DarkTitan") deck = Utils.GetAppSetting("DemonInvasion_DarkTitan_Deck");
-                if (demon == "Dark Titan") deck = Utils.GetAppSetting("DemonInvasion_DarkTitan_Deck");
-                if (demon == "Deucalion") deck = Utils.GetAppSetting("DemonInvasion_Deucalion_Deck");
-                if (demon == "Mars") deck = Utils.GetAppSetting("DemonInvasion_Mars_Deck");
-                if (demon == "Pandarus") deck = Utils.GetAppSetting("DemonInvasion_Pandarus_Deck");
-                if (demon == "Pazuzu") deck = Utils.GetAppSetting("DemonInvasion_Pazuzu_Deck");
-                if (demon == "PlagueOgryn") deck = Utils.GetAppSetting("DemonInvasion_PlagueOgryn_Deck");
-                if (demon == "Plague Ogryn") deck = Utils.GetAppSetting("DemonInvasion_PlagueOgryn_Deck");
-                if (demon == "Sea King") deck = Utils.GetAppSetting("DemonInvasion_SeaKing_Deck");
-                if (demon == "SeaKing") deck = Utils.GetAppSetting("DemonInvasion_SeaKing_Deck");
-            }
-            // Lies of Astaroth
-            else if (this.Service == GameService.Lies_of_Astaroth || this.Service == GameService.Elves_Realm)
-            {
-                deck = Utils.GetAppSetting("DemonInvasion_Deck");
-            }
-
-            return deck;
+            return (Utils.ValidText(deck) ? deck : "0");
         }
 
         public string NameOfDemon(string which_demon_invasion_cardID)
@@ -2861,26 +2825,29 @@ namespace EKUnleashed
             }
             catch { }
 
-            if (this.Service == GameService.Elemental_Kingdoms || this.Service == GameService.Shikoku_Wars || this.Service == GameService.Magic_Realms)
+            if (!Utils.ValidText(demon_name))
             {
-                if (which_demon_invasion_cardID == "9001") demon_name = "Deucalion";
-                if (which_demon_invasion_cardID == "9002") demon_name = "Mars";
-                if (which_demon_invasion_cardID == "9003") demon_name = "Plague Ogryn";
-                if (which_demon_invasion_cardID == "9004") demon_name = "Dark Titan";
-                if (which_demon_invasion_cardID == "9005") demon_name = "Sea King";
-                if (which_demon_invasion_cardID == "9006") demon_name = "Pandarus";
-                //if (which_demon_invasion_cardID == "9007") demon_name =  "?"; // Azathoth ?
-                if (which_demon_invasion_cardID == "9008") demon_name = "Pazuzu";
-                if (which_demon_invasion_cardID == "9009") demon_name = "Bahamut";
-            }
-            else if (this.Service == GameService.Lies_of_Astaroth || this.Service == GameService.Elves_Realm)
-            {
-                if (which_demon_invasion_cardID == "9001") demon_name = "Mahr";
-                if (which_demon_invasion_cardID == "9002") demon_name = "Lord Shiva";
-                if (which_demon_invasion_cardID == "9003") demon_name = "SpiderQueen";
-                if (which_demon_invasion_cardID == "9004") demon_name = "Onaga";
-                if (which_demon_invasion_cardID == "9005") demon_name = "Nemesis";
-                if (which_demon_invasion_cardID == "9006") demon_name = "Demon Fiend";
+                if (this.Service == GameService.Elemental_Kingdoms || this.Service == GameService.Shikoku_Wars || this.Service == GameService.Magic_Realms)
+                {
+                    if (which_demon_invasion_cardID == "9001") demon_name = "Deucalion";
+                    if (which_demon_invasion_cardID == "9002") demon_name = "Mars";
+                    if (which_demon_invasion_cardID == "9003") demon_name = "Plague Ogryn";
+                    if (which_demon_invasion_cardID == "9004") demon_name = "Dark Titan";
+                    if (which_demon_invasion_cardID == "9005") demon_name = "Sea King";
+                    if (which_demon_invasion_cardID == "9006") demon_name = "Pandarus";
+                    //if (which_demon_invasion_cardID == "9007") demon_name =  "?"; // Azathoth ?
+                    if (which_demon_invasion_cardID == "9008") demon_name = "Pazuzu";
+                    if (which_demon_invasion_cardID == "9009") demon_name = "Bahamut";
+                }
+                else if (this.Service == GameService.Lies_of_Astaroth || this.Service == GameService.Elves_Realm)
+                {
+                    if (which_demon_invasion_cardID == "9001") demon_name = "Mahr";
+                    if (which_demon_invasion_cardID == "9002") demon_name = "Destroyer";
+                    if (which_demon_invasion_cardID == "9003") demon_name = "SpiderQueen";
+                    if (which_demon_invasion_cardID == "9004") demon_name = "Onaga";
+                    if (which_demon_invasion_cardID == "9005") demon_name = "Nemesis";
+                    if (which_demon_invasion_cardID == "9006") demon_name = "Demon Fiend";
+                }
             }
 
             demon_name = demon_name.Replace(" ", "");
@@ -3309,234 +3276,221 @@ namespace EKUnleashed
 
         public string DeckToUseForDI(string which_demon_invasion_cardID)
         {
-            if (this.Want_Deck_Swap)
+            string demon = this.NameOfDemon(which_demon_invasion_cardID);
+            string deck_to_use = this.DemonDeckToUse(demon);
+            string deck_cards = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_" + demon + "_DeckCards")).Replace(", ", ",");
+            string deck_runes = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_" + demon + "_DeckRunes")).Replace(", ", ",");
+
+            if (deck_to_use.ToUpper().Contains("KW") || deck_to_use.ToUpper().Contains("KING")) deck_to_use = "KW";
+            if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
+
+            if ((deck_to_use != "KW") && (Utils.CInt(deck_to_use) <= 0)) return "0";
+
+            string deck_ordinal = this.GetDeckIDForOrdinal(deck_to_use);
+
+            if (!Utils.ValidText(deck_cards) || !Utils.ValidText(deck_runes))
             {
-                string demon = this.NameOfDemon(which_demon_invasion_cardID);
-                string deck_to_use = this.DemonDeckToUse(demon);
-                string deck_cards = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_" + demon + "_DeckCards")).Replace(", ", ",");
-                string deck_runes = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_" + demon + "_DeckRunes")).Replace(", ", ",");
-
-                if (deck_to_use.ToUpper().Contains("KW")) deck_to_use = "KW";
-                if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
-
-                if ((deck_to_use != "KW") && (Utils.CInt(deck_to_use) <= 0)) return "0";
-
-                if (deck_cards == "" )
-                {
-                    Utils.LoggerNotifications("<color=#a07000>Using Deck " + deck_to_use + " for " + demon + "</color>");
-                    return this.GetDeckIDForOrdinal(deck_to_use);
-                }
-
-                List<string> card_ids_to_use = this.BuildDeckCards(new List<string>(Utils.SubStringsDups(deck_cards, ",")));
-                List<string> rune_ids_to_use = this.BuildDeckRunes(new List<string>(Utils.SubStringsDups(deck_runes, ",")));
-
-                string pretty_cards_used = "";
-                foreach (string unique_user_card_id in card_ids_to_use)
-                    pretty_cards_used += ", " + this.ShortCardInfo(unique_user_card_id);
-                pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
-
-                this.UserRunes_CachedData = null;
-
-                string pretty_runes_used = "";
-                foreach (string unique_user_rune_id in rune_ids_to_use)
-                    pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id);
-                pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
-
-                Utils.LoggerNotifications("<color=#a07000>Filled Demon Invasion deck (deck slot " + deck_to_use + ") with: " + (pretty_cards_used + ", " + pretty_runes_used) + "</color>");
-
-                string[] fill_results = this.SetDeckInfo
-                (
-                    deck_to_use,
-                    card_ids_to_use,
-                    rune_ids_to_use
-                );
-
-                if (fill_results == null)
-                {
-                    Utils.LoggerNotifications("<color=#ff4000>... could not fill this deck!</color>");
-                    return "0";
-                }
-
-                if (fill_results.Length == 1)
-                {
-                    Utils.LoggerNotifications("<color=#ff4000>... could not fill this deck, server said: " + fill_results[0] + "</color>");
-                    return "0";
-                }
-
-                pretty_cards_used = "";
-                foreach (string unique_user_card_id in Utils.SubStringsDups(fill_results[0], "%5F"))
-                    pretty_cards_used += ", " + this.ShortCardInfo(unique_user_card_id, true);
-                pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
-
-                this.UserRunes_CachedData = null;
-
-                pretty_runes_used = "";
-                foreach (string unique_user_rune_id in Utils.SubStringsDups(fill_results[1], "%5F"))
-                    pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id, true);
-                pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
-
-                Utils.LoggerNotifications("<color=#a07000>... filled deck " + deck_to_use + " with: " + (pretty_cards_used + ", " + pretty_runes_used) + "</color>");
-
-                return this.GetDeckIDForOrdinal(deck_to_use);
+                Utils.LoggerNotifications("<color=#a07000>Using Deck " + deck_to_use + " for " + demon + " (not filling)</color>");
+                return deck_ordinal;
             }
 
-            return "0";
+            List<string> card_ids_to_use = this.BuildDeckCards(new List<string>(Utils.SubStringsDups(deck_cards, ",")));
+            List<string> rune_ids_to_use = this.BuildDeckRunes(new List<string>(Utils.SubStringsDups(deck_runes, ",")));
+
+            string pretty_cards_used = "";
+            foreach (string unique_user_card_id in card_ids_to_use)
+                pretty_cards_used += ", " + this.ShortCardInfo(unique_user_card_id);
+            pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
+
+            this.UserRunes_CachedData = null;
+
+            string pretty_runes_used = "";
+            foreach (string unique_user_rune_id in rune_ids_to_use)
+                pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id);
+            pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
+
+            Utils.LoggerNotifications("<color=#a07000>Filled Demon Invasion deck (deck slot " + deck_to_use + ") with: " + (pretty_cards_used + ", " + pretty_runes_used) + "</color>");
+
+            string[] fill_results = this.SetDeckInfo
+            (
+                deck_to_use,
+                card_ids_to_use,
+                rune_ids_to_use
+            );
+
+            if (fill_results == null)
+            {
+                Utils.LoggerNotifications("<color=#ff4000>... could not fill this deck!</color>");
+                return "0";
+            }
+
+            if (fill_results.Length == 1)
+            {
+                Utils.LoggerNotifications("<color=#ff4000>... could not fill this deck, server said: " + fill_results[0] + "</color>");
+                return "0";
+            }
+
+            pretty_cards_used = "";
+            foreach (string unique_user_card_id in Utils.SubStringsDups(fill_results[0], "%5F"))
+                pretty_cards_used += ", " + this.ShortCardInfo(unique_user_card_id, true);
+            pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
+
+            this.UserRunes_CachedData = null;
+
+            pretty_runes_used = "";
+            foreach (string unique_user_rune_id in Utils.SubStringsDups(fill_results[1], "%5F"))
+                pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id, true);
+            pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
+
+            Utils.LoggerNotifications("<color=#a07000>... filled deck " + deck_to_use + " with: " + (pretty_cards_used + ", " + pretty_runes_used) + "</color>");
+
+            return deck_ordinal;
         }
 
         private bool ThiefFilled = false;
         public string DeckToUseForThief()
         {
-            if (this.Want_Deck_Swap)
+            string deck_to_use = Utils.GetAppSetting("Thief_Deck");
+            string deck_cards = Utils.CondenseSpacing(Utils.GetAppSetting("Thief_DeckCards")).Replace(", ", ",");
+            string deck_runes = Utils.CondenseSpacing(Utils.GetAppSetting("Thief_DeckRunes")).Replace(", ", ",");
+
+            if (deck_to_use.ToUpper().Contains("KW")) deck_to_use = "KW";
+            if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
+
+            if ((deck_to_use != "KW") && (Utils.CInt(deck_to_use) <= 0)) return "0";
+
+            if ((!this.ThiefFilled) || (Utils.False("Thief_AlwaysFill")))
             {
-                string deck_to_use = Utils.GetAppSetting("Thief_Deck");
-                string deck_cards = Utils.CondenseSpacing(Utils.GetAppSetting("Thief_DeckCards")).Replace(", ", ",");
-                string deck_runes = Utils.CondenseSpacing(Utils.GetAppSetting("Thief_DeckRunes")).Replace(", ", ",");
+                List<string> card_ids_to_use = this.BuildDeckCards(new List<string>(Utils.SubStringsDups(deck_cards, ",")));
+                List<string> rune_ids_to_use = this.BuildDeckRunes(new List<string>(Utils.SubStringsDups(deck_runes, ",")));
 
-                if (deck_to_use.ToUpper().Contains("KW")) deck_to_use = "KW";
-                if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
-
-                if ((deck_to_use != "KW") && (Utils.CInt(deck_to_use) <= 0)) return "0";
-
-                if ((!this.ThiefFilled) || (Utils.False("Thief_AlwaysFill")))
+                if (deck_cards.Length > 0)
                 {
-                    List<string> card_ids_to_use = this.BuildDeckCards(new List<string>(Utils.SubStringsDups(deck_cards, ",")));
-                    List<string> rune_ids_to_use = this.BuildDeckRunes(new List<string>(Utils.SubStringsDups(deck_runes, ",")));
+                    string pretty_cards_used = "";
+                    foreach (string unique_user_card_id in card_ids_to_use)
+                        pretty_cards_used += ", " + this.ShortCardInfo(unique_user_card_id);
+                    pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
 
-                    if (deck_cards.Length > 0)
+                    this.UserRunes_CachedData = null;
+
+                    string pretty_runes_used = "";
+                    foreach (string unique_user_rune_id in rune_ids_to_use)
+                        pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id);
+                    pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
+
+                    Utils.LoggerNotifications("<color=#a07000>Filled Thief deck (deck slot " + deck_to_use + ") with: " + (pretty_cards_used + ", " + pretty_runes_used) + "</color>");
+
+                    string[] fill_results = this.SetDeckInfo
+                    (
+                        deck_to_use,
+                        card_ids_to_use,
+                        rune_ids_to_use
+                    );
+
+                    if (fill_results == null)
                     {
-                        string pretty_cards_used = "";
-                        foreach (string unique_user_card_id in card_ids_to_use)
-                            pretty_cards_used += ", " + this.ShortCardInfo(unique_user_card_id);
-                        pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
-
-                        this.UserRunes_CachedData = null;
-
-                        string pretty_runes_used = "";
-                        foreach (string unique_user_rune_id in rune_ids_to_use)
-                            pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id);
-                        pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
-
-                        Utils.LoggerNotifications("<color=#a07000>Filled Thief deck (deck slot " + deck_to_use + ") with: " + (pretty_cards_used + ", " + pretty_runes_used) + "</color>");
-
-                        string[] fill_results = this.SetDeckInfo
-                        (
-                            deck_to_use,
-                            card_ids_to_use,
-                            rune_ids_to_use
-                        );
-
-                        if (fill_results == null)
-                        {
-                            Utils.LoggerNotifications("<color=#ff4000>... could not fill this deck!</color>");
-                            return "0";
-                        }
-
-                        if (fill_results.Length == 1)
-                        {
-                            Utils.LoggerNotifications("<color=#ff4000>... could not fill this deck, server said: " + fill_results[0] + "</color>");
-                            return "0";
-                        }
-
-                        pretty_cards_used = "";
-                        foreach (string unique_user_card_id in Utils.SubStringsDups(fill_results[0], "%5F"))
-                            pretty_cards_used += ", " + this.ShortCardInfo(unique_user_card_id, true);
-                        pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
-
-                        this.UserRunes_CachedData = null;
-
-                        pretty_runes_used = "";
-                        foreach (string unique_user_rune_id in Utils.SubStringsDups(fill_results[1], "%5F"))
-                            pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id, true);
-                        pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
-
-                        Utils.LoggerNotifications("<color=#a07000>... filled deck " + deck_to_use + " with: " + (pretty_cards_used + ", " + pretty_runes_used) + "</color>");
-
-                        this.ThiefFilled = true;
+                        Utils.LoggerNotifications("<color=#ff4000>... could not fill this deck!</color>");
+                        return "0";
                     }
-                }
 
-                return this.GetDeckIDForOrdinal(deck_to_use);
+                    if (fill_results.Length == 1)
+                    {
+                        Utils.LoggerNotifications("<color=#ff4000>... could not fill this deck, server said: " + fill_results[0] + "</color>");
+                        return "0";
+                    }
+
+                    pretty_cards_used = "";
+                    foreach (string unique_user_card_id in Utils.SubStringsDups(fill_results[0], "%5F"))
+                        pretty_cards_used += ", " + this.ShortCardInfo(unique_user_card_id, true);
+                    pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
+
+                    this.UserRunes_CachedData = null;
+
+                    pretty_runes_used = "";
+                    foreach (string unique_user_rune_id in Utils.SubStringsDups(fill_results[1], "%5F"))
+                        pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id, true);
+                    pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
+
+                    Utils.LoggerNotifications("<color=#a07000>... filled deck " + deck_to_use + " with: " + (pretty_cards_used + ", " + pretty_runes_used) + "</color>");
+
+                    this.ThiefFilled = true;
+                }
             }
 
-            return "0";
+            return this.GetDeckIDForOrdinal(deck_to_use);
         }
         
         private bool RaiderFilled = false;
         public string DeckToUseForRaiders()
         {
-            if (this.Want_Deck_Swap)
+            string deck_to_use = Utils.GetAppSetting("Hydra_Deck");
+            string deck_cards = Utils.CondenseSpacing(Utils.GetAppSetting("Hydra_DeckCards")).Replace(", ", ",");
+            string deck_runes = Utils.CondenseSpacing(Utils.GetAppSetting("Hydra_DeckRunes")).Replace(", ", ",");
+
+            if (deck_to_use.ToUpper().Contains("KW")) deck_to_use = "KW";
+            if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
+
+            if ((deck_to_use != "KW") && (Utils.CInt(deck_to_use) <= 0)) return "0";
+
+            if ((!this.RaiderFilled) || (Utils.False("Hydra_AlwaysFill")))
             {
-                string deck_to_use = Utils.GetAppSetting("Hydra_Deck");
-                string deck_cards = Utils.CondenseSpacing(Utils.GetAppSetting("Hydra_DeckCards")).Replace(", ", ",");
-                string deck_runes = Utils.CondenseSpacing(Utils.GetAppSetting("Hydra_DeckRunes")).Replace(", ", ",");
+                List<string> card_ids_to_use = this.BuildDeckCards(new List<string>(Utils.SubStringsDups(deck_cards, ",")));
+                List<string> rune_ids_to_use = this.BuildDeckRunes(new List<string>(Utils.SubStringsDups(deck_runes, ",")));
 
-                if (deck_to_use.ToUpper().Contains("KW")) deck_to_use = "KW";
-                if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
-
-                if ((deck_to_use != "KW") && (Utils.CInt(deck_to_use) <= 0)) return "0";
-
-                if ((!this.RaiderFilled) || (Utils.False("Hydra_AlwaysFill")))
+                if (deck_cards.Length > 0)
                 {
-                    List<string> card_ids_to_use = this.BuildDeckCards(new List<string>(Utils.SubStringsDups(deck_cards, ",")));
-                    List<string> rune_ids_to_use = this.BuildDeckRunes(new List<string>(Utils.SubStringsDups(deck_runes, ",")));
+                    string pretty_cards_used = "";
+                    foreach (string unique_user_card_id in card_ids_to_use)
+                        pretty_cards_used += ", " + this.ShortCardInfo(unique_user_card_id);
+                    pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
 
-                    if (deck_cards.Length > 0)
+                    this.UserRunes_CachedData = null;
+
+                    string pretty_runes_used = "";
+                    foreach (string unique_user_rune_id in rune_ids_to_use)
+                        pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id);
+                    pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
+
+                    Utils.LoggerNotifications("<color=#a07000>Filled raider deck (deck slot " + deck_to_use + ") with: " + (pretty_cards_used + ", " + pretty_runes_used) + "</color>");
+
+                    string[] fill_results = this.SetDeckInfo
+                    (
+                        deck_to_use,
+                        card_ids_to_use,
+                        rune_ids_to_use
+                    );
+
+                    if (fill_results == null)
                     {
-                        string pretty_cards_used = "";
-                        foreach (string unique_user_card_id in card_ids_to_use)
-                            pretty_cards_used += ", " + this.ShortCardInfo(unique_user_card_id);
-                        pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
-
-                        this.UserRunes_CachedData = null;
-
-                        string pretty_runes_used = "";
-                        foreach (string unique_user_rune_id in rune_ids_to_use)
-                            pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id);
-                        pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
-
-                        Utils.LoggerNotifications("<color=#a07000>Filled raider deck (deck slot " + deck_to_use + ") with: " + (pretty_cards_used + ", " + pretty_runes_used) + "</color>");
-
-                        string[] fill_results = this.SetDeckInfo
-                        (
-                            deck_to_use,
-                            card_ids_to_use,
-                            rune_ids_to_use
-                        );
-
-                        if (fill_results == null)
-                        {
-                            Utils.LoggerNotifications("<color=#ff4000>... could not fill this deck!</color>");
-                            return "0";
-                        }
-
-                        if (fill_results.Length == 1)
-                        {
-                            Utils.LoggerNotifications("<color=#ff4000>... could not fill this deck, server said: " + fill_results[0] + "</color>");
-                            return "0";
-                        }
-
-                        pretty_cards_used = "";
-                        foreach (string unique_user_card_id in Utils.SubStringsDups(fill_results[0], "%5F"))
-                            pretty_cards_used += ", " + this.ShortCardInfo(unique_user_card_id, true);
-                        pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
-
-                        this.UserRunes_CachedData = null;
-
-                        pretty_runes_used = "";
-                        foreach (string unique_user_rune_id in Utils.SubStringsDups(fill_results[1], "%5F"))
-                            pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id, true);
-                        pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
-
-                        Utils.LoggerNotifications("<color=#a07000>... filled deck " + deck_to_use + " with: " + (pretty_cards_used + ", " + pretty_runes_used) + "</color>");
-
-                        this.RaiderFilled = true;
+                        Utils.LoggerNotifications("<color=#ff4000>... could not fill this deck!</color>");
+                        return "0";
                     }
-                }
 
-                return this.GetDeckIDForOrdinal(deck_to_use);
+                    if (fill_results.Length == 1)
+                    {
+                        Utils.LoggerNotifications("<color=#ff4000>... could not fill this deck, server said: " + fill_results[0] + "</color>");
+                        return "0";
+                    }
+
+                    pretty_cards_used = "";
+                    foreach (string unique_user_card_id in Utils.SubStringsDups(fill_results[0], "%5F"))
+                        pretty_cards_used += ", " + this.ShortCardInfo(unique_user_card_id, true);
+                    pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
+
+                    this.UserRunes_CachedData = null;
+
+                    pretty_runes_used = "";
+                    foreach (string unique_user_rune_id in Utils.SubStringsDups(fill_results[1], "%5F"))
+                        pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id, true);
+                    pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
+
+                    Utils.LoggerNotifications("<color=#a07000>... filled deck " + deck_to_use + " with: " + (pretty_cards_used + ", " + pretty_runes_used) + "</color>");
+
+                    this.RaiderFilled = true;
+                }
             }
 
-            return "0";
+            return this.GetDeckIDForOrdinal(deck_to_use);
         }
 
         public string _DefaultDeck = "";
@@ -3544,24 +3498,19 @@ namespace EKUnleashed
         {
             get
             {
-                if (this.Want_Deck_Swap)
-                {
-                    if (Utils.CInt(this._DefaultDeck) > 0)
-                        return this._DefaultDeck;
-
-                    string deck_to_use = Utils.GetAppSetting("Game_DefaultDeck");
-
-                    if (deck_to_use.ToUpper().Contains("KW")) deck_to_use = "KW";
-                    if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
-
-                    if ((deck_to_use != "KW") && (Utils.CInt(deck_to_use) <= 0)) return "0";
-
-                    this._DefaultDeck = this.GetDeckIDForOrdinal(deck_to_use);
-
+                if (Utils.CInt(this._DefaultDeck) > 0)
                     return this._DefaultDeck;
-                }
 
-                return "0";
+                string deck_to_use = Utils.GetAppSetting("Game_DefaultDeck");
+
+                if (deck_to_use.ToUpper().Contains("KW")) deck_to_use = "KW";
+                if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
+
+                if ((deck_to_use != "KW") && (Utils.CInt(deck_to_use) <= 0)) return "0";
+
+                this._DefaultDeck = this.GetDeckIDForOrdinal(deck_to_use);
+
+                return this._DefaultDeck;
             }
         }
 

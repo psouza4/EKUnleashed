@@ -17,20 +17,20 @@ PrivilegesRequired=poweruser
 DisableProgramGroupPage=yes
 
 ; Shown as installed version (Programs & Features) as well as product version ('Details' tab when right-clicking setup program and choosing 'Properties')
-AppVersion=2.05
+AppVersion=2.06
 ; Shown in the setup program during install only
-AppVerName=EK Unleashed v2.05
+AppVerName=EK Unleashed v2.06
 ; Stored in the version info for the setup program itself ('Details' tab when right-clicking setup program and choosing 'Properties')
-VersionInfoVersion=2.05.32215.885
+VersionInfoVersion=2.06.32415.1345
 ; Other version info
-OutputBaseFilename=EKU_2.05.32215.885__setup
+OutputBaseFilename=EKU_2.06.32415.1345__setup
 
 ; Shown only in Programs & Features
 AppContact=EK Unleashed Forums
 AppComments=An enhanced game client and automation tool for Elemental Kingdoms.
 AppSupportURL=http://www.EKUnleashed.com/forums/
 AppPublisherURL=http://www.EKUnleashed.com/
-AppUpdatesURL=http://www.EKUnleashed.com/forums/viewforum.php?f=1
+AppUpdatesURL=https://github.com/psouza4/EKUnleashed/releases
 UninstallDisplayName=EK Unleashed
 ; 8.20 MB as initial install
 UninstallDisplaySize=8598729
@@ -38,7 +38,7 @@ UninstallDisplayIcon={app}\EK Unleashed.exe
 
 
 [Messages]
-BeveledLabel=EK Unleashed v2.05 Setup
+BeveledLabel=EK Unleashed v2.06 Setup
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl
