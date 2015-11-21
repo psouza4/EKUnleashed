@@ -1762,10 +1762,40 @@ namespace EKUnleashed
                 }
             }
 
+            if (true /* StoreReplays */)
+            {
+                StoreReplay(page + action, result);
+            }
+
             Utils.Logger(result);
             Utils.Logger();
 
             return result;
+        }
+
+        private void StoreReplay(string request, string result)
+        {
+            try
+            {
+                // TODO: Keep a list of requests that contain fight data, and only store replays that are in that list. Should be more efficient then try/catching
+                // arenaFreeFight arenaRankFight bossGetFightData
+                var obj = JObject.Parse(result);
+                string battleId = obj["data"]["BattleId"].ToString();
+                if (!string.IsNullOrEmpty(battleId))
+                {
+                    string attacker = obj["data"]["AttackPlayer"]["NickName"].ToString();
+                    string defender = obj["data"]["DefendPlayer"]["NickName"].ToString();
+                    string fileName = string.Format("{0} {1:yyyy-MM-dd_hh-mm-ss} {2} vs {3} {4}.json", request, DateTime.Now, attacker, defender, battleId);
+
+                    // TODO: Make it possible to specify folder for replays
+                    string replayFolder = string.Format(@"{0}\Game Data\Replays\{1}\", Utils.AppFolder, GameAbbreviation(Service));
+                    System.IO.Directory.CreateDirectory(replayFolder);
+
+                    Utils.FileOverwrite(replayFolder + Utils.RemoveInvalidFilePathCharacters(fileName, ""), JSBeautifyLib.JSBeautify.BeautifyMe(result));
+
+                }
+            }
+            catch { }
         }
 
         public static bool Want_Debug
@@ -1775,6 +1805,20 @@ namespace EKUnleashed
                 try
                 {
                     return Utils.False("Game_Debug");
+                }
+                catch { }
+
+                return false;
+            }
+        }
+
+        public static bool StoreReplays
+        {
+            get
+            {
+                try
+                {
+                    return Utils.True("Game_StoreReplays");
                 }
                 catch { }
 

@@ -11,6 +11,7 @@ using Newtonsoft.Json.Linq;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using IWshRuntimeLibrary;
+using System.Text.RegularExpressions;
 
 namespace EKUnleashed
 {
@@ -730,6 +731,20 @@ namespace EKUnleashed
             catch { }
 
             return;
+        }
+
+        /// <summary>
+        /// Replaces any character that is not allowed to be used in a file or directory name with replaceChar. 
+        /// </summary>
+        /// <param name="filename">File name to be cleaned</param>
+        /// <param name="replaceChar">Replacement character(s) for found invalid characters</param>
+        /// <returns>Cleaned string</returns>
+        /// <see cref="http://stackoverflow.com/a/8626562"/>
+        public static string RemoveInvalidFilePathCharacters(string filename, string replaceChar)
+        {
+            string regexSearch = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars());
+            Regex r = new Regex(string.Format("[{0}]", Regex.Escape(regexSearch)));
+            return r.Replace(filename, replaceChar);
         }
 
         public static string FileRead(string filename)
