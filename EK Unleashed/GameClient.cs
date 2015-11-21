@@ -4152,8 +4152,12 @@ namespace EKUnleashed
                         {
                             JObject fight_JSON = JObject.Parse(GameClient.Current.GetGameData("arena", "FreeFight", "Competitor=" + this.uid.ToString() + "&isManual=0", false));
 
+                            if (Utils.CInt(fight_JSON["status"]) == 1)
+                            {
                             if (Utils.CInt(fight_JSON["data"]["Win"]) == 1) this._ct_win_vs  += 1.0;
                             else                                            this._ct_lose_vs += 1.0;
+
+                            }
                         }
 
                         this._win_percentage = (int)(this._ct_win_vs * 100.0 / (this._ct_win_vs + this._ct_lose_vs));
