@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Windows.Forms;
+using ElementalKingdoms.core.kingdomwar;
 
 namespace EKUnleashed
 {
@@ -713,6 +714,7 @@ namespace EKUnleashed
             {
                 try
                 {
+                    Utils.DebugLogger(string.Format("KW callback {0}: {1}", msgid, msg));
                     if (msgid == -1) // point the player was attacking/defending switched forces during queue
                     {
                         Utils.Logger("<color=#ffa000>... Kingdom War queue failed because the point's kingdom ownership changed</color>");
@@ -1090,19 +1092,23 @@ namespace EKUnleashed
                         return;
                     }
 
+                    KingdomWar map = kwMapJSON["data"].ToObject<KingdomWar>();
+
+                    this.KW_LastBattlesWon = map.BattleWin;
+                    this.KW_LastBattlesLost = map.BattleDeath;
+
                     if (this.KW_LastHonor == 0)
                         this.KW_LastHonor = Utils.CInt(kwMapJSON["KW_LastHonor"]);
 
-                    this.KW_ForceID = Utils.CInt(kwMapJSON["data"]["force_id"]);
+                    this.KW_ForceID = (int)map.ForceId;
                     this.Kingdom_War_ID = kwMapJSON["data"]["force_id"].ToString();
 
                     if (!this.KW_Ongoing)
                         this.KingdomWar_WarBegins();
-
-                    int cooldown_check = Utils.CInt(kwMapJSON["data"]["cd_time"]);
-                    if (cooldown_check > 0)
+                    
+                    if (map.CooldownTime > 0)
                     {
-                        this.KW_CooldownExpires = DateTime.Now.AddSeconds(cooldown_check);
+                        this.KW_CooldownExpires = DateTime.Now.AddSeconds(map.CooldownTime);
 
                         if (!KingdomWar_CooldownNotified)
                         {
@@ -1110,7 +1116,7 @@ namespace EKUnleashed
                             this.KingdomWar_CooldownNotified = true;
                         }
 
-                        try { this.ScheduledEvents.Add("KW Fight", new Scheduler.ScheduledEvent("KW Fight", this.KingdomWar_Fight, GameClient.DateTimeNow.AddSeconds(cooldown_check))); }
+                        try { this.ScheduledEvents.Add("KW Fight", new Scheduler.ScheduledEvent("KW Fight", this.KingdomWar_Fight, GameClient.DateTimeNow.AddSeconds(map.CooldownTime))); }
                         catch { }
                         return;
                     }
@@ -1119,6 +1125,13 @@ namespace EKUnleashed
 
                     //Utils.LoggerNotifications("KW fight status: " + kwMapJSON["data"]["fight_status"].ToString()); // 0 = nothing, -1 or -2 = in queue to defend, 1 or 2 = in queue to attack
                     //Utils.LoggerNotifications("KW current target point ID: " + kwMapJSON["data"]["current_id"].ToString()); // point ID we're attacking or defending
+
+                    List<Point> attackableTargets = map.GetAttackableTargets();
+
+                    if (attackableTargets.Count == 0)
+                    {
+                        this.KW_TeamHasBeenEliminated = true;
+                    }
 
                     foreach (KW_Point p in GameClient.KW_AttackTargets)
                     {
@@ -1137,6 +1150,21 @@ namespace EKUnleashed
 
                         if (Utils.CInt(point["force_id"]) != this.KW_ForceID)
                         {
+                            bool isAttackable = false;
+                            foreach (var target in attackableTargets)
+                            {
+                                if (target.Id == point["point_id"].ToString())
+                                {
+                                    isAttackable = true;
+                                    break;
+                                }
+                            }
+                            if (!isAttackable)
+                            {
+                                //Utils.DebugLogger("<color=#ffa000>Kingdom War not able to attack " + point["point_name"].ToString() + " right now...</color>");
+                                continue;
+                            }
+
                             // attackStatus:  -1 defend, 1 attack
                             string kwMapAttack = this.GetGameData("forcefight", "JoinFight", "point_id=" + point["point_id"].ToString() + "&attackStatus=1&NewVersion=1", true);
 
@@ -1157,7 +1185,7 @@ namespace EKUnleashed
                                 this.KW_InQueueSince = DateTime.Now;
 
                                 if (Utils.CInt(kwMapAttackJSON["status"]) == 1)
-                                    Utils.LoggerNotifications("<color=#ffa000>Kingdom War in queue to attack <b>" + point["point_name"].ToString() + "</b> worth <b>" + Utils.CInt(point["value"]).ToString("#,##0") + "</b> points...</color>");
+                                    Utils.LoggerNotifications("<color=#ffa000>[" + map.BattleWin + "-" + map.BattleDeath + "] Kingdom War in queue to attack <b>" + point["point_name"].ToString() + "</b> worth <b>" + Utils.CInt(point["value"]).ToString("#,##0") + "</b> points... </color>");
 
                                 try { this.ScheduledEvents.Add("KW Fight Followup", new Scheduler.ScheduledEvent("KW Fight Followup", this.KingdomWar_Fight, GameClient.DateTimeNow.AddSeconds(15))); }
                                 catch { } break;
@@ -1761,7 +1789,7 @@ namespace EKUnleashed
                     Utils.Chatter(Errors.GetShortErrorDetails(ex));
                 }
             }
-
+            
             if (true /* StoreReplays */)
             {
                 StoreReplay(page + action, result);
@@ -4154,8 +4182,8 @@ namespace EKUnleashed
 
                             if (Utils.CInt(fight_JSON["status"]) == 1)
                             {
-                            if (Utils.CInt(fight_JSON["data"]["Win"]) == 1) this._ct_win_vs  += 1.0;
-                            else                                            this._ct_lose_vs += 1.0;
+                                if (Utils.CInt(fight_JSON["data"]["Win"]) == 1) this._ct_win_vs  += 1.0;
+                                else                                            this._ct_lose_vs += 1.0;
 
                             }
                         }
