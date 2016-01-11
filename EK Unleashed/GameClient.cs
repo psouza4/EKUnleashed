@@ -200,7 +200,7 @@ namespace EKUnleashed
 
                 for (int i = 0; i < 100; i++)
                 {
-                    JObject lottery_result = JObject.Parse(this.GetGameData("league", "lottery"));
+                    JObject lottery_result = JObject.Parse(this.GetGameData("league", "lottery", "New=1"));
 
                     if (Utils.CInt(lottery_result["status"]) != 1)
                         break;
