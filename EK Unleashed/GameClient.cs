@@ -5928,6 +5928,8 @@ namespace EKUnleashed
                     {
                         string[] card_search_parts = Utils.SubStringsDups(name, ":");
 
+                        Utils.DebugLogger(string.Format("{0} ({1} parts)", string.Join(" | ", card_search_parts), card_search_parts.Length));
+
                         card_required_name = card_search_parts[0].Trim();
 
                         if (card_search_parts.Length == 2)
