@@ -1,7 +1,7 @@
 [Setup]
 AppName=EK Unleashed
 AppPublisher=Souza Software, Inc.
-AppCopyright=Copyright (C) 2014-2015 Souza Software, Inc.
+AppCopyright=Copyright (C) 2014-2016 Souza Software, Inc.
 DefaultDirName={pf}\EK Unleashed
 DefaultGroupName=EK Unleashed
 OutputDir=.\Installer Output
@@ -17,13 +17,13 @@ PrivilegesRequired=poweruser
 DisableProgramGroupPage=yes
 
 ; Shown as installed version (Programs & Features) as well as product version ('Details' tab when right-clicking setup program and choosing 'Properties')
-AppVersion=2.06
+AppVersion=2.07
 ; Shown in the setup program during install only
-AppVerName=EK Unleashed v2.06
+AppVerName=EK Unleashed v2.07
 ; Stored in the version info for the setup program itself ('Details' tab when right-clicking setup program and choosing 'Properties')
-VersionInfoVersion=2.06.32415.1345
+VersionInfoVersion=2.07.0.0
 ; Other version info
-OutputBaseFilename=EKU_2.06.32415.1345__setup
+OutputBaseFilename=EKU_2.07.0.0__setup
 
 ; Shown only in Programs & Features
 AppContact=EK Unleashed Forums
@@ -38,7 +38,7 @@ UninstallDisplayIcon={app}\EK Unleashed.exe
 
 
 [Messages]
-BeveledLabel=EK Unleashed v2.06 Setup
+BeveledLabel=EK Unleashed v2.07 Setup
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl
