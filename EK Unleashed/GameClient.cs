@@ -3070,6 +3070,22 @@ namespace EKUnleashed
                         {
                             if (Utils.CInt(welfare["Level"]) <= Utils.CInt(joUserInfo["data"]["Level"]))
                             {
+                                try
+                                {
+                                    if (Utils.CInt(welfare["Get"]) == 2)
+                                    {
+                                        // already received this specific level reward
+                                        Utils.DebugLogger("Already received level up reward " + welfare["Name"].ToString());
+                                        continue;
+                                    }
+                                }
+                                catch
+                                {
+                                    // cannot claim this specific level reward yet
+                                    Utils.DebugLogger("Cannot claim level up reward " + welfare["Name"].ToString() + " yet");
+                                    continue;
+                                }
+
                                 result = this.GetGameData("shop", "RecieveAward", "id=" + welfare["Id"].ToString() + "&type=2", true);
                                 JObject joResultTemp = JObject.Parse(result);
 
