@@ -2526,9 +2526,10 @@ namespace EKUnleashed
                     if ((GameClient.DateTimeNow - dtStart).TotalSeconds >= current_cooldown - (waited_for_fight_data + 4))
                         break;
 
+                    JObject DI_boss = null;
+                    JObject DI_rank = null;
                     try
                     {
-                        JObject DI_boss = null;
                         if (iPasses == 0 && initial_DI_boss != null)
                             DI_boss = initial_DI_boss;
                         else
@@ -2539,25 +2540,10 @@ namespace EKUnleashed
                         if (remaining_cooldown__live <= 0)
                             break;
 
-                        JObject DI_rank = null;
                         if (iPasses == 0 && initial_DI_rank != null)
                             DI_rank = initial_DI_rank;
                         else
                             DI_rank = JObject.Parse(this.GetGameData("boss", "GetRanks", "Amount=10&StartRank=1", false));
-
-                        this.ParentForm.DemonInvasion_UpdateData(DI_boss, DI_rank);
-
-                        int gem_cost = ((remaining_cooldown__live + 59) / 60) * 10;
-
-                        this.ParentForm.UpdateDIButton(true, (this.User_Gems >= gem_cost) && (!this.DI_BoughtCooldown), "End Cooldown\r\nCosts: " + gem_cost.ToString("#,##0") + " gems\r\n(you have: " + this.User_Gems.ToString("#,##0") + " gems)");
-
-                        int DI_current_ranking = Utils.CInt(DI_rank["data"]["Rank"].ToString());
-
-                        int minutes = remaining_cooldown__live / 60;
-                        int seconds = remaining_cooldown__live % 60;
-
-                        this.ParentForm.SetText("EK Unleashed", this.Login_NickName + "  ::  " + this.ServerName + "  ::  Fighting: " + BossName + "  ::  Rank #" + DI_current_ranking.ToString("#,##0") + " ::  CD " + minutes.ToString() + ":" + seconds.ToString("00"));
-                        this.ParentForm.RefreshWindow(); // required to re-paint the title bar
                     }
                     catch { }
 
@@ -2574,6 +2560,28 @@ namespace EKUnleashed
 
                             if (total_sleep_time >= remaining_cooldown__live * 1000)
                                 break;
+                        }
+
+                        // Every second while sleeping, update the label and button to show the right cool times (as we are sleeping here more then a second now before calling the server again)
+                        if (total_sleep_time % 1000 == 0)
+                        {
+                            int internal_cooldown_time = remaining_cooldown__live - (total_sleep_time % 1000);
+
+                            DI_boss["data"]["CanFightTime"] = internal_cooldown_time;
+
+                            this.ParentForm.DemonInvasion_UpdateData(DI_boss, DI_rank);
+
+                            int gem_cost = ((internal_cooldown_time + 59) / 60) * 10;
+
+                            this.ParentForm.UpdateDIButton(true, (this.User_Gems >= gem_cost) && (!this.DI_BoughtCooldown), "End Cooldown\r\nCosts: " + gem_cost.ToString("#,##0") + " gems\r\n(you have: " + this.User_Gems.ToString("#,##0") + " gems)");
+
+                            int DI_current_ranking = Utils.CInt(DI_rank["data"]["Rank"].ToString());
+
+                            int minutes = internal_cooldown_time / 60;
+                            int seconds = internal_cooldown_time % 60;
+
+                            this.ParentForm.SetText("EK Unleashed", this.Login_NickName + "  ::  " + this.ServerName + "  ::  Fighting: " + BossName + "  ::  Rank #" + DI_current_ranking.ToString("#,##0") + " ::  CD " + minutes.ToString() + ":" + seconds.ToString("00"));
+                            this.ParentForm.RefreshWindow(); // required to re-paint the title bar
                         }
 
                         System.Threading.Thread.Sleep(50);
