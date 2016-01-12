@@ -2565,7 +2565,7 @@ namespace EKUnleashed
                         // Every second while sleeping, update the label and button to show the right cool times (as we are sleeping here more then a second now before calling the server again)
                         if (total_sleep_time % 1000 == 0)
                         {
-                            int internal_cooldown_time = remaining_cooldown__live - (total_sleep_time % 1000);
+                            int internal_cooldown_time = remaining_cooldown__live - (total_sleep_time / 1000);
 
                             DI_boss["data"]["CanFightTime"] = internal_cooldown_time;
 
