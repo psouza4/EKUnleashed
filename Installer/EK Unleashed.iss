@@ -45,7 +45,8 @@ Name: english; MessagesFile: compiler:Default.isl
 
 [Files]
 Source: ..\EK Unleashed\bin\Release\EK Unleashed.exe; DestDir: {app}; Flags: ignoreversion
-Source: ..\EK Unleashed\bin\Release\Newtonsoft.Json.dll; DestDir: {app}
+Source: ..\EK Unleashed\bin\Release\Newtonsoft.Json.dll; DestDir: {app}       
+Source: ..\EK Unleashed\bin\Release\ekf_core.dll; DestDir: {app}
 
 Source: ..\LICENSE; DestName: License.txt; DestDir: {app}
 Source: .\uninstall.ico; DestDir: {app}
