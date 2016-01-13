@@ -17,13 +17,13 @@ PrivilegesRequired=poweruser
 DisableProgramGroupPage=yes
 
 ; Shown as installed version (Programs & Features) as well as product version ('Details' tab when right-clicking setup program and choosing 'Properties')
-AppVersion=2.07
+AppVersion=2.08
 ; Shown in the setup program during install only
-AppVerName=EK Unleashed v2.07
+AppVerName=EK Unleashed v2.08
 ; Stored in the version info for the setup program itself ('Details' tab when right-clicking setup program and choosing 'Properties')
-VersionInfoVersion=2.07.0.0
+VersionInfoVersion=2.08.0.0
 ; Other version info
-OutputBaseFilename=EKU_2.07.0.0__setup
+OutputBaseFilename=EKU_2.08.0.0__setup
 
 ; Shown only in Programs & Features
 AppContact=EK Unleashed Forums
@@ -38,7 +38,7 @@ UninstallDisplayIcon={app}\EK Unleashed.exe
 
 
 [Messages]
-BeveledLabel=EK Unleashed v2.07 Setup
+BeveledLabel=EK Unleashed v2.08 Setup
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl
