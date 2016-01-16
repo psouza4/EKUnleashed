@@ -1,3 +1,5 @@
+#define Version '2.08.1.0'
+
 [Setup]
 AppName=EK Unleashed
 AppPublisher=Souza Software, Inc.
@@ -17,13 +19,13 @@ PrivilegesRequired=poweruser
 DisableProgramGroupPage=yes
 
 ; Shown as installed version (Programs & Features) as well as product version ('Details' tab when right-clicking setup program and choosing 'Properties')
-AppVersion=2.08
+AppVersion={#Version}
 ; Shown in the setup program during install only
-AppVerName=EK Unleashed v2.08
+AppVerName=EK Unleashed v{#Version}
 ; Stored in the version info for the setup program itself ('Details' tab when right-clicking setup program and choosing 'Properties')
-VersionInfoVersion=2.08.0.0
+VersionInfoVersion={#Version}
 ; Other version info
-OutputBaseFilename=EKU_2.08.0.0__setup
+OutputBaseFilename=EKU_{#Version}__setup
 
 ; Shown only in Programs & Features
 AppContact=EK Unleashed Forums
@@ -38,7 +40,7 @@ UninstallDisplayIcon={app}\EK Unleashed.exe
 
 
 [Messages]
-BeveledLabel=EK Unleashed v2.08 Setup
+BeveledLabel=EK Unleashed v{#Version} Setup
 
 [Languages]
 Name: english; MessagesFile: compiler:Default.isl
@@ -67,7 +69,8 @@ Description: Start EK Unleashed; Filename: {app}\EK Unleashed.exe; Flags: nowait
 [UninstallDelete]
 Type: files; Name: {app}\License.txt
 Type: files; Name: {app}\EK Unleashed.exe
-Type: files; Name: {app}\Newtonsoft.Json.dll
+Type: files; Name: {app}\Newtonsoft.Json.dll   
+Type: files; Name: {app}\ekf_core.dll
 Type: files; Name: {app}\uninstall.ico
 Type: filesandordirs; Name: {userappdata}\Souza Software\EK Unleashed
 
