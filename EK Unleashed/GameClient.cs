@@ -1226,6 +1226,15 @@ namespace EKUnleashed
                 {
                     // Ignore and try again in a second
                     try { this.ScheduledEvents.Add("KW Fight", new Scheduler.ScheduledEvent("KW Fight", this.KingdomWar_Fight, GameClient.DateTimeNow.AddSeconds(1))); } catch { }
+
+                }
+                catch (KeyNotFoundException ex)
+                {
+                    Utils.DebugLogger(Errors.GetShortErrorDetails(ex));
+                    Utils.DebugLogger(kwMap);
+
+                    // Ignore and try again in a second
+                    try { this.ScheduledEvents.Add("KW Fight", new Scheduler.ScheduledEvent("KW Fight", this.KingdomWar_Fight, GameClient.DateTimeNow.AddSeconds(1))); } catch { }
                 }
                 catch (Exception ex)
                 {
