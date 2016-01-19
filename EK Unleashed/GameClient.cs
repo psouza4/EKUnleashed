@@ -12,7 +12,13 @@ namespace EKUnleashed
 {
     public class GameClient
     {
-        private bool Want_SQL_DataDump      = false;
+        private bool Want_SQL_DataDump
+        {
+            get
+            {
+                return Utils.GetAppValue("Want_SQL_DataDump", false, true);
+            }
+        }
 
         public const string settings_file   = "settings.ini";
         public bool Want_Game_Login         = true;
@@ -6964,8 +6970,8 @@ namespace EKUnleashed
                     skill__LaunchCondition + ", " +
                     skill__LaunchConditionValue + ", " +
                     skill__AffectType + ", " +
-                    skill__AffectValue + ", " +
-                    skill__AffectValue2 + ", " +
+                    "\"" + skill__AffectValue + "\", " +
+                    "\"" + skill__AffectValue2 + "\", " +
                     skill__SkillCategory + ", " +
                     "\"" + skill__Desc.Trim().Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\r", " ").Replace("\t", " ").Replace("\n", " ").Trim() + "\", " +
                     skill__EvoRank +
