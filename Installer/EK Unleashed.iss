@@ -1,4 +1,4 @@
-#define Version '2.08.2.0'
+#define Version '2.09.1916.966'
 
 [Setup]
 AppName=EK Unleashed

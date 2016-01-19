@@ -43,6 +43,7 @@ namespace EKUnleashed
         public string All_Skills_JSON = "";
         public string Game_CDN_URL = "http://s1.ek.ifreeteam.com/";
 
+        //public const string TAG_EK = "&phpp=ANDROID_ARC&phpl=EN&pvc=1.7.4&pvb=2015-08-07%2018%3A55";
         public static string TAG_EK
         {
             get
@@ -54,8 +55,6 @@ namespace EKUnleashed
                     "&pvb=" + System.Web.HttpUtility.UrlEncode(DateTime.Now.ToString("yyyy-MM-dd HH:mm")); // for 1.7.5 they switched the date to the current date/time vs the build date/time
             }
         }
-
-        //public const string TAG_EK = "&phpp=ANDROID_ARC&phpl=EN&pvc=1.7.4&pvb=2015-08-07%2018%3A55";
 
         public static string m_strBuildTime = "2015-08-07 18:55"; //DateTime.Now.ToString("yyyy-MM-dd HH:mm");
         public int seq_id = 1000;

@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Souza Software")]
 [assembly: AssemblyProduct("EK Unleashed")]
-[assembly: AssemblyCopyright("Copyright © 2014-2015 Souza Software, Inc.")]
+[assembly: AssemblyCopyright("Copyright © 2014-2016 Souza Software, Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2.08.2.0")]
-[assembly: AssemblyFileVersion("2.08.2.0")]
+[assembly: AssemblyVersion("2.09.1916.966")]
+[assembly: AssemblyFileVersion("2.09.1916.966")]
