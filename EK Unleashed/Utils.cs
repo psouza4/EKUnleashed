@@ -779,11 +779,11 @@ namespace EKUnleashed
             return false;
         }
 
-        public static string GetAppValue(string sAppKey, string sDefault)
+        public static string GetAppValue(string sAppKey, string sDefault, bool bByPassCache = false)
         {
             try
             {
-                string s = Utils.GetAppSetting(sAppKey);
+                string s = Utils.GetAppSetting(sAppKey, bByPassCache);
 
                 if (string.IsNullOrEmpty(s))
                     return sDefault;
@@ -795,11 +795,11 @@ namespace EKUnleashed
             return sDefault;
         }
 
-        public static int GetAppValue(string sAppKey, int iDefault)
+        public static int GetAppValue(string sAppKey, int iDefault, bool bByPassCache = false)
         {
             try
             {
-                string s = Utils.GetAppSetting(sAppKey);
+                string s = Utils.GetAppSetting(sAppKey, bByPassCache);
 
                 if (string.IsNullOrEmpty(s))
                     return iDefault;
@@ -811,11 +811,11 @@ namespace EKUnleashed
             return iDefault;
         }
 
-        public static long GetAppValueL(string sAppKey, long lDefault)
+        public static long GetAppValueL(string sAppKey, long lDefault, bool bByPassCache = false)
         {
             try
             {
-                string s = Utils.GetAppSetting(sAppKey);
+                string s = Utils.GetAppSetting(sAppKey, bByPassCache);
 
                 if (string.IsNullOrEmpty(s))
                     return lDefault;
@@ -827,11 +827,11 @@ namespace EKUnleashed
             return lDefault;
         }
 
-        public static bool GetAppValue(string sAppKey, bool bDefault)
+        public static bool GetAppValue(string sAppKey, bool bDefault, bool bByPassCache = false)
         {
             try
             {
-                string s = Utils.GetAppSetting(sAppKey);
+                string s = Utils.GetAppSetting(sAppKey, bByPassCache);
 
                 if (string.IsNullOrEmpty(s))
                     return bDefault;
@@ -918,17 +918,20 @@ namespace EKUnleashed
         /// could not be found, or an exception was raised.
         /// </summary>
         /// <param name="sKeyName">The key in the appSetting section of .config to return a value for.</param>
-        public static string GetAppSetting(string sKeyName)
+        public static string GetAppSetting(string sKeyName, bool bByPassCache = false)
         {
             string sVal = null;
 
-            object o = RAMCache.GlobalCache.Get("Settings", sKeyName);
-            if (o != null)
-                if (o.GetType() == typeof(string))
-                    sVal = (string)o;
+            if (!bByPassCache)
+            {
+                object o = RAMCache.GlobalCache.Get("Settings", sKeyName);
+                if (o != null)
+                    if (o.GetType() == typeof(string))
+                        sVal = (string)o;
 
-            if (sVal != null)
-                return sVal;
+                if (sVal != null)
+                    return sVal;
+            }
 
             try
             {
