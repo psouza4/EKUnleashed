@@ -2791,11 +2791,13 @@ namespace EKUnleashed
         public enum StoreTypes
         {
             Gold,
+            Gold10,
             Gems_30,
             Gems_300,
             Gems_50,
             Gems_480,
             FireTokens,
+            FireTokens10
         }
 
         public static JObject GetStoreType(JObject shop_data, StoreTypes st)
@@ -2804,15 +2806,50 @@ namespace EKUnleashed
 
             try
             {
-                foreach (var shop_temp in (JArray)(shop_data["data"]))
+                int iGoldNormalAmount = 1000000000;
+                int iGoldNormalID = 0;
+                int iGoldLotsAmount = 0;
+                int iGoldLotsID = 0;
+
+                foreach (var shop_temp in (JArray)(shop_data["data"]["oldgood"]))
+                {
+                    int iGoldCost = Utils.CInt(shop_temp["Coins"]);
+                    int iGoodsID = Utils.CInt(((JObject)shop_temp)["GoodsId"]);
+
+                    if (iGoldCost > 0)
+                    {
+                        if (iGoldCost < iGoldNormalAmount)
+                        {
+                            iGoldNormalID = iGoodsID;
+                            iGoldNormalAmount = iGoldCost;
+                        }
+
+                        if (iGoldCost > iGoldLotsID)
+                        {
+                            iGoldLotsID = iGoodsID;
+                            iGoldLotsAmount = iGoldCost;
+                        }
+                    }
+                }
+
+                foreach (var shop_temp in (JArray)(shop_data["data"]["oldgood"]))
                 {
                     int iGoldCost = Utils.CInt(shop_temp["Coins"]);
                     int iGemsCost = Utils.CInt(shop_temp["Cash"]);
                     int iFTCost = Utils.CInt(shop_temp["Ticket"]);
+                    int iGoodsID = Utils.CInt(((JObject)shop_temp)["GoodsId"]);
 
                     if (st == StoreTypes.Gold)
                     {
-                        if (iGoldCost > 0)
+                        if (iGoodsID == iGoldNormalID)
+                        {
+                            shop = (JObject)shop_temp;
+                            break;
+                        }
+                    }
+                    else if (st == StoreTypes.Gold10)
+                    {
+                        if (iGoodsID == iGoldLotsID)
                         {
                             shop = (JObject)shop_temp;
                             break;
@@ -2858,25 +2895,75 @@ namespace EKUnleashed
                             break;
                         }
                     }
+                    else if (st == StoreTypes.FireTokens10)
+                    {
+                        if (iFTCost == 10)
+                        {
+                            shop = (JObject)shop_temp;
+                            break;
+                        }
+                    }
                 }
             }
             catch { }                
 
             if (shop == null)
             {
+                int iGoldNormalAmount = 1000000000;
+                int iGoldNormalID = 0;
+                int iGoldLotsAmount = 0;
+                int iGoldLotsID = 0;
+
                 for (int i = 0; i <= 100; i++)
                 {
                     try
                     {
-                        JObject shop_temp = (JObject)shop_data["data"][i.ToString()];
+                        JObject shop_temp = (JObject)shop_data["data"]["oldgood"][i.ToString()];
+
+                        int iGoldCost = Utils.CInt(shop_temp["Coins"]);
+                        int iGoodsID = Utils.CInt(shop_temp["GoodsId"]);
+
+                        if (iGoldCost > 0)
+                        {
+                            if (iGoldCost < iGoldNormalAmount)
+                            {
+                                iGoldNormalID = iGoodsID;
+                                iGoldNormalAmount = iGoldCost;
+                            }
+
+                            if (iGoldCost > iGoldLotsID)
+                            {
+                                iGoldLotsID = iGoodsID;
+                                iGoldLotsAmount = iGoldCost;
+                            }
+                        }
+                    }
+                    catch { }
+                }
+
+                for (int i = 0; i <= 100; i++)
+                {
+
+                    try
+                    {
+                        JObject shop_temp = (JObject)shop_data["data"]["oldgood"][i.ToString()];
 
                         int iGoldCost = Utils.CInt(shop_temp["Coins"]);
                         int iGemsCost = Utils.CInt(shop_temp["Cash"]);
                         int iFTCost = Utils.CInt(shop_temp["Ticket"]);
+                        int iGoodsID = Utils.CInt(((JObject)shop_temp)["GoodsId"]);
 
                         if (st == StoreTypes.Gold)
                         {
-                            if (iGoldCost > 0)
+                            if (iGoodsID == iGoldNormalID)
+                            {
+                                shop = (JObject)shop_temp;
+                                break;
+                            }
+                        }
+                        else if (st == StoreTypes.Gold10)
+                        {
+                            if (iGoodsID == iGoldLotsID)
                             {
                                 shop = (JObject)shop_temp;
                                 break;
@@ -2922,6 +3009,14 @@ namespace EKUnleashed
                                 break;
                             }
                         }
+                        else if (st == StoreTypes.FireTokens10)
+                        {
+                            if (iFTCost == 10)
+                            {
+                                shop = (JObject)shop_temp;
+                                break;
+                            }
+                        }
                     }
                     catch { }
                 }
@@ -2937,38 +3032,52 @@ namespace EKUnleashed
                 JObject user_data = JObject.Parse(Game.GetGameData("user", "GetUserInfo", false));
                 int iGold = Utils.CInt(user_data["data"]["Coins"]);
 
-                JObject shop_data = JObject.Parse(Game.GetGameData("shop", "GetGoods", false));
+                JObject shop_data = JObject.Parse(Game.GetGameData("shopnew", "GetGoods", "version=new", false));
 
                 int iConsecutiveErrors = 0;
 
-                JObject shop = frmMain.GetStoreType(shop_data, StoreTypes.Gold);
-                if (shop != null)
+                JObject shop_1pack = frmMain.GetStoreType(shop_data, StoreTypes.Gold);
+                JObject shop_10pack = frmMain.GetStoreType(shop_data, StoreTypes.Gold10);
+
+                if (shop_1pack != null)
                 {
                     try
                     {
-                        int iGoldCost = Utils.CInt(shop["Coins"]);
+                        int iGoldCost = Utils.CInt(shop_1pack["Coins"]);
 
                         if (iGoldCost > 0)
                         {
-                            string pack_name = shop["Name"].ToString();
+                            string pack_name = shop_1pack["Name"].ToString();
 
                             if (pack_name.ToLower().EndsWith("ard")) pack_name = pack_name + "s";
                             else if (pack_name.ToLower().EndsWith("ack")) pack_name = pack_name + "s";
+                            else if (pack_name.ToLower().EndsWith("acks") || pack_name.Contains(" X ")) ; // intentional empty statement
                             else pack_name = pack_name + "card packs";
 
                             int iHowMany = Utils.CInt(Utils.Input_Text("Buy How Many", "How many " + pack_name + " would you like to buy?"));
                             if (iHowMany < 1)
                                 return;
 
-                            if (MessageBox.Show("You have " + iGold.ToString("#,##0") + " gold and it will cost " + (iGoldCost * iHowMany).ToString("#,##0") + " to buy " + iHowMany.ToString("#,##0") + " x " + shop["Name"].ToString() + ".\r\n\r\nContinue?", "Really Spend " + (iGoldCost * iHowMany).ToString("#,##0") + " Gold?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                            if (MessageBox.Show("You have " + iGold.ToString("#,##0") + " gold and it will cost " + (iGoldCost * iHowMany).ToString("#,##0") + " to buy " + iHowMany.ToString("#,##0") + " x " + shop_1pack["Name"].ToString() + ".\r\n\r\nContinue?", "Really Spend " + (iGoldCost * iHowMany).ToString("#,##0") + " Gold?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                             {
-                                for (int i = 0; i < iHowMany; i++)
+                                for (int iAmountBought = 0; iAmountBought < iHowMany;)
                                 {
+                                    int iAmountToBuy = 1;
+
                                     try
                                     {
-                                        JObject cards_received = JObject.Parse(Game.GetGameData("shop", "Buy", "GoodsId=" + shop["GoodsId"].ToString(), false));
+                                        if (shop_10pack != null && Utils.CInt(shop_10pack["Coins"]) > 0)
+                                            if (iAmountBought + 10 <= iHowMany)
+                                                iAmountToBuy = 10;
 
-                                        string[] card_ids = Utils.SubStringsDups(cards_received["data"].ToString(), "_");
+                                        JObject cards_received;
+
+                                        if (iAmountToBuy == 10)
+                                            cards_received = JObject.Parse(Game.GetGameData("shopnew", "Buy", "version=new&GoodsId=" + shop_10pack["GoodsId"].ToString(), false));
+                                        else
+                                            cards_received = JObject.Parse(Game.GetGameData("shopnew", "Buy", "version=new&GoodsId=" + shop_1pack["GoodsId"].ToString(), false));
+
+                                        string[] card_ids = Utils.SubStringsDups(cards_received["data"]["CardIds"].ToString(), "_");
                                         string all_cards = "";
                                         bool bFiveStar = false;
                                         bool bEventCard = false;
@@ -2993,7 +3102,11 @@ namespace EKUnleashed
 
                                         all_cards = all_cards.Trim(new char[] { ' ', ',' });
 
-                                        Utils.LoggerNotifications("<color=#ffa000>You bought a " + shop["Name"].ToString() + " pack and received...</color>");
+                                        if (iAmountToBuy == 10)
+                                            Utils.LoggerNotifications("<color=#ffa000>You bought " + shop_10pack["Name"].ToString() + " and received...</color>");
+                                        else
+                                            Utils.LoggerNotifications("<color=#ffa000>You bought a " + shop_1pack["Name"].ToString() + " pack and received...</color>");
+
                                         Utils.LoggerNotifications("<color=#ffa000>      " + all_cards + "</color>");
                                         if (bFiveStar)
                                             Utils.LoggerNotifications("<color=#ffff40>      <b>CONGRATULATIONS</b> on your new 5★ card!</color>");
@@ -3008,16 +3121,20 @@ namespace EKUnleashed
                                     }
                                     catch
                                     {
-                                        i--;
                                         iConsecutiveErrors++;
 
                                         if (iConsecutiveErrors > 5)
                                             break;
+
+                                        continue;
                                     }
+
+                                    iAmountBought += iAmountToBuy;
                                 }
 
                                 user_data = JObject.Parse(Game.GetGameData("user", "GetUserInfo", false));
                                 this.GameVitalsUpdateUI(user_data, null, null);
+
                             }
                         }
                     }
@@ -3033,7 +3150,7 @@ namespace EKUnleashed
                 JObject user_data = JObject.Parse(Game.GetGameData("user", "GetUserInfo", false));
                 int iGems = Utils.CInt(user_data["data"]["Cash"]);
 
-                JObject shop_data = JObject.Parse(Game.GetGameData("shop", "GetGoods", false));
+                JObject shop_data = JObject.Parse(Game.GetGameData("shopnew", "GetGoods", "version=new", false));
 
                 int iConsecutiveErrors = 0;
 
@@ -3047,6 +3164,7 @@ namespace EKUnleashed
 
                         if (pack_name.ToLower().EndsWith("ard")) pack_name = pack_name + "s";
                         else if (pack_name.ToLower().EndsWith("ack")) pack_name = pack_name + "s";
+                        else if (pack_name.ToLower().EndsWith("acks") || pack_name.Contains(" X ")) ; // intentional empty statement
                         else pack_name = pack_name + "card packs";
 
                         int iHowMany = Utils.CInt(Utils.Input_Text("Buy How Many", "How many " + pack_name + " would you like to buy?"));
@@ -3059,9 +3177,9 @@ namespace EKUnleashed
                             {
                                 try
                                 {
-                                    JObject cards_received = JObject.Parse(Game.GetGameData("shop", "Buy", "GoodsId=" + shop["GoodsId"].ToString(), false));
+                                    JObject cards_received = JObject.Parse(Game.GetGameData("shopnew", "Buy", "version=new&GoodsId=" + shop["GoodsId"].ToString(), false));
 
-                                    string[] card_ids = Utils.SubStringsDups(cards_received["data"].ToString(), "_");
+                                    string[] card_ids = Utils.SubStringsDups(cards_received["data"]["CardIds"].ToString(), "_");
                                     string all_cards = "";
                                     bool bFiveStar = false;
                                     bool bEventCard = false;
@@ -3126,7 +3244,7 @@ namespace EKUnleashed
                 JObject user_data = JObject.Parse(Game.GetGameData("user", "GetUserInfo", false));
                 int iGems = Utils.CInt(user_data["data"]["Cash"]);
 
-                JObject shop_data = JObject.Parse(Game.GetGameData("shop", "GetGoods", false));
+                JObject shop_data = JObject.Parse(Game.GetGameData("shopnew", "GetGoods", "version=new", false));
 
                 int iConsecutiveErrors = 0;
 
@@ -3141,6 +3259,7 @@ namespace EKUnleashed
 
                         if (pack_name.ToLower().EndsWith("ard")) pack_name = pack_name + "s";
                         else if (pack_name.ToLower().EndsWith("ack")) pack_name = pack_name + "s";
+                        else if (pack_name.ToLower().EndsWith("acks") || pack_name.Contains(" X ")) ; // intentional empty statement
                         else pack_name = pack_name + "card packs";
 
                         int iHowMany = Utils.CInt(Utils.Input_Text("Buy How Many", "How many " + pack_name + " would you like to buy?"));
@@ -3153,9 +3272,9 @@ namespace EKUnleashed
                             {
                                 try
                                 {
-                                    JObject cards_received = JObject.Parse(Game.GetGameData("shop", "Buy", "GoodsId=" + shop["GoodsId"].ToString(), false));
+                                    JObject cards_received = JObject.Parse(Game.GetGameData("shopnew", "Buy", "version=new&GoodsId=" + shop["GoodsId"].ToString(), false));
 
-                                    string[] card_ids = Utils.SubStringsDups(cards_received["data"].ToString(), "_");
+                                    string[] card_ids = Utils.SubStringsDups(cards_received["data"]["CardIds"].ToString(), "_");
                                     string all_cards = "";
                                     bool bFiveStar = false;
                                     bool bEventCard = false;
@@ -3219,7 +3338,7 @@ namespace EKUnleashed
                 JObject user_data = JObject.Parse(Game.GetGameData("user", "GetUserInfo", false));
                 int iGems = Utils.CInt(user_data["data"]["Cash"]);
 
-                JObject shop_data = JObject.Parse(Game.GetGameData("shop", "GetGoods", false));
+                JObject shop_data = JObject.Parse(Game.GetGameData("shopnew", "GetGoods", "version=new", false));
 
                 int iConsecutiveErrors = 0;
 
@@ -3234,6 +3353,7 @@ namespace EKUnleashed
 
                         if (pack_name.ToLower().EndsWith("ard")) pack_name = pack_name + "s";
                         else if (pack_name.ToLower().EndsWith("ack")) pack_name = pack_name + "s";
+                        else if (pack_name.ToLower().EndsWith("acks") || pack_name.Contains(" X ")) ; // intentional empty statement
                         else pack_name = pack_name + "card packs";
 
                         int iHowMany = Utils.CInt(Utils.Input_Text("Buy How Many", "How many " + pack_name + " would you like to buy?"));
@@ -3246,9 +3366,9 @@ namespace EKUnleashed
                             {
                                 try
                                 {
-                                    JObject cards_received = JObject.Parse(Game.GetGameData("shop", "Buy", "GoodsId=" + shop["GoodsId"].ToString(), false));
+                                    JObject cards_received = JObject.Parse(Game.GetGameData("shopnew", "Buy", "version=new&GoodsId=" + shop["GoodsId"].ToString(), false));
 
-                                    string[] card_ids = Utils.SubStringsDups(cards_received["data"].ToString(), "_");
+                                    string[] card_ids = Utils.SubStringsDups(cards_received["data"]["CardIds"].ToString(), "_");
                                     string all_cards = "";
                                     bool bFiveStar = false;
                                     bool bEventCard = false;
@@ -3312,7 +3432,7 @@ namespace EKUnleashed
                 JObject user_data = JObject.Parse(Game.GetGameData("user", "GetUserInfo", false));
                 int iGems = Utils.CInt(user_data["data"]["Cash"]);
 
-                JObject shop_data = JObject.Parse(Game.GetGameData("shop", "GetGoods", false));
+                JObject shop_data = JObject.Parse(Game.GetGameData("shopnew", "GetGoods", "version=new", false));
 
                 int iConsecutiveErrors = 0;
 
@@ -3327,6 +3447,7 @@ namespace EKUnleashed
 
                         if (pack_name.ToLower().EndsWith("ard")) pack_name = pack_name + "s";
                         else if (pack_name.ToLower().EndsWith("ack")) pack_name = pack_name + "s";
+                        else if (pack_name.ToLower().EndsWith("acks") || pack_name.Contains(" X ")) ; // intentional empty statement
                         else pack_name = pack_name + "card packs";
 
                         int iHowMany = Utils.CInt(Utils.Input_Text("Buy How Many", "How many " + pack_name + " would you like to buy?"));
@@ -3339,9 +3460,9 @@ namespace EKUnleashed
                             {
                                 try
                                 {
-                                    JObject cards_received = JObject.Parse(Game.GetGameData("shop", "Buy", "GoodsId=" + shop["GoodsId"].ToString(), false));
+                                    JObject cards_received = JObject.Parse(Game.GetGameData("shopnew", "Buy", "version=new&GoodsId=" + shop["GoodsId"].ToString(), false));
 
-                                    string[] card_ids = Utils.SubStringsDups(cards_received["data"].ToString(), "_");
+                                    string[] card_ids = Utils.SubStringsDups(cards_received["data"]["CardIds"].ToString(), "_");
                                     string all_cards = "";
                                     bool bFiveStar = false;
                                     bool bEventCard = false;
@@ -3405,21 +3526,24 @@ namespace EKUnleashed
                 JObject user_data = JObject.Parse(Game.GetGameData("user", "GetUserInfo", false));
                 int iTickets = Utils.CInt(user_data["data"]["Ticket"]);
 
-                JObject shop_data = JObject.Parse(Game.GetGameData("shop", "GetGoods", false));
+                JObject shop_data = JObject.Parse(Game.GetGameData("shopnew", "GetGoods", "version=new", false));
 
                 int iConsecutiveErrors = 0;
 
-                JObject shop = frmMain.GetStoreType(shop_data, StoreTypes.FireTokens);
-                if (shop != null)
+                JObject shop_1pack = frmMain.GetStoreType(shop_data, StoreTypes.FireTokens);
+                JObject shop_10pack = frmMain.GetStoreType(shop_data, StoreTypes.FireTokens10);
+
+                if (shop_1pack != null)
                 {
                     try
                     {
-                        int iTicketCost = Utils.CInt(shop["Ticket"]);
+                        int iTicketCost = Utils.CInt(shop_1pack["Ticket"]);
 
-                        string pack_name = shop["Name"].ToString();
+                        string pack_name = shop_1pack["Name"].ToString();
 
                         if (pack_name.ToLower().EndsWith("ard")) pack_name = pack_name + "s";
                         else if (pack_name.ToLower().EndsWith("ack")) pack_name = pack_name + "s";
+                        else if (pack_name.ToLower().EndsWith("acks") || pack_name.Contains(" X ")) ; // intentional empty statement
                         else if (pack_name.ToLower().EndsWith("oken")) pack_name = pack_name + " cards";
                         else if (pack_name.ToLower().EndsWith("oupon")) pack_name = pack_name + " cards";
                         else pack_name = pack_name + " card packs";
@@ -3432,15 +3556,26 @@ namespace EKUnleashed
                         if (iHowMany < 1)
                             return;
 
-                        if (MessageBox.Show("You have " + iTickets.ToString("#,##0") + " " + Utils.Pluralize(fire_token.ToLower(), iTickets) + " and it will cost " + (iTicketCost * iHowMany).ToString("#,##0") + " to buy " + iHowMany.ToString("#,##0") + " x " + shop["Name"].ToString() + " " + Utils.Pluralize("pack", iHowMany) + ".\r\n\r\nContinue?", "Really Spend " + (iTicketCost * iHowMany).ToString("#,##0") + " " + Utils.Pluralize(fire_token, iTicketCost * iHowMany) + "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                        if (MessageBox.Show("You have " + iTickets.ToString("#,##0") + " " + Utils.Pluralize(fire_token.ToLower(), iTickets) + " and it will cost " + (iTicketCost * iHowMany).ToString("#,##0") + " to buy " + iHowMany.ToString("#,##0") + " x " + shop_1pack["Name"].ToString() + " " + Utils.Pluralize("pack", iHowMany) + ".\r\n\r\nContinue?", "Really Spend " + (iTicketCost * iHowMany).ToString("#,##0") + " " + Utils.Pluralize(fire_token, iTicketCost * iHowMany) + "?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                         {
-                            for (int i = 0; i < iHowMany; i++)
+                            for (int iAmountBought = 0; iAmountBought < iHowMany;)
                             {
+                                int iAmountToBuy = 1;
+
                                 try
                                 {
-                                    JObject cards_received = JObject.Parse(Game.GetGameData("shop", "Buy", "GoodsId=" + shop["GoodsId"].ToString(), false));
+                                    if (shop_10pack != null && Utils.CInt(shop_10pack["Ticket"]) > 0)
+                                        if (iAmountBought + 10 <= iHowMany)
+                                            iAmountToBuy = 10;
 
-                                    string[] card_ids = Utils.SubStringsDups(cards_received["data"].ToString(), "_");
+                                    JObject cards_received;
+
+                                    if (iAmountToBuy == 10)
+                                        cards_received = JObject.Parse(Game.GetGameData("shopnew", "Buy", "version=new&GoodsId=" + shop_10pack["GoodsId"].ToString(), false));
+                                    else
+                                        cards_received = JObject.Parse(Game.GetGameData("shopnew", "Buy", "version=new&GoodsId=" + shop_1pack["GoodsId"].ToString(), false));
+
+                                    string[] card_ids = Utils.SubStringsDups(cards_received["data"]["CardIds"].ToString(), "_");
                                     string all_cards = "";
                                     bool bFiveStar = false;
                                     bool bEventCard = false;
@@ -3465,7 +3600,11 @@ namespace EKUnleashed
 
                                     all_cards = all_cards.Trim(new char[] { ' ', ',' });
 
-                                    Utils.LoggerNotifications("<color=#ffa000>You bought a " + shop["Name"].ToString() + " pack and received...</color>");
+                                    if (iAmountToBuy == 10)
+                                        Utils.LoggerNotifications("<color=#ffa000>You bought " + shop_10pack["Name"].ToString() + " and received...</color>");
+                                    else
+                                        Utils.LoggerNotifications("<color=#ffa000>You bought a " + shop_1pack["Name"].ToString() + " pack and received...</color>");
+
                                     Utils.LoggerNotifications("<color=#ffa000>      " + all_cards + "</color>");
                                     if (bFiveStar)
                                         Utils.LoggerNotifications("<color=#ffff40>      <b>CONGRATULATIONS</b> on your new 5★ card!</color>");
@@ -3480,12 +3619,15 @@ namespace EKUnleashed
                                 }
                                 catch
                                 {
-                                    i--;
                                     iConsecutiveErrors++;
 
                                     if (iConsecutiveErrors > 5)
                                         break;
+
+                                    continue;
                                 }
+
+                                iAmountBought += iAmountToBuy;
                             }
 
                             user_data = JObject.Parse(Game.GetGameData("user", "GetUserInfo", false));

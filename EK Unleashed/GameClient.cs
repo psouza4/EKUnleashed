@@ -43,7 +43,20 @@ namespace EKUnleashed
         public string All_Skills_JSON = "";
         public string Game_CDN_URL = "http://s1.ek.ifreeteam.com/";
 
-        public const string TAG_EK = "&phpp=ANDROID_ARC&phpl=EN&pvc=1.7.4&pvb=2015-08-07%2018%3A55";
+        public static string TAG_EK
+        {
+            get
+            {
+                return
+                    "&phpp=ANDROID_ARC" +
+                    "&phpl=EN" +
+                    "&pvc=1.7.5" +
+                    "&pvb=" + System.Web.HttpUtility.UrlEncode(DateTime.Now.ToString("yyyy-MM-dd HH:mm")); // for 1.7.5 they switched the date to the current date/time vs the build date/time
+            }
+        }
+
+        //public const string TAG_EK = "&phpp=ANDROID_ARC&phpl=EN&pvc=1.7.4&pvb=2015-08-07%2018%3A55";
+
         public static string m_strBuildTime = "2015-08-07 18:55"; //DateTime.Now.ToString("yyyy-MM-dd HH:mm");
         public int seq_id = 1000;
         public object locker = new object();
@@ -369,7 +382,7 @@ namespace EKUnleashed
         {
             lock (this.locker_gamedata)
             {
-                JObject shop_data = JObject.Parse(this.GetGameData("shopnew", "GetGoods", true));
+                JObject shop_data = JObject.Parse(this.GetGameData("shopnew", "GetGoods", "version=new", true));
 
                 try
                 {
@@ -389,7 +402,7 @@ namespace EKUnleashed
 
                                     int goods_id = Utils.CInt(shop_item["GoodsId"]);
 
-                                    JObject cards_received = JObject.Parse(this.GetGameData("shopnew", "FreeBuy", "GoodsId=" + goods_id.ToString()));
+                                    JObject cards_received = JObject.Parse(this.GetGameData("shopnew", "FreeBuy", "version=new&GoodsId=" + goods_id.ToString()));
 
                                     string[] card_ids = Utils.SubStringsDups(cards_received["data"]["CardIds"].ToString(), "_");
                                     string all_cards = "";
@@ -1900,7 +1913,7 @@ namespace EKUnleashed
             if ((page == "activity") && (action == "ActivityInfo")) return "Game Events";
             if ((page == "mapstage") && (action == "GetMapStageALL")) return "Map Stage List";
             if ((page == "mapstage") && (action == "GetUserMapStages")) return "User Map Stage Completion";
-            if ((page == "shop") && (action == "GetGoods")) return "Card Shop List";
+            if ((page == "shopnew") && (action == "GetGoods")) return "Card Shop List";
             if ((page == "boss") && (action == "GetBoss")) return "Latest Boss Info";
             if ((page == "forceshop") && (action == "GetAuctionGoods")) return "Kingdom War Auction Info";
             if ((page == "forceshop") && (action == "GetExchangeGoods")) return "Kingdom War Exchange List";
@@ -6782,7 +6795,7 @@ namespace EKUnleashed
             this.GetGameData("activity", "ActivityInfo", true, "game_events");
             this.GetGameData("mapstage", "GetMapStageALL", true, "map_stage_list");
             this.GetGameData("mapstage", "GetUserMapStages", true, "user_map_stages");
-            this.GetGameData("shop", "GetGoods", true, "shop_goods");
+            this.GetGameData("shopnew", "GetGoods", "version=new", true, "shop_goods");
             this.GetGameData("boss", "GetBoss", true, "game_current_boss");
             this.GetGameData("forcefight", "GetForceStatus", true, "user_force_status");
             this.GetGameData("forceshop", "GetExchangeGoods", true, "kingdomwar_shop_exchange");
@@ -7292,7 +7305,7 @@ namespace EKUnleashed
 
         #region Chinese server stuff
 
-        private const string TAG_SW = "&phpp=ANDROID&phpl=ZH_CN&pvc=1.7.4&pvb=2015-08-07%2018%3A55";
+        private const string TAG_SW = "&phpp=ANDROID&phpl=ZH_CN&pvc=1.7.5&pvb=2015-08-07%2018%3A55";
 
         private Comm.CommFetchOptions Login_SW(string language_to_use = "ZH_CN")
         {
