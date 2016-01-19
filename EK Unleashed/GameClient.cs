@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Windows.Forms;
+using ElementalKingdoms.core.kingdomwar;
 
 namespace EKUnleashed
 {
@@ -189,7 +190,7 @@ namespace EKUnleashed
             Utils.Chatter("<color=#00efff>Alt+F2\t\tLogout and stop all events</color>");
             Utils.Chatter("<color=#00efff>Enter\t\tSend a message to general chat</color>");
             Utils.Chatter("<color=#005f8f>------------------------------------------------------------------------------------------------------------------------</color>");
-        }        
+        }
 
         public void Play_FieldOfHonorSpins()
         {
@@ -348,7 +349,7 @@ namespace EKUnleashed
                     return;
 
                 // enchant the first 1* card with the second 1* card
-                 this.GetGameData("streng", "Card", "UserCardId1=" + card_A.ID_User.ToString() + "&UserCardId2=" + card_B.ID_User.ToString(), false);
+                this.GetGameData("streng", "Card", "UserCardId1=" + card_A.ID_User.ToString() + "&UserCardId2=" + card_B.ID_User.ToString(), false);
 
                 // sell the first 1* card
                 GameClient.Current.GetGameData("card", "SaleCardRunes", "Cards=" + card_A.ID_User.ToString());
@@ -713,6 +714,7 @@ namespace EKUnleashed
             {
                 try
                 {
+                    Utils.DebugLogger(string.Format("KW callback {0}: {1}", msgid, msg));
                     if (msgid == -1) // point the player was attacking/defending switched forces during queue
                     {
                         Utils.Logger("<color=#ffa000>... Kingdom War queue failed because the point's kingdom ownership changed</color>");
@@ -1090,19 +1092,23 @@ namespace EKUnleashed
                         return;
                     }
 
+                    KingdomWar map = kwMapJSON["data"].ToObject<KingdomWar>();
+
+                    this.KW_LastBattlesWon = map.BattleWin;
+                    this.KW_LastBattlesLost = map.BattleDeath;
+
                     if (this.KW_LastHonor == 0)
                         this.KW_LastHonor = Utils.CInt(kwMapJSON["KW_LastHonor"]);
 
-                    this.KW_ForceID = Utils.CInt(kwMapJSON["data"]["force_id"]);
+                    this.KW_ForceID = (int)map.ForceId;
                     this.Kingdom_War_ID = kwMapJSON["data"]["force_id"].ToString();
 
                     if (!this.KW_Ongoing)
                         this.KingdomWar_WarBegins();
-
-                    int cooldown_check = Utils.CInt(kwMapJSON["data"]["cd_time"]);
-                    if (cooldown_check > 0)
+                    
+                    if (map.CooldownTime > 0)
                     {
-                        this.KW_CooldownExpires = DateTime.Now.AddSeconds(cooldown_check);
+                        this.KW_CooldownExpires = DateTime.Now.AddSeconds(map.CooldownTime);
 
                         if (!KingdomWar_CooldownNotified)
                         {
@@ -1110,7 +1116,7 @@ namespace EKUnleashed
                             this.KingdomWar_CooldownNotified = true;
                         }
 
-                        try { this.ScheduledEvents.Add("KW Fight", new Scheduler.ScheduledEvent("KW Fight", this.KingdomWar_Fight, GameClient.DateTimeNow.AddSeconds(cooldown_check))); }
+                        try { this.ScheduledEvents.Add("KW Fight", new Scheduler.ScheduledEvent("KW Fight", this.KingdomWar_Fight, GameClient.DateTimeNow.AddSeconds(map.CooldownTime))); }
                         catch { }
                         return;
                     }
@@ -1119,6 +1125,13 @@ namespace EKUnleashed
 
                     //Utils.LoggerNotifications("KW fight status: " + kwMapJSON["data"]["fight_status"].ToString()); // 0 = nothing, -1 or -2 = in queue to defend, 1 or 2 = in queue to attack
                     //Utils.LoggerNotifications("KW current target point ID: " + kwMapJSON["data"]["current_id"].ToString()); // point ID we're attacking or defending
+
+                    List<Point> attackableTargets = map.GetAttackableTargets();
+
+                    if (attackableTargets.Count == 0)
+                    {
+                        this.KW_TeamHasBeenEliminated = true;
+                    }
 
                     foreach (KW_Point p in GameClient.KW_AttackTargets)
                     {
@@ -1137,6 +1150,21 @@ namespace EKUnleashed
 
                         if (Utils.CInt(point["force_id"]) != this.KW_ForceID)
                         {
+                            bool isAttackable = false;
+                            foreach (var target in attackableTargets)
+                            {
+                                if (target.Id == point["point_id"].ToString())
+                                {
+                                    isAttackable = true;
+                                    break;
+                                }
+                            }
+                            if (!isAttackable)
+                            {
+                                //Utils.DebugLogger("<color=#ffa000>Kingdom War not able to attack " + point["point_name"].ToString() + " right now...</color>");
+                                continue;
+                            }
+
                             // attackStatus:  -1 defend, 1 attack
                             string kwMapAttack = this.GetGameData("forcefight", "JoinFight", "point_id=" + point["point_id"].ToString() + "&attackStatus=1&NewVersion=1", true);
 
@@ -1157,7 +1185,7 @@ namespace EKUnleashed
                                 this.KW_InQueueSince = DateTime.Now;
 
                                 if (Utils.CInt(kwMapAttackJSON["status"]) == 1)
-                                    Utils.LoggerNotifications("<color=#ffa000>Kingdom War in queue to attack <b>" + point["point_name"].ToString() + "</b> worth <b>" + Utils.CInt(point["value"]).ToString("#,##0") + "</b> points...</color>");
+                                    Utils.LoggerNotifications("<color=#ffa000>[" + map.BattleWin + "-" + map.BattleDeath + "] Kingdom War in queue to attack <b>" + point["point_name"].ToString() + "</b> worth <b>" + Utils.CInt(point["value"]).ToString("#,##0") + "</b> points... </color>");
 
                                 try { this.ScheduledEvents.Add("KW Fight Followup", new Scheduler.ScheduledEvent("KW Fight Followup", this.KingdomWar_Fight, GameClient.DateTimeNow.AddSeconds(15))); }
                                 catch { } break;
@@ -1196,6 +1224,15 @@ namespace EKUnleashed
                 }
                 catch (Newtonsoft.Json.JsonReaderException)
                 {
+                    // Ignore and try again in a second
+                    try { this.ScheduledEvents.Add("KW Fight", new Scheduler.ScheduledEvent("KW Fight", this.KingdomWar_Fight, GameClient.DateTimeNow.AddSeconds(1))); } catch { }
+
+                }
+                catch (KeyNotFoundException ex)
+                {
+                    Utils.DebugLogger(Errors.GetShortErrorDetails(ex));
+                    Utils.DebugLogger(kwMap);
+
                     // Ignore and try again in a second
                     try { this.ScheduledEvents.Add("KW Fight", new Scheduler.ScheduledEvent("KW Fight", this.KingdomWar_Fight, GameClient.DateTimeNow.AddSeconds(1))); } catch { }
                 }
@@ -1314,7 +1351,7 @@ namespace EKUnleashed
                 this.opts.POST_Data =
                     user_field_name + "=" + System.Web.HttpUtility.UrlEncode(Utils.GetAppSetting("Login_Account").Trim()) + "&" +
                     pass_field_name + "=" + System.Web.HttpUtility.UrlEncode(Utils.GetAppSetting("Login_Password").Trim()) + "&" +
-                    captcha_field_name + "=" + System.Web.HttpUtility.UrlEncode(captcha_answer.Trim()) + "";                
+                    captcha_field_name + "=" + System.Web.HttpUtility.UrlEncode(captcha_answer.Trim()) + "";
             }
             else
             {
@@ -1761,11 +1798,41 @@ namespace EKUnleashed
                     Utils.Chatter(Errors.GetShortErrorDetails(ex));
                 }
             }
+            
+            if (true /* StoreReplays */)
+            {
+                StoreReplay(page + action, result);
+            }
 
             Utils.Logger(result);
             Utils.Logger();
 
             return result;
+        }
+
+        private void StoreReplay(string request, string result)
+        {
+            try
+            {
+                // TODO: Keep a list of requests that contain fight data, and only store replays that are in that list. Should be more efficient then try/catching
+                // arenaFreeFight arenaRankFight bossGetFightData
+                var obj = JObject.Parse(result);
+                string battleId = obj["data"]["BattleId"].ToString();
+                if (!string.IsNullOrEmpty(battleId))
+                {
+                    string attacker = obj["data"]["AttackPlayer"]["NickName"].ToString();
+                    string defender = obj["data"]["DefendPlayer"]["NickName"].ToString();
+                    string fileName = string.Format("{0} {1:yyyy-MM-dd_hh-mm-ss} {2} vs {3} {4}.json", request, DateTime.Now, attacker, defender, battleId);
+
+                    // TODO: Make it possible to specify folder for replays
+                    string replayFolder = string.Format(@"{0}\Game Data\Replays\{1}\", Utils.AppFolder, GameAbbreviation(Service));
+                    System.IO.Directory.CreateDirectory(replayFolder);
+
+                    Utils.FileOverwrite(replayFolder + Utils.RemoveInvalidFilePathCharacters(fileName, ""), JSBeautifyLib.JSBeautify.BeautifyMe(result));
+
+                }
+            }
+            catch { }
         }
 
         public static bool Want_Debug
@@ -1775,6 +1842,20 @@ namespace EKUnleashed
                 try
                 {
                     return Utils.False("Game_Debug");
+                }
+                catch { }
+
+                return false;
+            }
+        }
+
+        public static bool StoreReplays
+        {
+            get
+            {
+                try
+                {
+                    return Utils.True("Game_StoreReplays");
                 }
                 catch { }
 
@@ -1834,7 +1915,7 @@ namespace EKUnleashed
         public void EnchantCard(string card_name, int card_level, int unique_card_id_to_enchant = 0)
         {
             JObject EnchantThisCard = this.GetCardByName(card_name);
-            
+
             if (EnchantThisCard == null)
             {
                 Utils.LoggerNotifications("<color=#ffa000>Couldn't find a matching card to enchant.</color>");
@@ -1861,7 +1942,7 @@ namespace EKUnleashed
 
             this.UserCards_CachedData = null;
             this.GetUsersCards();
-            
+
             GameObjs.Card CardToEnchant = null;
             List<GameObjs.Card> CardsToEat = new List<GameObjs.Card>();
 
@@ -1939,7 +2020,7 @@ namespace EKUnleashed
 
                 int XPRunningTotal = 0;
 
-                Dictionary<int,int> cardCount = new Dictionary<int,int>();
+                Dictionary<int, int> cardCount = new Dictionary<int, int>();
 
                 foreach (var jCard in this.UserCards_CachedData["data"]["Cards"])
                 {
@@ -1951,7 +2032,7 @@ namespace EKUnleashed
                         cardCount[TempCard.ID_Generic]++;
                 }
 
-                Dictionary<int,int> cardUsed = new Dictionary<int,int>();
+                Dictionary<int, int> cardUsed = new Dictionary<int, int>();
                 int iDontUseMoreThanThreshold = Utils.GetAppValue("Enchant_Cards_ReserveThreshold", 5);
 
                 GameObjs.Card.RefreshCardsInDeckCache();
@@ -2031,11 +2112,11 @@ namespace EKUnleashed
                         cards_to_eat_list = cards_to_eat_list.Substring(1);
 
                         string upgrade_preview_json = this.GetGameData("streng", "CardPreview", "UserCardId1=" + CardToEnchant.ID_User.ToString() + "&UserCardId2=" + cards_to_eat_list, false);
-                                
+
                         Utils.Logger(upgrade_preview_json);
 
                         JObject upgrade_preview = JObject.Parse(upgrade_preview_json);
-                        
+
                         string message = "";
                         try
                         {
@@ -2065,9 +2146,9 @@ namespace EKUnleashed
                             else
                             {
                                 string enchant_result_json = this.GetGameData("streng", "Card", "UserCardId1=" + CardToEnchant.ID_User.ToString() + "&UserCardId2=" + cards_to_eat_list, false);
-                                
+
                                 Utils.Logger(enchant_result_json);
-                                
+
                                 JObject enchant_result = JObject.Parse(enchant_result_json);
 
                                 Utils.LoggerNotifications("<color=#ffa000>Card has been enchanted to level " + upgrade_preview["data"]["CardLevel"].ToString() + "!</color>");
@@ -2097,7 +2178,7 @@ namespace EKUnleashed
         public void EnchantRune(string rune_name, int rune_level, int unique_rune_id_to_enchant = 0)
         {
             JObject EnchantThisRune = this.GetRuneByName(rune_name);
-            
+
             if (EnchantThisRune == null)
             {
                 Utils.LoggerNotifications("<color=#ffa000>Couldn't find a matching rune to enchant.</color>");
@@ -2109,7 +2190,7 @@ namespace EKUnleashed
 
             this.UserRunes_CachedData = null;
             this.GetUsersRunes();
-            
+
             GameObjs.Rune RuneToEnchant = null;
             List<GameObjs.Rune> RunesToEat = new List<GameObjs.Rune>();
 
@@ -2154,7 +2235,7 @@ namespace EKUnleashed
                                 Utils.LoggerNotifications("<color=#ffa000>Enchanting your level " + TempRune.Level.ToString() + " " + TempRune.Name + " to level " + rune_level.ToString() + "!</color>");
                                 Utils.LoggerNotifications("<color=#ffa000>... it will cost " + TempRune.EnchantToLevelCostXP(rune_level).ToString("#,##0") + " XP to enchant</color>");
                                 Utils.LoggerNotifications("<color=#ffa000>... it will cost " + TempRune.EnchantToLevelCostGold(rune_level).ToString("#,##0") + " gold to enchant</color>");
-                                
+
                                 RuneToEnchant = TempRune;
                                 break;
                             }
@@ -2187,7 +2268,7 @@ namespace EKUnleashed
 
                 int XPRunningTotal = 0;
 
-                Dictionary<int,int> runeCount = new Dictionary<int,int>();
+                Dictionary<int, int> runeCount = new Dictionary<int, int>();
 
                 foreach (var jRune in this.UserRunes_CachedData["data"]["Runes"])
                 {
@@ -2199,7 +2280,7 @@ namespace EKUnleashed
                         runeCount[TempRune.ID_Generic]++;
                 }
 
-                Dictionary<int,int> runeUsed = new Dictionary<int,int>();
+                Dictionary<int, int> runeUsed = new Dictionary<int, int>();
                 int iDontUseMoreThanThreshold = Utils.GetAppValue("Enchant_Runes_ReserveThreshold", 1);
 
                 List<int> runesInDecks = new List<int>();
@@ -2258,11 +2339,11 @@ namespace EKUnleashed
                         runes_to_eat_list = runes_to_eat_list.Substring(1);
 
                         string upgrade_preview_json = this.GetGameData("streng", "RunePreview", "UserRuneId1=" + RuneToEnchant.ID_User.ToString() + "&UserRuneId2=" + runes_to_eat_list, false);
-                                
+
                         Utils.Logger(upgrade_preview_json);
 
                         JObject upgrade_preview = JObject.Parse(upgrade_preview_json);
-                        
+
                         string message = "";
                         try
                         {
@@ -2296,9 +2377,9 @@ namespace EKUnleashed
                                 //Utils.LoggerNotifications(upgrade_preview_json);
 
                                 string enchant_result_json = this.GetGameData("streng", "Rune", "UserRuneId1=" + RuneToEnchant.ID_User.ToString() + "&UserRuneId2=" + runes_to_eat_list, false);
-                                
+
                                 Utils.Logger(enchant_result_json);
-                                
+
                                 JObject enchant_result = JObject.Parse(enchant_result_json);
 
                                 Utils.LoggerNotifications("<color=#ffa000>Rune has been enchanted to level " + upgrade_preview["data"]["RuneLevel"].ToString() + "!</color>");
@@ -2437,7 +2518,8 @@ namespace EKUnleashed
                 DateTime dtStart = GameClient.DateTimeNow;
 
                 int iPasses = 0;
-                for (DateTime dtStartLoop = DateTime.Now; (DateTime.Now - dtStartLoop).TotalMinutes <= 15; ) // failsafe: wait up to 15 minutes before bailing
+                int remaining_cooldown__live = current_cooldown;
+                for (DateTime dtStartLoop = DateTime.Now; (DateTime.Now - dtStartLoop).TotalMinutes <= 15;) // failsafe: wait up to 15 minutes before bailing
                 {
                     iPasses++;
 
@@ -2453,42 +2535,29 @@ namespace EKUnleashed
                     if ((GameClient.DateTimeNow - dtStart).TotalSeconds >= current_cooldown - (waited_for_fight_data + 4))
                         break;
 
+                    JObject DI_boss = null;
+                    JObject DI_rank = null;
                     try
                     {
-                        JObject DI_boss = null;
                         if (iPasses == 0 && initial_DI_boss != null)
                             DI_boss = initial_DI_boss;
                         else
                             DI_boss = JObject.Parse(this.GetGameData("boss", "GetBoss", false));
 
-                        int remaining_cooldown__live = Utils.CInt(DI_boss["data"]["CanFightTime"].ToString());
+                        remaining_cooldown__live = Utils.CInt(DI_boss["data"]["CanFightTime"].ToString());
 
                         if (remaining_cooldown__live <= 0)
                             break;
 
-                        JObject DI_rank = null;
                         if (iPasses == 0 && initial_DI_rank != null)
                             DI_rank = initial_DI_rank;
                         else
                             DI_rank = JObject.Parse(this.GetGameData("boss", "GetRanks", "Amount=10&StartRank=1", false));
-
-                        this.ParentForm.DemonInvasion_UpdateData(DI_boss, DI_rank);
-
-                        int gem_cost = ((remaining_cooldown__live + 59) / 60) * 10;
-
-                        this.ParentForm.UpdateDIButton(true, (this.User_Gems >= gem_cost) && (!this.DI_BoughtCooldown), "End Cooldown\r\nCosts: " + gem_cost.ToString("#,##0") + " gems\r\n(you have: " + this.User_Gems.ToString("#,##0") + " gems)");
-
-                        int DI_current_ranking = Utils.CInt(DI_rank["data"]["Rank"].ToString());
-
-                        int minutes = remaining_cooldown__live / 60;
-                        int seconds = remaining_cooldown__live % 60;
-
-                        this.ParentForm.SetText("EK Unleashed", this.Login_NickName + "  ::  " + this.ServerName + "  ::  Fighting: " + BossName + "  ::  Rank #" + DI_current_ranking.ToString("#,##0") + " ::  CD " + minutes.ToString() + ":" + seconds.ToString("00"));
-                        this.ParentForm.RefreshWindow(); // required to re-paint the title bar
                     }
                     catch { }
 
-                    for (int i = 0; i < 5; i++) // wait a quarter second
+                    int total_sleep_time = 0;
+                    for (int i = 0; i < 100; i++) // wait for 5 seconds, attempt to resolve server-side throttle
                     {
                         lock (this.locker)
                         {
@@ -2497,9 +2566,35 @@ namespace EKUnleashed
 
                             if (this.DI_BoughtCooldown)
                                 break;
+
+                            if (total_sleep_time >= remaining_cooldown__live * 1000)
+                                break;
+                        }
+
+                        // Every second while sleeping, update the label and button to show the right cool times (as we are sleeping here more then a second now before calling the server again)
+                        if (total_sleep_time % 1000 == 0)
+                        {
+                            int internal_cooldown_time = remaining_cooldown__live - (total_sleep_time / 1000);
+
+                            DI_boss["data"]["CanFightTime"] = internal_cooldown_time;
+
+                            this.ParentForm.DemonInvasion_UpdateData(DI_boss, DI_rank);
+
+                            int gem_cost = ((internal_cooldown_time + 59) / 60) * 10;
+
+                            this.ParentForm.UpdateDIButton(true, (this.User_Gems >= gem_cost) && (!this.DI_BoughtCooldown), "End Cooldown\r\nCosts: " + gem_cost.ToString("#,##0") + " gems\r\n(you have: " + this.User_Gems.ToString("#,##0") + " gems)");
+
+                            int DI_current_ranking = Utils.CInt(DI_rank["data"]["Rank"].ToString());
+
+                            int minutes = internal_cooldown_time / 60;
+                            int seconds = internal_cooldown_time % 60;
+
+                            this.ParentForm.SetText("EK Unleashed", this.Login_NickName + "  ::  " + this.ServerName + "  ::  Fighting: " + BossName + "  ::  Rank #" + DI_current_ranking.ToString("#,##0") + " ::  CD " + minutes.ToString() + ":" + seconds.ToString("00"));
+                            this.ParentForm.RefreshWindow(); // required to re-paint the title bar
                         }
 
                         System.Threading.Thread.Sleep(50);
+                        total_sleep_time += 50;
                     }
                 }
             }
@@ -2547,7 +2642,7 @@ namespace EKUnleashed
                 //bool first_attack = true;
                 bool currently_on_special_DI_deck = false;
 
-                for (DateTime dtStartLoop = DateTime.Now; (DateTime.Now - dtStartLoop).TotalMinutes < 210; ) // failsafe: do not run Demon Invasion for longer than 2 hours, 30 minutes
+                for (DateTime dtStartLoop = DateTime.Now; (DateTime.Now - dtStartLoop).TotalMinutes < 210;) // failsafe: do not run Demon Invasion for longer than 2 hours, 30 minutes
                 {
                     try
                     {
@@ -2655,7 +2750,7 @@ namespace EKUnleashed
                         int waited_for_fight_data = 0;
                         if (Utils.CInt(fight["status"].ToString()) == 1) // if the battle was successful
                         {
-                            for (DateTime dtStartLoop_FightQueueWait = DateTime.Now; (DateTime.Now - dtStartLoop_FightQueueWait).TotalSeconds <= 30; ) // wait up to 30 seconds
+                            for (DateTime dtStartLoop_FightQueueWait = DateTime.Now; (DateTime.Now - dtStartLoop_FightQueueWait).TotalSeconds <= 30;) // wait up to 30 seconds
                             {
                                 try
                                 {
@@ -2963,7 +3058,7 @@ namespace EKUnleashed
                 for (;;)
                 {
                     bool awarded_something = false;
-                    
+
                     #region Rewards chest
                     if (Utils.True("Game_ClaimRewards"))
                     {
@@ -2984,6 +3079,22 @@ namespace EKUnleashed
                         {
                             if (Utils.CInt(welfare["Level"]) <= Utils.CInt(joUserInfo["data"]["Level"]))
                             {
+                                try
+                                {
+                                    if (Utils.CInt(welfare["Get"]) == 2)
+                                    {
+                                        // already received this specific level reward
+                                        Utils.DebugLogger("Already received level up reward " + welfare["Name"].ToString());
+                                        continue;
+                                    }
+                                }
+                                catch
+                                {
+                                    // cannot claim this specific level reward yet
+                                    Utils.DebugLogger("Cannot claim level up reward " + welfare["Name"].ToString() + " yet");
+                                    continue;
+                                }
+
                                 result = this.GetGameData("shop", "RecieveAward", "id=" + welfare["Id"].ToString() + "&type=2", true);
                                 JObject joResultTemp = JObject.Parse(result);
 
@@ -3059,7 +3170,7 @@ namespace EKUnleashed
                                                 int card_id = Utils.CInt(fragments_received["ChipId"]);
                                                 int qty = Utils.CInt(fragments_received["ChipNum"]);
 
-                                                Utils.LoggerNotifications("<color=#ffa000>... reward received:  " + qty.ToString("#,##0") + " " +  this.FriendlyReplacerInbound("[Card #" + card_id.ToString() + "]") + " fragment" + ((qty == 1) ? "" : "s") + "</color>");
+                                                Utils.LoggerNotifications("<color=#ffa000>... reward received:  " + qty.ToString("#,##0") + " " + this.FriendlyReplacerInbound("[Card #" + card_id.ToString() + "]") + " fragment" + ((qty == 1) ? "" : "s") + "</color>");
                                             }
                                         }
                                         catch
@@ -3100,7 +3211,7 @@ namespace EKUnleashed
                 for (;;)
                 {
                     bool awarded_something = false;
-                    
+
                     #region Rewards chest
                     int chest_rewards_claimed = this.ClaimChestRewards();
 
@@ -3124,7 +3235,7 @@ namespace EKUnleashed
                         {
                             result = this.GetGameData("shop", "RecieveAward", "id=" + welfare["Id"].ToString() + "&type=2", true);
                             JObject joResultTemp = JObject.Parse(result);
-                            
+
                             //Utils.Chatter("Received welfare reward: " + result);
                             //Utils.Chatter();
 
@@ -3143,15 +3254,15 @@ namespace EKUnleashed
                     {
                         result = this.GetGameData("achievement", "GetAchievement", "PageNum=1&achievementType=3", true);
                         joResult = JObject.Parse(result);
-                        
+
                         //Utils.Chatter("Achievements: " + result);
                         //Utils.Chatter();
 
                         foreach (JObject achievement in joResult["data"]["Achievement"])
                         {
-                            result = this.GetGameData("achievement", "GetUserAchievementReward", "Type=1&Id="+ achievement["AchievementId"].ToString(), true);
+                            result = this.GetGameData("achievement", "GetUserAchievementReward", "Type=1&Id=" + achievement["AchievementId"].ToString(), true);
                             JObject joResultTemp = JObject.Parse(result);
-                            
+
                             //Utils.Chatter("Received achievement reward: " + result);
                             //Utils.Chatter();
 
@@ -3419,7 +3530,7 @@ namespace EKUnleashed
 
             return this.GetDeckIDForOrdinal(deck_to_use);
         }
-        
+
         private bool RaiderFilled = false;
         public string DeckToUseForRaiders()
         {
@@ -3584,8 +3695,8 @@ namespace EKUnleashed
         private void Play_FightThieves__real()
         {
             JObject user_thieves = JObject.Parse(this.GetGameData(ref this.opts, "arena", "GetThieves", false));
-            
-            try { if (Utils.CInt(user_thieves["data"]["Cooldown"])  > 0) return; } catch { } 
+
+            try { if (Utils.CInt(user_thieves["data"]["Cooldown"]) > 0) return; } catch { }
             try { if (Utils.CInt(user_thieves["data"]["Countdown"]) > 0) return; } catch { }
 
             List<ThiefInfo> thieves = new List<ThiefInfo>();
@@ -4108,8 +4219,12 @@ namespace EKUnleashed
                         {
                             JObject fight_JSON = JObject.Parse(GameClient.Current.GetGameData("arena", "FreeFight", "Competitor=" + this.uid.ToString() + "&isManual=0", false));
 
-                            if (Utils.CInt(fight_JSON["data"]["Win"]) == 1) this._ct_win_vs  += 1.0;
-                            else                                            this._ct_lose_vs += 1.0;
+                            if (Utils.CInt(fight_JSON["status"]) == 1)
+                            {
+                                if (Utils.CInt(fight_JSON["data"]["Win"]) == 1) this._ct_win_vs  += 1.0;
+                                else                                            this._ct_lose_vs += 1.0;
+
+                            }
                         }
 
                         this._win_percentage = (int)(this._ct_win_vs * 100.0 / (this._ct_win_vs + this._ct_lose_vs));
@@ -4340,13 +4455,13 @@ namespace EKUnleashed
             this.Login_NickName = user_login_data["data"]["NickName"].ToString().Trim();
             this.Login_UID = user_login_data["data"]["Uid"].ToString().Trim();
             bool has_rewards = false;
- 
+
             if (Utils.CInt(this.Login_UID) > 0)
             {
                 string sServerName = Utils.ChopperBlank(this.PassportLoginJSON, "\"GS_NAME\":", ",").Replace("\"", "").Trim();
                 string sServerChatHost = Utils.ChopperBlank(this.PassportLoginJSON, "\"GS_CHAT_IP\":", ",").Replace("\"", "").Trim();
                 string sServerChatPort = Utils.ChopperBlank(this.PassportLoginJSON, "\"GS_CHAT_PORT\":", ",").Replace("\"", "").Trim();
-                
+
                 this.ServerName = sServerName;
                 this.ParentForm.SetText("EK Unleashed", this.Login_NickName + "  ::  " + this.ServerName + "  ::  " + this.Service.ToString().Replace("_", " "));
                 this.ParentForm.RefreshWindow(); // required to re-paint the title bar
@@ -4521,7 +4636,7 @@ namespace EKUnleashed
             #region log in (needed to react to Demon Invasion and Kingdom War events)
 
             // LoA only has 2 demons
-            if (this.Service != GameClient.GameService.Lies_of_Astaroth &&  this.Service != GameClient.GameService.Elves_Realm)
+            if (this.Service != GameClient.GameService.Lies_of_Astaroth && this.Service != GameClient.GameService.Elves_Realm)
             {
                 this.ScheduledEvents.Add
                 (
@@ -4544,7 +4659,7 @@ namespace EKUnleashed
                                         Scheduler.ScheduledEvent.AddAllowedEvent("GameDataUpdate");
                                         Scheduler.ScheduledEvent.AddAllowedEvent("ChatReconnector");
                                         Scheduler.ScheduledEvent.AddAllowedEvent("TWGCPrz");
-                                        
+
                                         this.MasterLogin();
                                     }
                                 }
@@ -4652,7 +4767,7 @@ namespace EKUnleashed
                                             Scheduler.ScheduledEvent.AddAllowedEvent("KW_CleanUp");
                                             Scheduler.ScheduledEvent.AddAllowedEvent("KW Fight");
                                             Scheduler.ScheduledEvent.AddAllowedEvent("KW Fight Followup");
-                                                
+
                                             this.MasterLogin();
                                         }
                                     }
@@ -4668,7 +4783,7 @@ namespace EKUnleashed
             #endregion
 
             #region Kingdom War fighting and cleanup
-                
+
             this.ScheduledEvents.Add
             (
                 "KW_BattleStarter",
@@ -4703,7 +4818,7 @@ namespace EKUnleashed
                 )
             );
 
-                
+
             this.ScheduledEvents.Add
             (
                 "KW_CleanUp",
@@ -4725,9 +4840,9 @@ namespace EKUnleashed
             );
 
             #endregion
-                
+
             #region maze tower resets
-                
+
             this.ScheduledEvents.Add
             (
                 "MazeTower_Resets",
@@ -4773,7 +4888,7 @@ namespace EKUnleashed
                 new Scheduler.ScheduledEvent
                 (
                     "Send/Receive Energy",
-                    () => { if (Utils.True("Game_Events")) if (Utils.False("Game_SendFriendEnergy")) this.Play_SendFriendListEnergy(); if (Utils.True("Game_Events"))if (Utils.False("Game_ReceiveFriendEnergy")) this.Play_ReceiveFriendListEnergy(); },
+                    () => { if (Utils.True("Game_Events")) if (Utils.False("Game_SendFriendEnergy")) this.Play_SendFriendListEnergy(); if (Utils.True("Game_Events")) if (Utils.False("Game_ReceiveFriendEnergy")) this.Play_ReceiveFriendListEnergy(); },
                     Utils.GameEvent(GameClient.DateTimeNow, "12:10:00 AM"),
                     new TimeSpan(0, 1, 0, 0)
                 )
@@ -4839,7 +4954,7 @@ namespace EKUnleashed
                 new Scheduler.ScheduledEvent
                 (
                     "World Tree Fight",
-                    () => { if (Utils.True("Game_Events")) if (Utils.False("Game_FightWorldTree"))this.Play_WorldTree(false); },
+                    () => { if (Utils.True("Game_Events")) if (Utils.False("Game_FightWorldTree")) this.Play_WorldTree(false); },
                     Utils.GameEvent(GameClient.DateTimeNow, "12:05:00 AM"),
                     new TimeSpan(0, 0, 5, 0)
                 )
@@ -4892,7 +5007,7 @@ namespace EKUnleashed
 
             return;
         }
-        
+
         public string[] SetDeckInfo(string deck_ordinal, List<string> card_id_list, List<string> rune_id_list, string deck_JSON = null)
         {
             deck_JSON = (deck_JSON == null) ? this.GetGameData(ref this.opts, "card", "GetCardGroup", false) : deck_JSON;
@@ -4923,7 +5038,7 @@ namespace EKUnleashed
 
                 int iMaxUnknownErrorAttempts = 5;
 
-                for (DateTime dtStartLoop = DateTime.Now; (DateTime.Now - dtStartLoop).TotalMinutes < 2; ) // failsafe: wait up to 2 minutes for this to complete successfully
+                for (DateTime dtStartLoop = DateTime.Now; (DateTime.Now - dtStartLoop).TotalMinutes < 2;) // failsafe: wait up to 2 minutes for this to complete successfully
                 {
                     JObject result = JObject.Parse(this.GetGameData(ref this.opts, "card", "SetCardGroup", "Cards=" + all_cards + "&GroupId=" + deck_id + "&Runes=" + all_runes, false));
 
@@ -4984,7 +5099,7 @@ namespace EKUnleashed
 
                 int iMaxUnknownErrorAttempts = 5;
 
-                for (DateTime dtStartLoop = DateTime.Now; (DateTime.Now - dtStartLoop).TotalMinutes < 2; ) // failsafe: wait up to 2 minutes for this to complete successfully
+                for (DateTime dtStartLoop = DateTime.Now; (DateTime.Now - dtStartLoop).TotalMinutes < 2;) // failsafe: wait up to 2 minutes for this to complete successfully
                 {
                     JObject result = JObject.Parse(this.GetGameData(ref this.opts, "card", "SetCardGroup", "Cards=" + all_cards + "&GroupId=" + group_id + "&Runes=" + all_runes, false));
 
@@ -5283,7 +5398,7 @@ namespace EKUnleashed
             if (name == "邪恶之灵") return "Evil Spirit";
             if (name == "火焰之力") return "Firepower";
             if (name == "古龙之骸") return "Ancient Dragon Skull";
-            
+
             if (name == "远古陨石") return "Ancient Meteorite";
             if (name == "圣诞精灵") return "Christmas Elf";
             if (name == "圣诞魔法") return "Christmas Magic";
@@ -5406,7 +5521,7 @@ namespace EKUnleashed
             foreach (JObject rune in this.Runes_JSON_Parsed["data"]["Runes"])
                 if (rune["RuneName"].ToString().Trim().ToLower() == name.Trim().ToLower())
                     return rune;
-            
+
             for (int iTextComparisonClosenessMatchMode = 1; iTextComparisonClosenessMatchMode <= 5; iTextComparisonClosenessMatchMode++)
             {
                 foreach (JObject rune in this.Runes_JSON_Parsed["data"]["Runes"])
@@ -5822,8 +5937,10 @@ namespace EKUnleashed
                     {
                         string[] card_search_parts = Utils.SubStringsDups(name, ":");
 
+                        Utils.DebugLogger(string.Format("{0} ({1} parts)", string.Join(" | ", card_search_parts), card_search_parts.Length));
+
                         card_required_name = card_search_parts[0].Trim();
-                        
+
                         if (card_search_parts.Length == 2)
                         {
                             if (Utils.ValidNumber(card_search_parts[1]))
@@ -5966,7 +6083,7 @@ namespace EKUnleashed
                     string[] rune_search_parts = Utils.SubStringsDups(required_rune_name, ":");
 
                     required_rune_name = rune_search_parts[0].Trim();
-                        
+
                     if (rune_search_parts.Length >= 2)
                     {
                         if (Utils.ValidNumber(rune_search_parts[1]))
@@ -6481,7 +6598,7 @@ namespace EKUnleashed
                             Utils.Logger();
 
                             Utils.LoggerNotifications("<color=#ffa000>Maze tower " + MapType(current_item_type) + " fight on map " + map_stage.ToString() + ", floor " + layer_in_mazetower.ToString() + ": " + new GameReward(battle_result_original).AllAwards + "</color>");
-                            
+
                             if (battle_result_original.Replace(" ", "").Replace("\"", "").Contains("{IsClear:1,"))
                             {
                                 string maze_tower_completed_result = Utils.ChopperBlank(battle_result_original, "{\"IsClear\"", "}") + ",";
@@ -6851,7 +6968,7 @@ namespace EKUnleashed
                     skill__AffectValue2 + ", " +
                     skill__SkillCategory + ", " +
                     "\"" + skill__Desc.Trim().Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\r", " ").Replace("\t", " ").Replace("\n", " ").Trim() + "\", " +
-                    skill__EvoRank + 
+                    skill__EvoRank +
                     ");\r\n";
 
                 if (ct <= 10)
@@ -7004,7 +7121,7 @@ namespace EKUnleashed
                     }
                 }
 
-                for (int iPos = 0; iPos < text.Length; )
+                for (int iPos = 0; iPos < text.Length;)
                 {
                     bool match = false;
 
@@ -7072,7 +7189,7 @@ namespace EKUnleashed
                         iPos++;
                 }
 
-                for (int iPos = 0; iPos < text.Length; )
+                for (int iPos = 0; iPos < text.Length;)
                 {
                     bool match = false;
 
@@ -7144,7 +7261,7 @@ namespace EKUnleashed
 
             return text;
         }
-        
+
         #region Chinese server stuff
 
         private const string TAG_SW = "&phpp=ANDROID&phpl=ZH_CN&pvc=1.7.4&pvb=2015-08-07%2018%3A55";
@@ -7228,7 +7345,7 @@ namespace EKUnleashed
 
             return null;
         }
-        
+
         private string TAG_LOA
         {
             get
@@ -7740,7 +7857,7 @@ namespace EKUnleashed
                 Utils.LoggerNotifications("<color=#005f8f>------------------------------------------------------------------------------------------------------------------------</color>");
                 Utils.LoggerNotifications("<b><fs+><fs+><fs+>Current Deck Report<fx></b></color>");
                 Utils.LoggerNotifications("<color=#005f8f>------------------------------------------------------------------------------------------------------------------------</color>");
-                
+
                 for (int iPass = 0; iPass <= 1; iPass++)
                 {
                     int iAbsoluteDeckOrdinal = 0;
@@ -7770,7 +7887,7 @@ namespace EKUnleashed
                                 {
                                     if (Utils.CInt(card["CardId"]) > 0)
                                     {
-                                       pretty_cards_used += ", " + this.ShortCardInfo(Utils.CInt(card["CardId"]), Utils.CInt(card["Level"]), true);
+                                        pretty_cards_used += ", " + this.ShortCardInfo(Utils.CInt(card["CardId"]), Utils.CInt(card["Level"]), true);
                                     }
                                 }
                                 catch { }

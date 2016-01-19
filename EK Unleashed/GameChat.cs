@@ -176,7 +176,7 @@ namespace EKUnleashed
                         }
 
                         //if (packet_id != 2 && packet_id != 112 && packet_id != 113 && packet_id != 108 && packet_id != 101 && packet_id != 109)
-                        if (packet_id != 2 && packet_id != 112 && packet_id != 108)
+                        if (packet_id != 2 && packet_id != 112 && packet_id != 108 && packet_id != 109 && packet_id != 113)
                             Utils.DebugLogger("");
                     }
                 }
