@@ -155,6 +155,7 @@ namespace EKUnleashed
                 this.chkGeneral_ClaimLevelingRewards.Checked = Utils.True("Game_ClaimLevelingRewards");
                 this.chkGeneral_ClaimWorldTreeRewards.Checked = Utils.True("Game_ClaimWorldTreeRewards");
                 this.chkGeneral_Debug.Checked = Utils.False("Game_Debug");
+                this.chkGeneral_AutoStoreReplays.Checked = Utils.False("Game_StoreReplays");
 
                 // Automation tab
                 this.chkAutomation_Events.Checked = Utils.True("Game_Events");
@@ -347,6 +348,7 @@ namespace EKUnleashed
                 Utils.SetAppSetting("Game_ClaimLevelingRewards", this.chkGeneral_ClaimLevelingRewards.Checked.ToString());
                 Utils.SetAppSetting("Game_ClaimWorldTreeRewards", this.chkGeneral_ClaimWorldTreeRewards.Checked.ToString());
                 Utils.SetAppSetting("Game_Debug", this.chkGeneral_Debug.Checked.ToString());
+                Utils.SetAppSetting("Game_StoreReplays", this.chkGeneral_AutoStoreReplays.Checked.ToString());
 
                 // Automation tab
                 Utils.SetAppSetting("Game_Events", this.chkAutomation_Events.Checked.ToString());

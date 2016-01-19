@@ -1805,10 +1805,9 @@ namespace EKUnleashed
                 }
             }
             
-            if (true /* StoreReplays */)
-            {
-                StoreReplay(page + action, result);
-            }
+            // PSIV: moved to a setting, with constant overwrites this could lead to potentially heavy IO, bad news for SSD wear/tear
+            if (StoreReplays)
+                this.StoreReplay(page + action, result);
 
             Utils.Logger(result);
             Utils.Logger();
@@ -1831,11 +1830,10 @@ namespace EKUnleashed
                     string fileName = string.Format("{0} {1:yyyy-MM-dd_hh-mm-ss} {2} vs {3} {4}.json", request, DateTime.Now, attacker, defender, battleId);
 
                     // TODO: Make it possible to specify folder for replays
-                    string replayFolder = string.Format(@"{0}\Game Data\Replays\{1}\", Utils.AppFolder, GameAbbreviation(Service));
+                    string replayFolder = System.IO.Path.Combine(Utils.AppFolder, @"Game Data\Replays", GameAbbreviation(Service));
                     System.IO.Directory.CreateDirectory(replayFolder);
 
-                    Utils.FileOverwrite(replayFolder + Utils.RemoveInvalidFilePathCharacters(fileName, ""), JSBeautifyLib.JSBeautify.BeautifyMe(result));
-
+                    Utils.FileOverwrite(System.IO.Path.Combine(replayFolder, Utils.RemoveInvalidFilePathCharacters(fileName, "")), JSBeautifyLib.JSBeautify.BeautifyMe(result));
                 }
             }
             catch { }
@@ -1845,13 +1843,7 @@ namespace EKUnleashed
         {
             get
             {
-                try
-                {
-                    return Utils.False("Game_Debug");
-                }
-                catch { }
-
-                return false;
+                return Utils.False("Game_Debug");
             }
         }
 
@@ -1859,13 +1851,7 @@ namespace EKUnleashed
         {
             get
             {
-                try
-                {
-                    return Utils.True("Game_StoreReplays");
-                }
-                catch { }
-
-                return false;
+                return Utils.False("Game_StoreReplays");
             }
         }
 
