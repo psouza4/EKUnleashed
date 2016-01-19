@@ -295,6 +295,41 @@ namespace EKUnleashed
             catch { }
         }
 
+
+        public static void StartMethodMultithreadedAndWait(Action target, double dHowLongToWaitMS)
+        {
+            try
+            {
+                ThreadStart tsGenericMethod = new ThreadStart(() => { try { target(); } catch (Exception ex) { Utils.DebugLogger(Errors.GetAllErrorDetails(ex)); } });
+                Thread trdGenericThread = new Thread(tsGenericMethod);
+                trdGenericThread.IsBackground = true;
+                trdGenericThread.Start();
+
+                DateTime dtStartTime = DateTime.Now;
+
+                for (; ; )
+                {
+                    if (dHowLongToWaitMS > 0)
+                    {
+                        if ((DateTime.Now - dtStartTime).TotalMilliseconds > dHowLongToWaitMS)
+                        {
+                            try { trdGenericThread.Abort(); } catch { }
+                            break;
+                        }
+                    }
+
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Stopped) break;
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.StopRequested) break;
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.Aborted) break;
+                    if (trdGenericThread.ThreadState == System.Threading.ThreadState.AbortRequested) break;
+
+                    Thread.Sleep(15);
+                    frmMain.DoEvents();
+                }
+            }
+            catch { }
+        }
+
         public static void StartMethodMultithreaded(Action target)
         {
             ThreadStart tsGenericMethod = new ThreadStart(() => { try { target(); } catch (Exception ex) { Utils.DebugLogger(Errors.GetAllErrorDetails(ex)); } });

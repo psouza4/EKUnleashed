@@ -176,6 +176,8 @@ namespace EKUnleashed
                 this.chkAutomation_FieldOfHonorSpins.Checked = Utils.False("Game_FOHHappyHour");
                 this.chkAutomation_CardCrafting.Checked = Utils.False("Game_CardCrafting");
                 this.chkAutomation_Events_CheckedChanged(null, null);
+                this.chkAutomation_EnableConnectionThrottling.Checked = Utils.True("Game_ThrottleConnectionSpeed");
+                this.txtAutomation_ConnectionThrottleAmount.Text = Utils.GetAppValueL("Game_ThrottleAmount", 750).ToString();
 
                 // Elemental Kingdoms/Magic Realms Demon Invasion tab
                 this.chkDI_AvoidSniping_EK.Checked = Utils.True("DemonInvasion_AvoidSniping");
@@ -341,7 +343,7 @@ namespace EKUnleashed
                 Utils.SetAppSetting("Game_MazeTowerChests", this.chkGeneral_MazeTowerChests.Checked.ToString());
                 Utils.SetAppSetting("Game_MazeTowerMonsters", this.chkGeneral_MazeTowerMonsters.Checked.ToString());
                 if (string.IsNullOrEmpty(this.txtGeneral_MazeTowers.Text))
-                    this.txtGeneral_MazeTowers.Text = "8, 7, 6";
+                    this.txtGeneral_MazeTowers.Text = "10, 9, 8, 7, 6";
                 Utils.SetAppSetting("Game_MazeTowers", this.txtGeneral_MazeTowers.Text.Trim());
                 Utils.SetAppSetting("Game_ClaimRewards", this.chkGeneral_ClaimChestRewards.Checked.ToString());
                 Utils.SetAppSetting("Game_ClaimAchievementRewards", this.chkGeneral_ClaimAchievementRewards.Checked.ToString());
@@ -368,6 +370,8 @@ namespace EKUnleashed
                 Utils.SetAppSetting("Game_DailyTasks", this.chkAutomation_DailyTasks.Checked.ToString());
                 Utils.SetAppSetting("Game_FOHHappyHour", this.chkAutomation_FieldOfHonorSpins.Checked.ToString());
                 Utils.SetAppSetting("Game_CardCrafting", this.chkAutomation_CardCrafting.Checked.ToString());
+                Utils.SetAppSetting("Game_ThrottleConnectionSpeed", this.chkAutomation_EnableConnectionThrottling.Checked.ToString());
+                Utils.SetAppSetting("Game_ThrottleAmount", Utils.CLng(this.txtAutomation_ConnectionThrottleAmount.Text).ToString());
 
                 // Demon Invasion tab
                 if (this.ddlAccount_GameService.SelectedIndex == 1) // LoA

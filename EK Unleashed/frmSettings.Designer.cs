@@ -227,6 +227,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tabctrlSettings = new System.Windows.Forms.TabControl();
             this.chkGeneral_AutoStoreReplays = new System.Windows.Forms.CheckBox();
+            this.groupBox19 = new System.Windows.Forms.GroupBox();
+            this.txtAutomation_ConnectionThrottleAmount = new System.Windows.Forms.TextBox();
+            this.label63 = new System.Windows.Forms.Label();
+            this.chkAutomation_EnableConnectionThrottling = new System.Windows.Forms.CheckBox();
             this.tabRaider.SuspendLayout();
             this.tabThieves.SuspendLayout();
             this.tabArena.SuspendLayout();
@@ -254,6 +258,7 @@
             this.groupBox1.SuspendLayout();
             this.tabAccount.SuspendLayout();
             this.tabctrlSettings.SuspendLayout();
+            this.groupBox19.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
@@ -1668,6 +1673,7 @@
             // tabAutomation
             // 
             this.tabAutomation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.tabAutomation.Controls.Add(this.groupBox19);
             this.tabAutomation.Controls.Add(this.chkAutomation_CardCrafting);
             this.tabAutomation.Controls.Add(this.chkAutomation_FieldOfHonorSpins);
             this.tabAutomation.Controls.Add(this.chkAutomation_DailyTasks);
@@ -2418,6 +2424,48 @@
             this.chkGeneral_AutoStoreReplays.Text = "Automatically store replay data";
             this.chkGeneral_AutoStoreReplays.UseVisualStyleBackColor = true;
             // 
+            // groupBox19
+            // 
+            this.groupBox19.Controls.Add(this.txtAutomation_ConnectionThrottleAmount);
+            this.groupBox19.Controls.Add(this.label63);
+            this.groupBox19.Controls.Add(this.chkAutomation_EnableConnectionThrottling);
+            this.groupBox19.ForeColor = System.Drawing.Color.White;
+            this.groupBox19.Location = new System.Drawing.Point(475, 9);
+            this.groupBox19.Name = "groupBox19";
+            this.groupBox19.Size = new System.Drawing.Size(378, 91);
+            this.groupBox19.TabIndex = 34;
+            this.groupBox19.TabStop = false;
+            this.groupBox19.Text = "Connection Throttling";
+            // 
+            // txtAutomation_ConnectionThrottleAmount
+            // 
+            this.txtAutomation_ConnectionThrottleAmount.Location = new System.Drawing.Point(28, 61);
+            this.txtAutomation_ConnectionThrottleAmount.Name = "txtAutomation_ConnectionThrottleAmount";
+            this.txtAutomation_ConnectionThrottleAmount.Size = new System.Drawing.Size(341, 20);
+            this.txtAutomation_ConnectionThrottleAmount.TabIndex = 23;
+            // 
+            // label63
+            // 
+            this.label63.AutoSize = true;
+            this.label63.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label63.ForeColor = System.Drawing.Color.White;
+            this.label63.Location = new System.Drawing.Point(7, 42);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(361, 13);
+            this.label63.TabIndex = 22;
+            this.label63.Text = "Amount of time spent between requests (in milliseconds, 1,000 = 1 second):";
+            // 
+            // chkAutomation_EnableConnectionThrottling
+            // 
+            this.chkAutomation_EnableConnectionThrottling.AutoSize = true;
+            this.chkAutomation_EnableConnectionThrottling.ForeColor = System.Drawing.Color.White;
+            this.chkAutomation_EnableConnectionThrottling.Location = new System.Drawing.Point(6, 19);
+            this.chkAutomation_EnableConnectionThrottling.Name = "chkAutomation_EnableConnectionThrottling";
+            this.chkAutomation_EnableConnectionThrottling.Size = new System.Drawing.Size(281, 17);
+            this.chkAutomation_EnableConnectionThrottling.TabIndex = 19;
+            this.chkAutomation_EnableConnectionThrottling.Text = "Throttle the speed of requests sent to the game server";
+            this.chkAutomation_EnableConnectionThrottling.UseVisualStyleBackColor = true;
+            // 
             // frmSettings
             // 
             this.AcceptButton = this.btnSave;
@@ -2490,6 +2538,8 @@
             this.tabAccount.ResumeLayout(false);
             this.tabAccount.PerformLayout();
             this.tabctrlSettings.ResumeLayout(false);
+            this.groupBox19.ResumeLayout(false);
+            this.groupBox19.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2693,5 +2743,9 @@
         private System.Windows.Forms.TextBox txtDI_Destroyer_DeckCards;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.CheckBox chkGeneral_AutoStoreReplays;
+        private System.Windows.Forms.GroupBox groupBox19;
+        private System.Windows.Forms.TextBox txtAutomation_ConnectionThrottleAmount;
+        private System.Windows.Forms.Label label63;
+        private System.Windows.Forms.CheckBox chkAutomation_EnableConnectionThrottling;
     }
 }

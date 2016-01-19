@@ -1759,8 +1759,44 @@ namespace EKUnleashed
 
         private Regex regex_unicode_replacer = new Regex(@"\\[uU]([0-9A-F]{4})", RegexOptions.IgnoreCase);
 
+        private bool Want_Throttle
+        {
+            get
+            {
+                return Utils.True("Game_ThrottleConnectionSpeed");
+            }
+        }
+
+        private long Connection_Throttle_MS
+        {
+            get
+            {
+                return Utils.GetAppValueL("Game_ThrottleAmount", 750);
+            }
+        }
+
+        private DateTime GetGameData_dtLastRequest = DateTime.MinValue;
+
         public string GetGameData__internal(ref Comm.CommFetchOptions opts, string page, string action, string post_data = "", bool log = false, string log_to = "", bool only_if_valid = true)
         {
+            // Add global throttle to all connections
+            if (Want_Throttle && (Connection_Throttle_MS > 1))
+            {
+                if (GetGameData_dtLastRequest != DateTime.MinValue)
+                {
+                    if ((DateTime.Now - GetGameData_dtLastRequest).TotalMilliseconds < Connection_Throttle_MS)
+                    {
+                        Utils.StartMethodMultithreadedAndWait(() =>
+                        {
+                            System.Threading.Thread.Sleep((int)Connection_Throttle_MS - 1);
+                            return;
+                        }, (double)Connection_Throttle_MS);
+                    }
+                }
+
+                this.GetGameData_dtLastRequest = DateTime.Now;
+            }
+
             opts.POST_Data = post_data;
 
             //log = true;
