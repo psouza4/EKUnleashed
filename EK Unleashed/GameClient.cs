@@ -7071,7 +7071,10 @@ namespace EKUnleashed
                     string card_name = card["CardName"].ToString().Replace("\"", string.Empty);
                     string card_id = Utils.CInt(card["CardId"].ToString()).ToString();
 
-                    text = text.Replace("[Card #" + card_id + "]", "[<link><text>" + card_name + "</text><url>||EKU||CARD||EKU||" + card_id + "||EKU||" + 0 + "||EKU||</url></link>]");
+                    if (!Utils.True("Game_DontLinkLowStarCards"))
+                        text = text.Replace("[Card #" + card_id + "]", "[<link><text>" + card_name + "</text><url>||EKU||CARD||EKU||" + card_id + "||EKU||" + 0 + "||EKU||</url></link>]");
+                    else
+                        text = text.Replace("[Card #" + card_id + "]", "[" + card_name + "]");
                 }
 
                 //text = text.Replace("<", "((").Replace(">", "))");
@@ -7089,7 +7092,10 @@ namespace EKUnleashed
 
                         //text = text.Replace("[Card #" + card_id + "]", "<u>[" + card_name + "]</u>");
 
-                        text = text.Replace("[Card #" + card_id + "]", "[<link><text>" + card_name + "</text><url>||EKU||CARD||EKU||" + card_id + "||EKU||" + 0 + "||EKU||</url></link>]");
+                        if (!Utils.True("Game_DontLinkLowStarCards"))
+                            text = text.Replace("[Card #" + card_id + "]", "[<link><text>" + card_name + "</text><url>||EKU||CARD||EKU||" + card_id + "||EKU||" + 0 + "||EKU||</url></link>]");
+                        else
+                            text = text.Replace("[Card #" + card_id + "]", "[" + card_name + "]");
                     }
                 }
             }
