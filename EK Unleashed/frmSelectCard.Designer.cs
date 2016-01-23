@@ -44,7 +44,11 @@
             this.colValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mnuCardRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.previewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.enchantToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showEvolutionSkillsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.evolveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSelect = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -55,12 +59,17 @@
             this.chk5Star = new System.Windows.Forms.CheckBox();
             this.label53 = new System.Windows.Forms.Label();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.evolveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.chkEvoChoices = new System.Windows.Forms.CheckBox();
-            this.showEvolutionSkillsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuTools = new System.Windows.Forms.MenuStrip();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportAllCardsToTextFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.sellAll1CardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sellAll2CardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sellAll3CardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sellAllTreasureCardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCardRightClick.SuspendLayout();
+            this.mnuTools.SuspendLayout();
             this.SuspendLayout();
             // 
             // lstCards
@@ -84,9 +93,9 @@
             this.lstCards.ContextMenuStrip = this.mnuCardRightClick;
             this.lstCards.FullRowSelect = true;
             this.lstCards.GridLines = true;
-            this.lstCards.Location = new System.Drawing.Point(9, 13);
+            this.lstCards.Location = new System.Drawing.Point(9, 36);
             this.lstCards.Name = "lstCards";
-            this.lstCards.Size = new System.Drawing.Size(981, 431);
+            this.lstCards.Size = new System.Drawing.Size(981, 405);
             this.lstCards.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lstCards.TabIndex = 1;
             this.lstCards.UseCompatibleStateImageBehavior = false;
@@ -159,7 +168,7 @@
             this.toolStripMenuItem1,
             this.sellToolStripMenuItem});
             this.mnuCardRightClick.Name = "mnuCardRightClick";
-            this.mnuCardRightClick.Size = new System.Drawing.Size(200, 148);
+            this.mnuCardRightClick.Size = new System.Drawing.Size(200, 126);
             this.mnuCardRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.mnuCardRightClick_Opening);
             // 
             // previewToolStripMenuItem
@@ -170,12 +179,36 @@
             this.previewToolStripMenuItem.Text = "&Preview";
             this.previewToolStripMenuItem.Click += new System.EventHandler(this.previewToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(196, 6);
+            // 
             // enchantToolStripMenuItem
             // 
             this.enchantToolStripMenuItem.Name = "enchantToolStripMenuItem";
             this.enchantToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.enchantToolStripMenuItem.Text = "&Enchant";
             this.enchantToolStripMenuItem.Click += new System.EventHandler(this.enchantToolStripMenuItem_Click);
+            // 
+            // showEvolutionSkillsToolStripMenuItem
+            // 
+            this.showEvolutionSkillsToolStripMenuItem.Name = "showEvolutionSkillsToolStripMenuItem";
+            this.showEvolutionSkillsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.showEvolutionSkillsToolStripMenuItem.Text = "Show evolution choices";
+            this.showEvolutionSkillsToolStripMenuItem.Click += new System.EventHandler(this.showEvolutionSkillsToolStripMenuItem_Click);
+            // 
+            // evolveToolStripMenuItem
+            // 
+            this.evolveToolStripMenuItem.Name = "evolveToolStripMenuItem";
+            this.evolveToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.evolveToolStripMenuItem.Text = "E&volve";
+            this.evolveToolStripMenuItem.Click += new System.EventHandler(this.evolveToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(196, 6);
             // 
             // sellToolStripMenuItem
             // 
@@ -299,23 +332,6 @@
             this.btnRefresh.UseVisualStyleBackColor = false;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // evolveToolStripMenuItem
-            // 
-            this.evolveToolStripMenuItem.Name = "evolveToolStripMenuItem";
-            this.evolveToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.evolveToolStripMenuItem.Text = "E&volve";
-            this.evolveToolStripMenuItem.Click += new System.EventHandler(this.evolveToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(196, 6);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(196, 6);
-            // 
             // chkEvoChoices
             // 
             this.chkEvoChoices.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -329,12 +345,67 @@
             this.chkEvoChoices.UseVisualStyleBackColor = true;
             this.chkEvoChoices.CheckedChanged += new System.EventHandler(this.chkEvoChoices_CheckedChanged);
             // 
-            // showEvolutionSkillsToolStripMenuItem
+            // mnuTools
             // 
-            this.showEvolutionSkillsToolStripMenuItem.Name = "showEvolutionSkillsToolStripMenuItem";
-            this.showEvolutionSkillsToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.showEvolutionSkillsToolStripMenuItem.Text = "Show evolution choices";
-            this.showEvolutionSkillsToolStripMenuItem.Click += new System.EventHandler(this.showEvolutionSkillsToolStripMenuItem_Click);
+            this.mnuTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolsToolStripMenuItem});
+            this.mnuTools.Location = new System.Drawing.Point(0, 0);
+            this.mnuTools.Name = "mnuTools";
+            this.mnuTools.Size = new System.Drawing.Size(999, 24);
+            this.mnuTools.TabIndex = 28;
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportAllCardsToTextFileToolStripMenuItem,
+            this.toolStripMenuItem3,
+            this.sellAll1CardsToolStripMenuItem,
+            this.sellAll2CardsToolStripMenuItem,
+            this.sellAll3CardsToolStripMenuItem,
+            this.sellAllTreasureCardsToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Text = "&Tools";
+            // 
+            // exportAllCardsToTextFileToolStripMenuItem
+            // 
+            this.exportAllCardsToTextFileToolStripMenuItem.Name = "exportAllCardsToTextFileToolStripMenuItem";
+            this.exportAllCardsToTextFileToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.exportAllCardsToTextFileToolStripMenuItem.Text = "E&xport all cards to text file...";
+            this.exportAllCardsToTextFileToolStripMenuItem.Click += new System.EventHandler(this.exportAllCardsToTextFileToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(214, 6);
+            // 
+            // sellAll1CardsToolStripMenuItem
+            // 
+            this.sellAll1CardsToolStripMenuItem.Name = "sellAll1CardsToolStripMenuItem";
+            this.sellAll1CardsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.sellAll1CardsToolStripMenuItem.Text = "Sell all 1★ cards";
+            this.sellAll1CardsToolStripMenuItem.Click += new System.EventHandler(this.sellAll1CardsToolStripMenuItem_Click);
+            // 
+            // sellAll2CardsToolStripMenuItem
+            // 
+            this.sellAll2CardsToolStripMenuItem.Name = "sellAll2CardsToolStripMenuItem";
+            this.sellAll2CardsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.sellAll2CardsToolStripMenuItem.Text = "Sell all 2★ cards";
+            this.sellAll2CardsToolStripMenuItem.Click += new System.EventHandler(this.sellAll2CardsToolStripMenuItem_Click);
+            // 
+            // sellAll3CardsToolStripMenuItem
+            // 
+            this.sellAll3CardsToolStripMenuItem.Name = "sellAll3CardsToolStripMenuItem";
+            this.sellAll3CardsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.sellAll3CardsToolStripMenuItem.Text = "Sell all 3★ cards";
+            this.sellAll3CardsToolStripMenuItem.Click += new System.EventHandler(this.sellAll3CardsToolStripMenuItem_Click);
+            // 
+            // sellAllTreasureCardsToolStripMenuItem
+            // 
+            this.sellAllTreasureCardsToolStripMenuItem.Name = "sellAllTreasureCardsToolStripMenuItem";
+            this.sellAllTreasureCardsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.sellAllTreasureCardsToolStripMenuItem.Text = "Sell all treasure cards";
+            this.sellAllTreasureCardsToolStripMenuItem.Click += new System.EventHandler(this.sellAllTreasureCardsToolStripMenuItem_Click);
             // 
             // frmSelectCard
             // 
@@ -344,6 +415,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(999, 479);
+            this.Controls.Add(this.mnuTools);
             this.Controls.Add(this.chkEvoChoices);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.label53);
@@ -356,12 +428,15 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.lstCards);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.mnuTools;
             this.MinimumSize = new System.Drawing.Size(670, 300);
             this.Name = "frmSelectCard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EK Unleashed :: Select a card...";
             this.Shown += new System.EventHandler(this.frmSelectCard_Shown);
             this.mnuCardRightClick.ResumeLayout(false);
+            this.mnuTools.ResumeLayout(false);
+            this.mnuTools.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -399,5 +474,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.CheckBox chkEvoChoices;
         private System.Windows.Forms.ToolStripMenuItem showEvolutionSkillsToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip mnuTools;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportAllCardsToTextFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem sellAll1CardsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sellAll2CardsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sellAll3CardsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sellAllTreasureCardsToolStripMenuItem;
     }
 }
