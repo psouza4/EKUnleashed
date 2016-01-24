@@ -221,6 +221,8 @@
             this.map6ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.map7ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.map8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.map9ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.map10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thiefToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.arenaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.addAnAttemptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -232,8 +234,8 @@
             this.privateMessageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chatchannelClan = new System.Windows.Forms.ToolStripMenuItem();
             this.kingdomWarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.map9ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.map10ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem24 = new System.Windows.Forms.ToolStripSeparator();
+            this.moreCardGroupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nameClicked.SuspendLayout();
             this.mnuApplication.SuspendLayout();
             this.mnuGame.SuspendLayout();
@@ -1932,9 +1934,11 @@
             this.moreEnergyToolStripMenuItem,
             this.resetMazeTowerToolStripMenuItem,
             this.thiefToolStripMenuItem,
-            this.arenaToolStripMenuItem1});
+            this.arenaToolStripMenuItem1,
+            this.toolStripMenuItem24,
+            this.moreCardGroupsToolStripMenuItem});
             this.mnuBuy.Name = "mnuBuy";
-            this.mnuBuy.Size = new System.Drawing.Size(176, 142);
+            this.mnuBuy.Size = new System.Drawing.Size(176, 170);
             this.mnuBuy.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.mnuBuy_Closed);
             // 
             // cardsToolStripMenuItem
@@ -2033,37 +2037,51 @@
             // map4ToolStripMenuItem
             // 
             this.map4ToolStripMenuItem.Name = "map4ToolStripMenuItem";
-            this.map4ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.map4ToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.map4ToolStripMenuItem.Text = "Map 4";
             this.map4ToolStripMenuItem.Click += new System.EventHandler(this.map4ToolStripMenuItem_Click);
             // 
             // map5ToolStripMenuItem
             // 
             this.map5ToolStripMenuItem.Name = "map5ToolStripMenuItem";
-            this.map5ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.map5ToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.map5ToolStripMenuItem.Text = "Map 5";
             this.map5ToolStripMenuItem.Click += new System.EventHandler(this.map5ToolStripMenuItem_Click);
             // 
             // map6ToolStripMenuItem
             // 
             this.map6ToolStripMenuItem.Name = "map6ToolStripMenuItem";
-            this.map6ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.map6ToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.map6ToolStripMenuItem.Text = "Map 6";
             this.map6ToolStripMenuItem.Click += new System.EventHandler(this.map6ToolStripMenuItem_Click);
             // 
             // map7ToolStripMenuItem
             // 
             this.map7ToolStripMenuItem.Name = "map7ToolStripMenuItem";
-            this.map7ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.map7ToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.map7ToolStripMenuItem.Text = "Map 7";
             this.map7ToolStripMenuItem.Click += new System.EventHandler(this.map7ToolStripMenuItem_Click);
             // 
             // map8ToolStripMenuItem
             // 
             this.map8ToolStripMenuItem.Name = "map8ToolStripMenuItem";
-            this.map8ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.map8ToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.map8ToolStripMenuItem.Text = "Map 8";
             this.map8ToolStripMenuItem.Click += new System.EventHandler(this.map8ToolStripMenuItem_Click);
+            // 
+            // map9ToolStripMenuItem
+            // 
+            this.map9ToolStripMenuItem.Name = "map9ToolStripMenuItem";
+            this.map9ToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.map9ToolStripMenuItem.Text = "Map 9";
+            this.map9ToolStripMenuItem.Click += new System.EventHandler(this.map9ToolStripMenuItem_Click);
+            // 
+            // map10ToolStripMenuItem
+            // 
+            this.map10ToolStripMenuItem.Name = "map10ToolStripMenuItem";
+            this.map10ToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.map10ToolStripMenuItem.Text = "Map 10";
+            this.map10ToolStripMenuItem.Click += new System.EventHandler(this.map10ToolStripMenuItem_Click);
             // 
             // thiefToolStripMenuItem
             // 
@@ -2156,19 +2174,17 @@
             this.kingdomWarToolStripMenuItem.Text = "Kingdom War";
             this.kingdomWarToolStripMenuItem.Click += new System.EventHandler(this.kingdomWarToolStripMenuItem_Click);
             // 
-            // map9ToolStripMenuItem
+            // toolStripMenuItem24
             // 
-            this.map9ToolStripMenuItem.Name = "map9ToolStripMenuItem";
-            this.map9ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.map9ToolStripMenuItem.Text = "Map 9";
-            this.map9ToolStripMenuItem.Click += new System.EventHandler(this.map9ToolStripMenuItem_Click);
+            this.toolStripMenuItem24.Name = "toolStripMenuItem24";
+            this.toolStripMenuItem24.Size = new System.Drawing.Size(172, 6);
             // 
-            // map10ToolStripMenuItem
+            // moreCardGroupsToolStripMenuItem
             // 
-            this.map10ToolStripMenuItem.Name = "map10ToolStripMenuItem";
-            this.map10ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.map10ToolStripMenuItem.Text = "Map 10";
-            this.map10ToolStripMenuItem.Click += new System.EventHandler(this.map10ToolStripMenuItem_Click);
+            this.moreCardGroupsToolStripMenuItem.Name = "moreCardGroupsToolStripMenuItem";
+            this.moreCardGroupsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.moreCardGroupsToolStripMenuItem.Text = "More card groups";
+            this.moreCardGroupsToolStripMenuItem.Click += new System.EventHandler(this.moreCardGroupsToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -2431,6 +2447,8 @@
         private System.Windows.Forms.ToolStripMenuItem doDailyTasksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem map9ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem map10ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem24;
+        private System.Windows.Forms.ToolStripMenuItem moreCardGroupsToolStripMenuItem;
     }
 }
 

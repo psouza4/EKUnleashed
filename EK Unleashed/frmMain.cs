@@ -4268,6 +4268,69 @@ namespace EKUnleashed
             Game.Play_DailyTasks();
         }
 
+        private void moreCardGroupsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Game.Want_Game_Login)
+                return;
+
+            this.tabsChatChannels.SelectedTab = this.tabNotifications;
+
+            JObject js_user = null;
+            GameObjs.Hero hero = null;
+
+            try
+            {
+                js_user = JObject.Parse(Game.GetGameData("user", "GetUserInfo", false));
+                hero = new GameObjs.Hero(js_user);
+            }
+            catch
+            {
+                return;
+            }
+
+            string js_decks = Game.GetGameData("card", "GetCardGroup");
+
+            try
+            {
+                JObject jo_decks = JObject.Parse(js_decks);
+
+                if (Utils.CInt(jo_decks["data"]["RmbGroupCash"]) == 0)
+                {
+                    Utils.LoggerNotifications("<color=#a07000>You can't buy a new card group.  You already have the maximum number of decks.");
+                    return;
+                }
+
+                if (Utils.CInt(jo_decks["data"]["RmbGroupCash"]) > hero.Gems)
+                {
+                    Utils.LoggerNotifications("<color=#a07000>You can't buy a new card group.  You don't have enough gems.");
+                    return;
+                }
+            }
+            catch
+            {
+                return;
+            }
+
+            string js_buy = Game.GetGameData("card", "BuyCardGroup");
+
+            try
+            {
+                Utils.DebugLogger(JSBeautifyLib.JSBeautify.BeautifyMe(js_buy));
+
+                JObject jo_bought = JObject.Parse(js_buy);
+
+                if (Utils.CInt(jo_bought["status"]) == 1)
+                    Utils.LoggerNotifications("<color=#ffa000>You bought a new card group!");
+
+                return;
+            }
+            catch { }
+
+            Utils.LoggerNotifications("<color=#ff4040>Error buying a new card group!");
+            return;
+
+        }
+
     } // end: public partial class frmMain : Form
 
 } // end: namespace EK Unleashed
