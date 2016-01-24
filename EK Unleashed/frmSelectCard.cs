@@ -625,6 +625,7 @@ namespace EKUnleashed
                     if (!TempCard.Valid) continue;
                     if (!Utils.ValidText(TempCard.Name)) continue;
 
+                    if (TempCard.Locked) continue;
                     if (TempCard.Stars != 1) continue;
                     if (TempCard.Level != 0) continue;
                     if (TempCard.InAnyDeck) continue;
@@ -688,6 +689,7 @@ namespace EKUnleashed
                     if (!TempCard.Valid) continue;
                     if (!Utils.ValidText(TempCard.Name)) continue;
 
+                    if (TempCard.Locked) continue;
                     if (TempCard.Stars != 2) continue;
                     if (TempCard.Level != 0) continue;
                     if (TempCard.InAnyDeck) continue;
@@ -751,6 +753,7 @@ namespace EKUnleashed
                     if (!TempCard.Valid) continue;
                     if (!Utils.ValidText(TempCard.Name)) continue;
 
+                    if (TempCard.Locked) continue;
                     if (TempCard.Stars != 3) continue;
                     if (TempCard.Level != 0) continue;
                     if (TempCard.InAnyDeck) continue;
@@ -814,6 +817,7 @@ namespace EKUnleashed
                     if (!TempCard.Valid) continue;
                     if (!Utils.ValidText(TempCard.Name)) continue;
 
+                    if (TempCard.Locked) continue;
                     if (TempCard.ElementType != GameObjs.Card.ElementTypes.Treasure) continue;
                     if (TempCard.Level != 0) continue;
                     if (TempCard.InAnyDeck) continue;
