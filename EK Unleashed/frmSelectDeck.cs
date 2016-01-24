@@ -17,14 +17,14 @@ namespace EKUnleashed
             InitializeComponent();
         }
 
-        delegate void Delegate__Void_String_String_String_String(string o1, string o2, string o3, string o4);
+        delegate void Delegate__Void_String_String_String_String(bool def, string o1, string o2, string o3, string o4);
 
-        public void AddDeck(string ordinal, string group_id, string cards, string runes)
+        public void AddDeck(bool default_deck, string ordinal, string group_id, string cards, string runes)
         {
             if (this.lstDecks.InvokeRequired)
             {
                 Delegate__Void_String_String_String_String d = AddDeck;
-                this.lstDecks.Invoke(d, new object[] { ordinal, group_id, cards, runes });
+                this.lstDecks.Invoke(d, new object[] { default_deck, ordinal, group_id, cards, runes });
                 return;
             }
 
@@ -32,9 +32,9 @@ namespace EKUnleashed
             {
                 ListViewItem lvi;
                 if (Utils.CInt(group_id) == 0)
-                    lvi = new ListViewItem(new string[] { ordinal, group_id, cards, runes });
+                    lvi = new ListViewItem(new string[] { (default_deck) ? "ACTIVE/CURRENT" : "", ordinal, group_id, cards, runes });
                 else
-                    lvi = new ListViewItem(new string[] { (ordinal == "KW") ? "Kingdom War" : "Deck " + ordinal, group_id, cards, runes });
+                    lvi = new ListViewItem(new string[] { (default_deck) ? "ACTIVE/CURRENT" : "", (ordinal == "KW") ? "Kingdom War" : "Deck " + ordinal, group_id, cards, runes });
                 lvi.Tag = group_id;
                 this.lstDecks.Items.Add(lvi);
             }
@@ -49,11 +49,15 @@ namespace EKUnleashed
             this.lstDecks.Items.Clear();
 
             if (!this.InManageMode)
-                this.AddDeck("None", "", "", "");
+                this.AddDeck(false, "None", "", "", "");
 
             //Utils.StartMethodMultithreadedAndWait(() =>
             //{
                 string json = GameClient.Current.GetGameData(ref GameClient.Current.opts, "card", "GetCardGroup", false);
+
+                JObject user_data = JObject.Parse(GameClient.Current.GetGameData("user", "GetUserInfo", false));
+                string sDefaultGroup = user_data["data"]["DefaultGroupId"].ToString();
+
                 GameClient.Current.GetUsersCards();
                 GameClient.Current.GetUsersRunes();
 
@@ -111,7 +115,7 @@ namespace EKUnleashed
                             //    pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id, true);
                             pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
 
-                            this.AddDeck((iPass == 0) ? "KW" : iAdjustedDeckNumber.ToString(), deck["GroupId"].ToString(), pretty_cards_used, pretty_runes_used);
+                            this.AddDeck((Utils.CLng(sDefaultGroup) == Utils.CLng(deck["GroupId"].ToString())), (iPass == 0) ? "KW" : iAdjustedDeckNumber.ToString(), deck["GroupId"].ToString(), pretty_cards_used, pretty_runes_used);
                         }
                     }
                 }
@@ -341,6 +345,17 @@ namespace EKUnleashed
                 if (bFilled)
                     this.RefreshDecks();
             }
+        }
+
+        private void setAsCurrentDeckToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (this.lstDecks.SelectedItems.Count < 1)
+                return;
+
+            GameClient.Current.GetGameData("card", "SetDefalutGroup", "GroupId=" + this.lstDecks.SelectedItems[0].Tag.ToString(), false);
+
+            this.RefreshDecks();
+            return;
         }
     }
 }

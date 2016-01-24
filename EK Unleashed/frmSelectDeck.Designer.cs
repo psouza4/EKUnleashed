@@ -36,6 +36,8 @@
             this.colCards = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colRunes = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mnuDeckRightClick = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.fillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.swapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,8 +45,9 @@
             this.btnSelect = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label53 = new System.Windows.Forms.Label();
-            this.fillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.setAsCurrentDeckToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colActive = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mnuDeckRightClick.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +57,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstDecks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colActive,
             this.colSlot,
             this.colID,
             this.colCards,
@@ -61,7 +65,7 @@
             this.lstDecks.ContextMenuStrip = this.mnuDeckRightClick;
             this.lstDecks.FullRowSelect = true;
             this.lstDecks.GridLines = true;
-            this.lstDecks.Location = new System.Drawing.Point(8, 8);
+            this.lstDecks.Location = new System.Drawing.Point(8, 10);
             this.lstDecks.MultiSelect = false;
             this.lstDecks.Name = "lstDecks";
             this.lstDecks.Size = new System.Drawing.Size(756, 257);
@@ -83,7 +87,7 @@
             // colCards
             // 
             this.colCards.Text = "Cards";
-            this.colCards.Width = 436;
+            this.colCards.Width = 379;
             // 
             // colRunes
             // 
@@ -98,36 +102,50 @@
             this.copyToolStripMenuItem,
             this.pasteToolStripMenuItem,
             this.swapToolStripMenuItem,
-            this.finishSwapToolStripMenuItem});
+            this.finishSwapToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.setAsCurrentDeckToolStripMenuItem});
             this.mnuDeckRightClick.Name = "mnuDeckRightClick";
-            this.mnuDeckRightClick.Size = new System.Drawing.Size(153, 142);
+            this.mnuDeckRightClick.Size = new System.Drawing.Size(174, 148);
             this.mnuDeckRightClick.Opening += new System.ComponentModel.CancelEventHandler(this.mnuDeckRightClick_Opening);
+            // 
+            // fillToolStripMenuItem
+            // 
+            this.fillToolStripMenuItem.Name = "fillToolStripMenuItem";
+            this.fillToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.fillToolStripMenuItem.Text = "Fill...";
+            this.fillToolStripMenuItem.Click += new System.EventHandler(this.fillToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(170, 6);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // swapToolStripMenuItem
             // 
             this.swapToolStripMenuItem.Name = "swapToolStripMenuItem";
-            this.swapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.swapToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.swapToolStripMenuItem.Text = "Swap";
             this.swapToolStripMenuItem.Click += new System.EventHandler(this.swapToolStripMenuItem_Click);
             // 
             // finishSwapToolStripMenuItem
             // 
             this.finishSwapToolStripMenuItem.Name = "finishSwapToolStripMenuItem";
-            this.finishSwapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.finishSwapToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
             this.finishSwapToolStripMenuItem.Text = "Finish Swap";
             this.finishSwapToolStripMenuItem.Click += new System.EventHandler(this.finishSwapToolStripMenuItem_Click);
             // 
@@ -167,17 +185,21 @@
             this.label53.Text = "(right-click a deck for options)";
             this.label53.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // fillToolStripMenuItem
+            // toolStripMenuItem2
             // 
-            this.fillToolStripMenuItem.Name = "fillToolStripMenuItem";
-            this.fillToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.fillToolStripMenuItem.Text = "Fill...";
-            this.fillToolStripMenuItem.Click += new System.EventHandler(this.fillToolStripMenuItem_Click);
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(170, 6);
             // 
-            // toolStripMenuItem1
+            // setAsCurrentDeckToolStripMenuItem
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
+            this.setAsCurrentDeckToolStripMenuItem.Name = "setAsCurrentDeckToolStripMenuItem";
+            this.setAsCurrentDeckToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.setAsCurrentDeckToolStripMenuItem.Text = "Set as current deck";
+            this.setAsCurrentDeckToolStripMenuItem.Click += new System.EventHandler(this.setAsCurrentDeckToolStripMenuItem_Click);
+            // 
+            // colActive
+            // 
+            this.colActive.Text = "Active";
             // 
             // frmSelectDeck
             // 
@@ -220,5 +242,8 @@
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.ToolStripMenuItem fillToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem setAsCurrentDeckToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader colActive;
     }
 }
