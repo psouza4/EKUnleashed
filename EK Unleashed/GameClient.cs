@@ -44,6 +44,9 @@ namespace EKUnleashed
         public string Game_CDN_URL = "http://s1.ek.ifreeteam.com/";
 
         //public const string TAG_EK = "&phpp=ANDROID_ARC&phpl=EN&pvc=1.7.4&pvb=2015-08-07%2018%3A55";
+
+        public static string TAG_EK_DateOnLoad = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+
         public static string TAG_EK
         {
             get
@@ -52,7 +55,7 @@ namespace EKUnleashed
                     "&phpp=ANDROID_ARC" +
                     "&phpl=EN" +
                     "&pvc=1.7.5" +
-                    "&pvb=" + System.Web.HttpUtility.UrlEncode(DateTime.Now.ToString("yyyy-MM-dd HH:mm")); // for 1.7.5 they switched the date to the current date/time vs the build date/time
+                    "&pvb=" + System.Web.HttpUtility.UrlEncode(TAG_EK_DateOnLoad); // for 1.7.5 they switched the date to the current date/time vs the build date/time
             }
         }
 
@@ -6423,6 +6426,10 @@ namespace EKUnleashed
                         }
                     }
                 }
+
+                // added 2016-01-23
+                if (Utils.False("Game_SendFriendEnergy")) // if we want send AND receive, then...
+                    this.GetGameData("fenergy", "OneKeyFEnergy", "isNew=1"); // one-click send/receive energy: this currently gives more energy to the player than receiving each person individually for some reason
             }
         }
 
