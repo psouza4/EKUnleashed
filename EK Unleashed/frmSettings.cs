@@ -542,7 +542,10 @@ namespace EKUnleashed
             this.Cursor = Cursors.WaitCursor;
             frmSelectDeck SelectDeck = new frmSelectDeck();
 
-            SelectDeck.AddDeck("None", "", "", "");
+            JObject user_data = JObject.Parse(GameClient.Current.GetGameData("user", "GetUserInfo", false));
+            string sDefaultGroup = user_data["data"]["DefaultGroupId"].ToString();
+
+            SelectDeck.AddDeck(false, "None", "", "", "");
 
             Utils.StartMethodMultithreadedAndWait(() =>
             {
@@ -608,7 +611,7 @@ namespace EKUnleashed
                             //    pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id, true);
                             pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
 
-                            SelectDeck.AddDeck((iPass == 0) ? "KW" : iAdjustedDeckNumber.ToString(), deck["GroupId"].ToString(), pretty_cards_used, pretty_runes_used);
+                            SelectDeck.AddDeck((Utils.CLng(sDefaultGroup) == Utils.CLng(deck["GroupId"].ToString())), (iPass == 0) ? "KW" : iAdjustedDeckNumber.ToString(), deck["GroupId"].ToString(), pretty_cards_used, pretty_runes_used);
                         }
                     }
                 }
