@@ -721,10 +721,10 @@ namespace EKUnleashed
 			{
 				"&phpp=", "ANDROID_ARC",
 				"&phpl=", "EN",
-				"&pvc=",  "1.7.4",
+				"&pvc=",  "1.7.5",
 				"&phpk=", frmMain.CalculateMD5SumForGamePacket(),
 				"&phps=", frmMain.AuthSerial,
-				"&pvb=", System.Web.HttpUtility.UrlEncode(GameClient.m_strBuildTime)
+				"&pvb=", System.Web.HttpUtility.UrlEncode(GameClient.TAG_EK_DateOnLoad)
 			});
         }
 
