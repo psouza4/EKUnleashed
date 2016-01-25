@@ -1,4 +1,4 @@
-#define Version '2.10.2316.668'
+#define Version '2.11.2416.1050'
 
 [Setup]
 AppName=EK Unleashed
@@ -34,8 +34,8 @@ AppSupportURL=http://www.EKUnleashed.com/forums/
 AppPublisherURL=http://www.EKUnleashed.com/
 AppUpdatesURL=https://github.com/psouza4/EKUnleashed/releases
 UninstallDisplayName=EK Unleashed
-; 8.20 MB as initial install
-UninstallDisplaySize=8598729
+; 9.38 MB as initial install
+UninstallDisplaySize=9841152
 UninstallDisplayIcon={app}\EK Unleashed.exe
 
 
