@@ -2063,6 +2063,7 @@ namespace EKUnleashed
                 GameObjs.Card.CardsExcludedFromEnchantingWith = temp.ToArray();
 
 
+                int enchant_XP_cost = CardToEnchant.EnchantToLevelCostXP(card_level) + 1000;
                 int XPRunningTotal = 0;
 
                 Dictionary<int, int> cardCount = new Dictionary<int, int>();
@@ -2097,7 +2098,7 @@ namespace EKUnleashed
                                 try
                                 {
 
-                                    int remaining_XP = CardToEnchant.EnchantToLevelCostXP(card_level) - XPRunningTotal;
+                                    int remaining_XP = enchant_XP_cost - XPRunningTotal;
                                     if (remaining_XP > 0)
                                     {
                                         double food_card_waste_percent = ((double)TempCard.EnchantingWorth) * 100.0 / ((double)remaining_XP);
@@ -2132,7 +2133,7 @@ namespace EKUnleashed
                             else
                                 cardUsed[TempCard.ID_Generic]++;
 
-                            if (XPRunningTotal >= CardToEnchant.EnchantToLevelCostXP(card_level))
+                            if (XPRunningTotal >= enchant_XP_cost)
                                 break;
                         }
                     }
@@ -2140,13 +2141,13 @@ namespace EKUnleashed
 
                 bool bEnchantAnyway = false;
 
-                if ((CardsToEat.Count > 0) && (XPRunningTotal < CardToEnchant.EnchantToLevelCostXP(card_level)))
-                    if (MessageBox.Show("Enchanting needs consume at least " + CardToEnchant.EnchantToLevelCostXP(card_level).ToString("#,##0") + " XP and " + CardToEnchant.EnchantToLevelCostGold(card_level).ToString("#,##0") + " gold in costs.  The " + CardsToEat.Count.ToString("#,##0") + " cards available to enchant with only add up to " + XPRunningTotal.ToString("#,##0") + " XP.\r\n\r\nWould you like to enchant as much as you can with the available cards?", "Partially Enchant?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
+                if ((CardsToEat.Count > 0) && (XPRunningTotal < enchant_XP_cost))
+                    if (MessageBox.Show("Enchanting needs consume at least " + enchant_XP_cost.ToString("#,##0") + " XP and " + CardToEnchant.EnchantToLevelCostGold(card_level).ToString("#,##0") + " gold in costs.  The " + CardsToEat.Count.ToString("#,##0") + " cards available to enchant with only add up to " + XPRunningTotal.ToString("#,##0") + " XP.\r\n\r\nWould you like to enchant as much as you can with the available cards?", "Partially Enchant?", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) == System.Windows.Forms.DialogResult.Yes)
                         bEnchantAnyway = true;
 
-                if ((bEnchantAnyway) || ((XPRunningTotal >= CardToEnchant.EnchantToLevelCostXP(card_level)) && (CardsToEat.Count > 0)))
+                if ((bEnchantAnyway) || ((XPRunningTotal >= enchant_XP_cost) && (CardsToEat.Count > 0)))
                 {
-                    Utils.LoggerNotifications("<color=#ffa000>Enchanting will consume " + CardsToEat.Count.ToString("#,##0") + " cards, totalling at least " + CardToEnchant.EnchantToLevelCostXP(card_level).ToString("#,##0") + " XP and " + CardToEnchant.EnchantToLevelCostGold(card_level).ToString("#,##0") + " gold in costs.</color>");
+                    Utils.LoggerNotifications("<color=#ffa000>Enchanting will consume " + CardsToEat.Count.ToString("#,##0") + " cards, totalling at least " + enchant_XP_cost.ToString("#,##0") + " XP and " + CardToEnchant.EnchantToLevelCostGold(card_level).ToString("#,##0") + " gold in costs.</color>");
 
                     string cards_to_eat_list = "";
                     foreach (GameObjs.Card TempCard in CardsToEat)
@@ -2175,7 +2176,7 @@ namespace EKUnleashed
                             Utils.LoggerNotifications("<color=#ffa000>Card enchantment preview failure!</color>");
                             Utils.LoggerNotifications("<color=#ffa000>... " + message + "</color>");
                         }
-                        else if ((Utils.CInt(upgrade_preview["data"]["CardLevel"]) != card_level) && (!bEnchantAnyway))
+                        else if ((Utils.CInt(upgrade_preview["data"]["CardLevel"]) <= CardToEnchant.Level) && (!bEnchantAnyway))
                         {
                             Utils.LoggerNotifications("<color=#ffa000>Card enchantment preview failure!</color>");
                             Utils.LoggerNotifications("<color=#ffa000>... is one of the enchantment cards in use?</color>");
@@ -2196,7 +2197,10 @@ namespace EKUnleashed
 
                                 JObject enchant_result = JObject.Parse(enchant_result_json);
 
-                                Utils.LoggerNotifications("<color=#ffa000>Card has been enchanted to level " + upgrade_preview["data"]["CardLevel"].ToString() + "!</color>");
+                                if (Utils.CInt(upgrade_preview["data"]["CardLevel"]) != card_level)
+                                    Utils.LoggerNotifications("<color=#ffa000>Card has been enchanted to level " + upgrade_preview["data"]["CardLevel"].ToString() + ", which is less than the level you asked for (level " + card_level.ToString() + ")!</color>");
+                                else
+                                    Utils.LoggerNotifications("<color=#ffa000>Card has been enchanted to level " + upgrade_preview["data"]["CardLevel"].ToString() + "!</color>");
                             }
                         }
                     }
@@ -2204,16 +2208,16 @@ namespace EKUnleashed
                     {
                         // logic error: shouldn't be able to get here
 
-                        Utils.LoggerNotifications("<color=#ffa000>Enchanting needs consume at least " + CardToEnchant.EnchantToLevelCostXP(card_level).ToString("#,##0") + " XP and " + CardToEnchant.EnchantToLevelCostGold(card_level).ToString("#,##0") + " gold in costs.  The " + CardsToEat.Count.ToString("#,##0") + " cards available to enchant with only add up to " + XPRunningTotal.ToString("#,##0") + " XP.</color>");
+                        Utils.LoggerNotifications("<color=#ffa000>Enchanting needs consume at least " + enchant_XP_cost.ToString("#,##0") + " XP and " + CardToEnchant.EnchantToLevelCostGold(card_level).ToString("#,##0") + " gold in costs.  The " + CardsToEat.Count.ToString("#,##0") + " cards available to enchant with only add up to " + XPRunningTotal.ToString("#,##0") + " XP.</color>");
                     }
                 }
                 else if (CardsToEat.Count > 0)
                 {
-                    Utils.LoggerNotifications("<color=#ffa000>Enchanting needs consume at least " + CardToEnchant.EnchantToLevelCostXP(card_level).ToString("#,##0") + " XP and " + CardToEnchant.EnchantToLevelCostGold(card_level).ToString("#,##0") + " gold in costs.  The " + CardsToEat.Count.ToString("#,##0") + " cards available to enchant with only add up to " + XPRunningTotal.ToString("#,##0") + " XP.</color>");
+                    Utils.LoggerNotifications("<color=#ffa000>Enchanting needs consume at least " + enchant_XP_cost.ToString("#,##0") + " XP and " + CardToEnchant.EnchantToLevelCostGold(card_level).ToString("#,##0") + " gold in costs.  The " + CardsToEat.Count.ToString("#,##0") + " cards available to enchant with only add up to " + XPRunningTotal.ToString("#,##0") + " XP.</color>");
                 }
                 else
                 {
-                    Utils.LoggerNotifications("<color=#ffa000>Enchanting needs consume at least " + CardToEnchant.EnchantToLevelCostXP(card_level).ToString("#,##0") + " XP and " + CardToEnchant.EnchantToLevelCostGold(card_level).ToString("#,##0") + " gold in costs.  There are not enough available cards to enchant with in your collection.  Check your collection and/or your settings to make sure EK Unleashed is allowed to enchant with 1* and 2* cards, for example.</color>");
+                    Utils.LoggerNotifications("<color=#ffa000>Enchanting needs consume at least " + enchant_XP_cost.ToString("#,##0") + " XP and " + CardToEnchant.EnchantToLevelCostGold(card_level).ToString("#,##0") + " gold in costs.  There are not enough available cards to enchant with in your collection.  Check your collection and/or your settings to make sure EK Unleashed is allowed to enchant with 1* and 2* cards, for example.</color>");
                 }
             }
 
