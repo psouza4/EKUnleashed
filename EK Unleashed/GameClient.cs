@@ -29,6 +29,8 @@ namespace EKUnleashed
         public string Kingdom_War_ID = ""; // 1 = Tundra, 2 = Forest, 3 = Swamp, 4 = Mountain
         public string Clan_ID = "";
         public string Clan_Name = "";
+        public string KW_Deck_ID = "";
+        public string Defense_Deck_ID = "";
         public string Login_NickName = "";
         public string Login_UID = "";
         public string ServerName = "";
@@ -3332,9 +3334,10 @@ namespace EKUnleashed
         public string FillDeckCustom(string deck_to_use, string deck_cards, string deck_runes)
         {
             if (deck_to_use.ToUpper().Contains("KW")) deck_to_use = "KW";
+            if (deck_to_use.ToUpper().Contains("DF")) deck_to_use = "DF";
             if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
 
-            if (deck_to_use != "KW" && deck_to_use != "1" && deck_to_use != "2" && deck_to_use != "3" && deck_to_use != "4" && deck_to_use != "5" && deck_to_use != "6" && deck_to_use != "7" && deck_to_use != "8" && deck_to_use != "9" && deck_to_use != "10") return this.DefaultDeck;
+            if (deck_to_use != "KW" && deck_to_use != "DF" && deck_to_use != "1" && deck_to_use != "2" && deck_to_use != "3" && deck_to_use != "4" && deck_to_use != "5" && deck_to_use != "6" && deck_to_use != "7" && deck_to_use != "8" && deck_to_use != "9" && deck_to_use != "10" && deck_to_use != "11" && deck_to_use != "12" && deck_to_use != "13" && deck_to_use != "14" && deck_to_use != "15" && deck_to_use != "16" && deck_to_use != "17" && deck_to_use != "18" && deck_to_use != "19" && deck_to_use != "20") return this.DefaultDeck;
 
             deck_cards = Utils.CondenseSpacing(deck_cards).Replace(", ", ",");
             deck_runes = Utils.CondenseSpacing(deck_runes).Replace(", ", ",");
@@ -3436,9 +3439,10 @@ namespace EKUnleashed
             string deck_runes = Utils.CondenseSpacing(Utils.GetAppSetting("DemonInvasion_" + demon + "_DeckRunes")).Replace(", ", ",");
 
             if (deck_to_use.ToUpper().Contains("KW") || deck_to_use.ToUpper().Contains("KING")) deck_to_use = "KW";
+            if (deck_to_use.ToUpper().Contains("DF") || deck_to_use.ToUpper().Contains("DEF")) deck_to_use = "DF";
             if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
 
-            if ((deck_to_use != "KW") && (Utils.CInt(deck_to_use) <= 0)) return "0";
+            if ((deck_to_use != "KW") && (deck_to_use != "DF") && (Utils.CInt(deck_to_use) <= 0)) return "0";
 
             string deck_ordinal = this.GetDeckIDForOrdinal(deck_to_use);
 
@@ -3509,9 +3513,10 @@ namespace EKUnleashed
             string deck_runes = Utils.CondenseSpacing(Utils.GetAppSetting("Thief_DeckRunes")).Replace(", ", ",");
 
             if (deck_to_use.ToUpper().Contains("KW")) deck_to_use = "KW";
+            if (deck_to_use.ToUpper().Contains("DF")) deck_to_use = "DF";
             if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
 
-            if ((deck_to_use != "KW") && (Utils.CInt(deck_to_use) <= 0)) return "0";
+            if ((deck_to_use != "KW") && (deck_to_use != "DF") && (Utils.CInt(deck_to_use) <= 0)) return "0";
 
             if ((!this.ThiefFilled) || (Utils.False("Thief_AlwaysFill")))
             {
@@ -3582,9 +3587,10 @@ namespace EKUnleashed
             string deck_runes = Utils.CondenseSpacing(Utils.GetAppSetting("Hydra_DeckRunes")).Replace(", ", ",");
 
             if (deck_to_use.ToUpper().Contains("KW")) deck_to_use = "KW";
+            if (deck_to_use.ToUpper().Contains("DF")) deck_to_use = "DF";
             if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
 
-            if ((deck_to_use != "KW") && (Utils.CInt(deck_to_use) <= 0)) return "0";
+            if ((deck_to_use != "KW") && (deck_to_use != "DF") && (Utils.CInt(deck_to_use) <= 0)) return "0";
 
             if ((!this.RaiderFilled) || (Utils.False("Hydra_AlwaysFill")))
             {
@@ -3658,9 +3664,10 @@ namespace EKUnleashed
                 string deck_to_use = Utils.GetAppSetting("Game_DefaultDeck");
 
                 if (deck_to_use.ToUpper().Contains("KW")) deck_to_use = "KW";
+                if (deck_to_use.ToUpper().Contains("DF")) deck_to_use = "DF";
                 if (Utils.CInt(deck_to_use) > 0) deck_to_use = Utils.CInt(deck_to_use).ToString();
 
-                if ((deck_to_use != "KW") && (Utils.CInt(deck_to_use) <= 0)) return "0";
+                if ((deck_to_use != "KW") && (deck_to_use != "DF") && (Utils.CInt(deck_to_use) <= 0)) return "0";
 
                 this._DefaultDeck = this.GetDeckIDForOrdinal(deck_to_use);
 
@@ -4561,6 +4568,17 @@ namespace EKUnleashed
                 this.All_Runes_JSON = this.GetGameData(ref this.opts, "rune", "GetAllRune", false);
                 this.All_Skills_JSON = this.GetGameData(ref this.opts, "card", "GetAllSkill", false);
 
+                string js_decks = this.GetGameData(ref this.opts, "card", "GetCardGroup", false);
+                try
+                {
+                    JObject jo_decks = JObject.Parse(js_decks);
+
+                    this.KW_Deck_ID = Utils.Chopper(jo_decks["data"]["legionWarGroupId"].ToString(), "\"", "\"").Trim();
+                    this.Defense_Deck_ID = Utils.Chopper(jo_decks["data"]["defenceGroupid"].ToString(), "\"", "\"").Trim();
+                }
+                catch { }
+
+
                 this.Cards_JSON_Parsed = JObject.Parse(this.All_Cards_JSON);
                 this.Runes_JSON_Parsed = JObject.Parse(this.All_Runes_JSON);
                 this.Skills_JSON_Parsed = JObject.Parse(this.All_Skills_JSON);
@@ -5184,6 +5202,11 @@ namespace EKUnleashed
             {
                 deck_JSON = (deck_JSON == null) ? this.GetGameData(ref this.opts, "card", "GetCardGroup", false) : deck_JSON;
 
+                if (deck_ordinal.ToUpper().StartsWith("D"))
+                    deck_ordinal = "DF";
+                if (deck_ordinal == "DF")
+                    return this.Defense_Deck_ID;
+
                 string[] deck_info = Utils.SubStringsDups(this.GetDeckInfo(deck_ordinal, deck_JSON), "||");
 
                 if (deck_info[0] == "*") return "";
@@ -5214,6 +5237,18 @@ namespace EKUnleashed
                     }
                 }
 
+                if (deck_ordinal.ToUpper() == "DF")
+                {
+                    foreach (var deck in decks["data"]["Groups"])
+                    {
+                        try
+                        {
+                            if (Utils.CInt(this.Defense_Deck_ID) == Utils.CInt(deck["GroupId"]))
+                                return deck["GroupId"].ToString() + "||" + deck["UserCardIds"].ToString() + "||" + deck["UserRuneIds"].ToString();
+                        }
+                        catch { }
+                    }
+                }
 
                 int deck_number = 0;
 
@@ -7902,6 +7937,8 @@ namespace EKUnleashed
                 this.UserRunes_CachedData = null;
                 this.GetUsersRunes();
 
+                bool outputted = false;
+
                 //json = JSBeautifyLib.JSBeautify.BeautifyMe(json);
                 //Utils.Chatter(json);
 
@@ -7911,7 +7948,7 @@ namespace EKUnleashed
                 Utils.LoggerNotifications("<b><fs+><fs+><fs+>Current Deck Report<fx></b></color>");
                 Utils.LoggerNotifications("<color=#005f8f>------------------------------------------------------------------------------------------------------------------------</color>");
 
-                for (int iPass = 0; iPass <= 1; iPass++)
+                for (int iPass = 0; iPass <= 2; iPass++)
                 {
                     int iAbsoluteDeckOrdinal = 0;
                     int iAdjustedDeckNumber = 0;
@@ -7928,9 +7965,22 @@ namespace EKUnleashed
                             deck_EKUnleashed_ID = "KW";
                             deck_name = "Kingdom War Deck";
                         }
-
-                        if ((iPass == 0 && deck_EKUnleashed_ID == "KW") || (iPass == 1 && deck_EKUnleashed_ID != "KW"))
+                        if (Utils.CInt(this.Defense_Deck_ID) == Utils.CInt(deck["GroupId"]))
                         {
+                            deck_EKUnleashed_ID = "DF";
+                            deck_name = "Defense Deck";
+                        }
+
+                        if
+                        (
+                            (iPass == 0 && deck_EKUnleashed_ID == "DF") ||
+                            (iPass == 1 && deck_EKUnleashed_ID == "KW") ||
+                            (iPass == 2 && deck_EKUnleashed_ID != "KW" && deck_EKUnleashed_ID != "DF")
+                        )
+                        {
+                            if (outputted)
+                                Utils.LoggerNotifications();
+
                             Utils.LoggerNotifications("<color=#5fffff>Deck slot <b><u><color=#ffffff>" + deck_EKUnleashed_ID + "</color></u></b>:</color>  \"<i>" + deck_name + "</i>\"  <color=808080>(a.k.a. \"" + "Deck #" + iAbsoluteDeckOrdinal.ToString() + "\")</color>");
                             string pretty_cards_used = "";
                             //foreach (string unique_user_card_id in Utils.SubStrings(deck["UserCardIds"].ToString(), "_"))
@@ -7970,8 +8020,7 @@ namespace EKUnleashed
                             Utils.LoggerNotifications("<color=#00afcf>\tcards: </color>" + pretty_cards_used);
                             Utils.LoggerNotifications("<color=#00afcf>\trunes: </color>" + pretty_runes_used);
 
-                            if (iAbsoluteDeckOrdinal < 10)
-                                Utils.LoggerNotifications();
+                            outputted = true;
                         }
                     }
                 }

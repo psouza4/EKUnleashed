@@ -17,14 +17,14 @@ namespace EKUnleashed
             InitializeComponent();
         }
 
-        delegate void Delegate__Void_String_String_String_String(bool def, string o1, string o2, string o3, string o4);
+        delegate void Delegate__Void_String_String_String_String(bool active_deck, string o1, string o2, string o3, string o4);
 
-        public void AddDeck(bool default_deck, string ordinal, string group_id, string cards, string runes)
+        public void AddDeck(bool actively_selected_deck, string ordinal, string group_id, string cards, string runes)
         {
             if (this.lstDecks.InvokeRequired)
             {
                 Delegate__Void_String_String_String_String d = AddDeck;
-                this.lstDecks.Invoke(d, new object[] { default_deck, ordinal, group_id, cards, runes });
+                this.lstDecks.Invoke(d, new object[] { actively_selected_deck, ordinal, group_id, cards, runes });
                 return;
             }
 
@@ -32,9 +32,9 @@ namespace EKUnleashed
             {
                 ListViewItem lvi;
                 if (Utils.CInt(group_id) == 0)
-                    lvi = new ListViewItem(new string[] { (default_deck) ? "ACTIVE/CURRENT" : "", ordinal, group_id, cards, runes });
+                    lvi = new ListViewItem(new string[] { (actively_selected_deck) ? "ACTIVE/CURRENT" : "", ordinal, group_id, cards, runes });
                 else
-                    lvi = new ListViewItem(new string[] { (default_deck) ? "ACTIVE/CURRENT" : "", (ordinal == "KW") ? "Kingdom War" : "Deck " + ordinal, group_id, cards, runes });
+                    lvi = new ListViewItem(new string[] { (actively_selected_deck) ? "ACTIVE/CURRENT" : "", (ordinal == "KW") ? "Kingdom War" : ((Utils.CLng(group_id) == Utils.CLng(GameClient.Current.Defense_Deck_ID)) ? "Defense" : "Deck " + ordinal), group_id, cards, runes });
                 lvi.Tag = group_id;
                 this.lstDecks.Items.Add(lvi);
             }
@@ -51,40 +51,51 @@ namespace EKUnleashed
             if (!this.InManageMode)
                 this.AddDeck(false, "None", "", "", "");
 
-            //Utils.StartMethodMultithreadedAndWait(() =>
-            //{
-                string json = GameClient.Current.GetGameData(ref GameClient.Current.opts, "card", "GetCardGroup", false);
+            string json = GameClient.Current.GetGameData(ref GameClient.Current.opts, "card", "GetCardGroup", false);
 
-                JObject user_data = JObject.Parse(GameClient.Current.GetGameData("user", "GetUserInfo", false));
-                string sDefaultGroup = user_data["data"]["DefaultGroupId"].ToString();
+            JObject user_data = JObject.Parse(GameClient.Current.GetGameData("user", "GetUserInfo", false));
+            string sActivelySelectedGroup = user_data["data"]["DefaultGroupId"].ToString();
 
-                GameClient.Current.GetUsersCards();
-                GameClient.Current.GetUsersRunes();
+            GameClient.Current.GetUsersCards();
+            GameClient.Current.GetUsersRunes();
 
-                JObject decks = JObject.Parse(json);
+            JObject decks = JObject.Parse(json);
 
-                for (int iPass = 0; iPass <= 1; iPass++)
+            for (int iPass = 0; iPass <= 2; iPass++)
+            {
+                int iAbsoluteDeckOrdinal = 0;
+                int iAdjustedDeckNumber = 0;
+
+                foreach (JObject deck in decks["data"]["Groups"])
                 {
-                    int iAbsoluteDeckOrdinal = 0;
-                    int iAdjustedDeckNumber = 0;
+                    iAbsoluteDeckOrdinal++;
+                    if (Utils.CInt(decks["data"]["legionWarGroupId"]) != Utils.CInt(deck["GroupId"]))
+                        iAdjustedDeckNumber++;
 
-                    foreach (JObject deck in decks["data"]["Groups"])
+                    string deck_EKUnleashed_ID = iAdjustedDeckNumber.ToString();
+                    string deck_name = iAdjustedDeckNumber.ToString() + ". Deck";
+
+                    if (Utils.CInt(decks["data"]["legionWarGroupId"]) == Utils.CInt(deck["GroupId"]))
                     {
-                        iAbsoluteDeckOrdinal++;
-                        if (Utils.CInt(decks["data"]["legionWarGroupId"]) != Utils.CInt(deck["GroupId"]))
-                            iAdjustedDeckNumber++;
-                        string deck_EKUnleashed_ID = iAdjustedDeckNumber.ToString();
-                        string deck_name = iAdjustedDeckNumber.ToString() + ". Deck";
-                        if (Utils.CInt(decks["data"]["legionWarGroupId"]) == Utils.CInt(deck["GroupId"]))
-                        {
-                            deck_EKUnleashed_ID = "KW";
-                            deck_name = "Kingdom War Deck";
-                        }
+                        deck_EKUnleashed_ID = "KW";
+                        deck_name = "Kingdom War Deck";
+                    }
+                    else if (Utils.CLng(GameClient.Current.Defense_Deck_ID) == Utils.CLng(deck["GroupId"]))
+                    {
+                        deck_EKUnleashed_ID = "DF";
+                        deck_name = "Defense Deck";
+                    }
 
-                        if ((iPass == 0 && deck_EKUnleashed_ID == "KW") || (iPass == 1 && deck_EKUnleashed_ID != "KW"))
+                    if
+                    (
+                        (iPass == 0 && deck_EKUnleashed_ID == "DF") || 
+                        (iPass == 1 && deck_EKUnleashed_ID == "KW") || 
+                        (iPass == 2 && deck_EKUnleashed_ID != "KW" && deck_EKUnleashed_ID != "DF")
+                    )
+                    {
+                        string pretty_cards_used = "";
+                        try
                         {
-                            string pretty_cards_used = "";
-                            //foreach (string unique_user_card_id in Utils.SubStrings(deck["UserCardIds"].ToString(), "_"))
                             foreach (JObject card in deck["UserCardInfo"])
                             {
                                 try
@@ -94,32 +105,37 @@ namespace EKUnleashed
                                 }
                                 catch { }
                             }
-                            pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
-
-                            string pretty_runes_used = "";
-                            try
-                            {
-                                foreach (JObject rune in deck["UserRuneInfo"])
-                                {
-                                    try
-                                    {
-                                        if (Utils.CInt(rune["RuneId"]) > 0)
-                                            pretty_runes_used += ", " + GameClient.Current.ShortRuneInfo(Utils.CInt(rune["RuneId"]), Utils.CInt(rune["Level"]), true);
-                                    }
-                                    catch { }
-                                }
-                            }
-                            catch { }
-
-                            //foreach (string unique_user_rune_id in Utils.SubStrings(deck["UserRuneIds"].ToString(), "_"))
-                            //    pretty_runes_used += ", " + this.ShortRuneInfo(unique_user_rune_id, true);
-                            pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
-
-                            this.AddDeck((Utils.CLng(sDefaultGroup) == Utils.CLng(deck["GroupId"].ToString())), (iPass == 0) ? "KW" : iAdjustedDeckNumber.ToString(), deck["GroupId"].ToString(), pretty_cards_used, pretty_runes_used);
                         }
+                        catch { }
+                        pretty_cards_used = pretty_cards_used.TrimStart(new char[] { ',', ' ' });
+
+                        string pretty_runes_used = "";
+                        try
+                        {
+                            foreach (JObject rune in deck["UserRuneInfo"])
+                            {
+                                try
+                                {
+                                    if (Utils.CInt(rune["RuneId"]) > 0)
+                                        pretty_runes_used += ", " + GameClient.Current.ShortRuneInfo(Utils.CInt(rune["RuneId"]), Utils.CInt(rune["Level"]), true);
+                                }
+                                catch { }
+                            }
+                        }
+                        catch { }
+                        pretty_runes_used = pretty_runes_used.TrimStart(new char[] { ',', ' ' });
+
+                        this.AddDeck
+                        (
+                            (Utils.CLng(sActivelySelectedGroup) == Utils.CLng(deck["GroupId"])),
+                            (iPass == 1) ? "KW" : iAdjustedDeckNumber.ToString(),
+                            Utils.CLng(deck["GroupId"]).ToString(),
+                            pretty_cards_used,
+                            pretty_runes_used
+                        );
                     }
                 }
-            //}, 15); // wait up to 15 seconds
+            }
 
             this.Cursor = cur;
         }
@@ -157,7 +173,7 @@ namespace EKUnleashed
             get
             {
                 if (this.lstDecks.SelectedItems.Count > 0)
-                    return this.lstDecks.SelectedItems[0].SubItems[0].Text;
+                    return this.lstDecks.SelectedItems[0].SubItems[1].Text;
 
                 return "";
             }

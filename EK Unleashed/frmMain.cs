@@ -349,9 +349,9 @@ namespace EKUnleashed
                 {
                     Utils.StartMethodMultithreaded(() =>
                     {
-                        string temp_deck_ordinal = Utils.Input_Text("Update Deck", "Enter deck ID to set these cards & runes to (\"KW\" or 1-10):").Trim().ToUpper();
+                        string temp_deck_ordinal = Utils.Input_Text("Update Deck", "Enter deck ID to set these cards & runes to (\"KW\", \"DF\", or 1-20):").Trim().ToUpper();
 
-                        if (((Utils.CInt(temp_deck_ordinal) > 0) && (Utils.CInt(temp_deck_ordinal) <= 10)) || temp_deck_ordinal.Trim().ToUpper() == "KW")
+                        if (((Utils.CInt(temp_deck_ordinal) > 0) && (Utils.CInt(temp_deck_ordinal) <= 20)) || temp_deck_ordinal.Trim().ToUpper() == "KW" || temp_deck_ordinal.Trim().ToUpper() == "DF")
                         {
                             string temp_cards_entered = Utils.Input_Text("Update Deck", "Enter a list of cards you want to use (separated by commas):").Trim();
 
@@ -1775,9 +1775,9 @@ namespace EKUnleashed
             {
                 Utils.StartMethodMultithreaded(() =>
                 {
-                    string temp_deck_ordinal = Utils.Input_Text("Update Deck", "Enter deck ID to set these cards & runes to (\"KW\" or 1-10):").Trim().ToUpper();
+                    string temp_deck_ordinal = Utils.Input_Text("Update Deck", "Enter deck ID to set these cards & runes to (\"KW\", \"DF\" or 1-20):").Trim().ToUpper();
 
-                    if (((Utils.CInt(temp_deck_ordinal) > 0) && (Utils.CInt(temp_deck_ordinal) <= 10)) || temp_deck_ordinal.Trim().ToUpper() == "KW")
+                    if (((Utils.CInt(temp_deck_ordinal) > 0) && (Utils.CInt(temp_deck_ordinal) <= 20)) || temp_deck_ordinal.Trim().ToUpper() == "KW" || temp_deck_ordinal.Trim().ToUpper() == "DF")
                     {
                         string temp_cards_entered = Utils.Input_Text("Update Deck", "Enter a list of cards you want to use (separated by commas):").Trim();
 
