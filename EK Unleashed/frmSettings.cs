@@ -652,7 +652,7 @@ namespace EKUnleashed
 
                     if (btn.Text.Trim().ToUpper().StartsWith("K"))
                         btn.Tag = "KW";
-                    else if (btn.Text.Trim().ToUpper().StartsWith("D"))
+                    else if (btn.Text.Trim().ToUpper().StartsWith("DEF") || btn.Text.Trim().ToUpper() == "DF")
                         btn.Tag = "DF";
                     else if (Utils.CInt(Utils.ChopperBlank(btn.Text, " ", null)) > 0)
                         btn.Tag = Utils.CInt(Utils.ChopperBlank(btn.Text, " ", null)).ToString();
