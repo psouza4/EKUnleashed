@@ -475,14 +475,17 @@ namespace EKUnleashed
 
                         //Utils.LoggerNotifications("You have " + chips_have.ToString("#,##0") + " of " + chips_needed.ToString("#,##0") + " fragments needed to craft [Card #" + jtCraftable["CardId"].ToString() + "].");
 
-                        while ((chips_have >= chips_needed) && (gold_have >= gold_needed))
+                        if (chips_needed > 0) // sanity check to prevent infinite loops
                         {
-                            this.GetGameData("cardchip", "CompositeChip", "ChipId=" + jtCraftable["CardId"].ToString() + "&IsSuper=0");
+                            while ((chips_have >= chips_needed) && (gold_have >= gold_needed))
+                            {
+                                this.GetGameData("cardchip", "CompositeChip", "ChipId=" + jtCraftable["CardId"].ToString() + "&IsSuper=0");
 
-                            Utils.LoggerNotifications("<color=#ffff40>... automatically crafted a [Card #" + jtCraftable["CardId"].ToString() + "] using <b>" + chips_needed.ToString("#,##0") + "</b> fragments and <b>" + gold_needed.ToString("#,##0") + "</b> gold!</color>");
+                                Utils.LoggerNotifications("<color=#ffff40>... automatically crafted a [Card #" + jtCraftable["CardId"].ToString() + "] using <b>" + chips_needed.ToString("#,##0") + "</b> fragments and <b>" + gold_needed.ToString("#,##0") + "</b> gold!</color>");
 
-                            chips_have -= chips_needed;
-                            gold_have -= gold_needed;
+                                chips_have -= chips_needed;
+                                gold_have -= gold_needed;
+                            }
                         }
                     }
                 }
