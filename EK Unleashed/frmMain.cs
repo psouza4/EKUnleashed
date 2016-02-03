@@ -130,6 +130,11 @@ namespace EKUnleashed
                 this.Controls.Add(this.lblDebugMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 
+            this.XPToolTip.AutoPopDelay = 30000;
+            this.XPToolTip.InitialDelay = 100;
+            this.XPToolTip.ReshowDelay = 100;
+            this.XPToolTip.ShowAlways = true;
+
             this.ResumeLayout(false);
 
             this.SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.DoubleBuffer | ControlStyles.UserPaint | ControlStyles.ResizeRedraw, true);
@@ -2139,6 +2144,8 @@ namespace EKUnleashed
 
         delegate void VOID__VOID_JOBJECT_JOBJECT_JOBJECT(JObject j1, JObject j2, JObject j3);
 
+        private ToolTip XPToolTip = new ToolTip();
+
         public void GameVitalsUpdateUI(JObject user_info_data, JObject arena_data, JObject thief_data)
         {
             if (this.InvokeRequired)
@@ -2178,6 +2185,8 @@ namespace EKUnleashed
                     this.prgXPToNext.Value = (int)hero.ProgressTowardLevel;
                     if (!this.prgXPToNext.Visible)
                         this.prgXPToNext.Visible = true;
+
+                    this.XPToolTip.SetToolTip(this.prgXPToNext, (hero.NextExp - hero.XP).ToString("#,##0") + " XP remaining until L." + (hero.Level + 1).ToString() + "\r\n\r\nXP for L." + hero.Level.ToString() + ":\t" + hero.PrevExp.ToString("#,##0") + "\r\nCurrent XP:\t" + hero.XP.ToString("#,##0") + "\r\nXP for L." + (hero.Level + 1).ToString() + ":\t" + hero.NextExp.ToString("#,##0"));
 
                     // Causes the progress bar to be yellow, but stops the animation effect
                     Utils.SendMessage
