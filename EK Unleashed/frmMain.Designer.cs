@@ -227,6 +227,8 @@
             this.arenaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.addAnAttemptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cooldownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem24 = new System.Windows.Forms.ToolStripSeparator();
+            this.moreCardGroupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnChatChannel = new System.Windows.Forms.Button();
             this.txtChatMessage = new System.Windows.Forms.TextBox();
             this.mnuChatChannels = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -234,8 +236,8 @@
             this.privateMessageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chatchannelClan = new System.Windows.Forms.ToolStripMenuItem();
             this.kingdomWarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem24 = new System.Windows.Forms.ToolStripSeparator();
-            this.moreCardGroupsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autocraftCardsFromFragmentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem25 = new System.Windows.Forms.ToolStripSeparator();
             this.nameClicked.SuspendLayout();
             this.mnuApplication.SuspendLayout();
             this.mnuGame.SuspendLayout();
@@ -413,7 +415,7 @@
             this.miscellaneousToolStripMenuItem});
             this.mnuGame.Name = "mnuTools";
             this.mnuGame.ShowImageMargin = false;
-            this.mnuGame.Size = new System.Drawing.Size(145, 314);
+            this.mnuGame.Size = new System.Drawing.Size(145, 336);
             this.mnuGame.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.mnuGame_Closed);
             this.mnuGame.Opening += new System.ComponentModel.CancelEventHandler(this.mnuTools_Opening);
             // 
@@ -730,6 +732,8 @@
             this.manageDecksToolStripMenuItem,
             this.viewAllCardsToolStripMenuItem,
             this.manageRunesToolStripMenuItem,
+            this.toolStripMenuItem25,
+            this.autocraftCardsFromFragmentsToolStripMenuItem,
             this.toolStripMenuItem18,
             this.showAllDecksToolStripMenuItem,
             this.newCardsReportToolStripMenuItem,
@@ -748,66 +752,66 @@
             // manageDecksToolStripMenuItem
             // 
             this.manageDecksToolStripMenuItem.Name = "manageDecksToolStripMenuItem";
-            this.manageDecksToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.manageDecksToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.manageDecksToolStripMenuItem.Text = "Manage decks...";
             this.manageDecksToolStripMenuItem.Click += new System.EventHandler(this.manageDecksToolStripMenuItem_Click);
             // 
             // viewAllCardsToolStripMenuItem
             // 
             this.viewAllCardsToolStripMenuItem.Name = "viewAllCardsToolStripMenuItem";
-            this.viewAllCardsToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.viewAllCardsToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.viewAllCardsToolStripMenuItem.Text = "Manage cards...";
             this.viewAllCardsToolStripMenuItem.Click += new System.EventHandler(this.viewAllCardsToolStripMenuItem_Click);
             // 
             // manageRunesToolStripMenuItem
             // 
             this.manageRunesToolStripMenuItem.Name = "manageRunesToolStripMenuItem";
-            this.manageRunesToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.manageRunesToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.manageRunesToolStripMenuItem.Text = "Manage runes...";
             this.manageRunesToolStripMenuItem.Click += new System.EventHandler(this.manageRunesToolStripMenuItem_Click);
             // 
             // toolStripMenuItem18
             // 
             this.toolStripMenuItem18.Name = "toolStripMenuItem18";
-            this.toolStripMenuItem18.Size = new System.Drawing.Size(218, 6);
+            this.toolStripMenuItem18.Size = new System.Drawing.Size(252, 6);
             // 
             // showAllDecksToolStripMenuItem
             // 
             this.showAllDecksToolStripMenuItem.Name = "showAllDecksToolStripMenuItem";
-            this.showAllDecksToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.showAllDecksToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.showAllDecksToolStripMenuItem.Text = "Quick deck report";
             this.showAllDecksToolStripMenuItem.Click += new System.EventHandler(this.showAllDecksToolStripMenuItem_Click);
             // 
             // newCardsReportToolStripMenuItem
             // 
             this.newCardsReportToolStripMenuItem.Name = "newCardsReportToolStripMenuItem";
-            this.newCardsReportToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.newCardsReportToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.newCardsReportToolStripMenuItem.Text = "New cards report";
             this.newCardsReportToolStripMenuItem.Click += new System.EventHandler(this.newCardsReportToolStripMenuItem_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(218, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(252, 6);
             // 
             // quickbuildADeckToolStripMenuItem
             // 
             this.quickbuildADeckToolStripMenuItem.Name = "quickbuildADeckToolStripMenuItem";
             this.quickbuildADeckToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.D)));
-            this.quickbuildADeckToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.quickbuildADeckToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.quickbuildADeckToolStripMenuItem.Text = "Quick-build a deck...";
             this.quickbuildADeckToolStripMenuItem.Click += new System.EventHandler(this.quickbuildADeckToolStripMenuItem_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(218, 6);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(252, 6);
             // 
             // searchForACardToolStripMenuItem
             // 
             this.searchForACardToolStripMenuItem.Name = "searchForACardToolStripMenuItem";
             this.searchForACardToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F10;
-            this.searchForACardToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.searchForACardToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.searchForACardToolStripMenuItem.Text = "Search for a card...";
             this.searchForACardToolStripMenuItem.Click += new System.EventHandler(this.searchForACardToolStripMenuItem_Click);
             // 
@@ -815,26 +819,26 @@
             // 
             this.searchForARuneToolStripMenuItem.Name = "searchForARuneToolStripMenuItem";
             this.searchForARuneToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F11;
-            this.searchForARuneToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.searchForARuneToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.searchForARuneToolStripMenuItem.Text = "Search for a rune...";
             this.searchForARuneToolStripMenuItem.Click += new System.EventHandler(this.searchForARuneToolStripMenuItem_Click);
             // 
             // toolStripMenuItem12
             // 
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(218, 6);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(252, 6);
             // 
             // enchantACardToolStripMenuItem
             // 
             this.enchantACardToolStripMenuItem.Name = "enchantACardToolStripMenuItem";
-            this.enchantACardToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.enchantACardToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.enchantACardToolStripMenuItem.Text = "Enchant a card...";
             this.enchantACardToolStripMenuItem.Click += new System.EventHandler(this.enchantACardToolStripMenuItem_Click);
             // 
             // enchantARuneToolStripMenuItem
             // 
             this.enchantARuneToolStripMenuItem.Name = "enchantARuneToolStripMenuItem";
-            this.enchantARuneToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+            this.enchantARuneToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
             this.enchantARuneToolStripMenuItem.Text = "Enchant a rune...";
             this.enchantARuneToolStripMenuItem.Click += new System.EventHandler(this.enchantARuneToolStripMenuItem_Click);
             // 
@@ -1938,7 +1942,7 @@
             this.toolStripMenuItem24,
             this.moreCardGroupsToolStripMenuItem});
             this.mnuBuy.Name = "mnuBuy";
-            this.mnuBuy.Size = new System.Drawing.Size(176, 170);
+            this.mnuBuy.Size = new System.Drawing.Size(176, 148);
             this.mnuBuy.Closed += new System.Windows.Forms.ToolStripDropDownClosedEventHandler(this.mnuBuy_Closed);
             // 
             // cardsToolStripMenuItem
@@ -2115,6 +2119,18 @@
             this.cooldownToolStripMenuItem.Text = "Cooldown...";
             this.cooldownToolStripMenuItem.Click += new System.EventHandler(this.cooldownToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem24
+            // 
+            this.toolStripMenuItem24.Name = "toolStripMenuItem24";
+            this.toolStripMenuItem24.Size = new System.Drawing.Size(172, 6);
+            // 
+            // moreCardGroupsToolStripMenuItem
+            // 
+            this.moreCardGroupsToolStripMenuItem.Name = "moreCardGroupsToolStripMenuItem";
+            this.moreCardGroupsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.moreCardGroupsToolStripMenuItem.Text = "More card groups";
+            this.moreCardGroupsToolStripMenuItem.Click += new System.EventHandler(this.moreCardGroupsToolStripMenuItem_Click);
+            // 
             // btnChatChannel
             // 
             this.btnChatChannel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -2174,17 +2190,17 @@
             this.kingdomWarToolStripMenuItem.Text = "Kingdom War";
             this.kingdomWarToolStripMenuItem.Click += new System.EventHandler(this.kingdomWarToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem24
+            // autocraftCardsFromFragmentsToolStripMenuItem
             // 
-            this.toolStripMenuItem24.Name = "toolStripMenuItem24";
-            this.toolStripMenuItem24.Size = new System.Drawing.Size(172, 6);
+            this.autocraftCardsFromFragmentsToolStripMenuItem.Name = "autocraftCardsFromFragmentsToolStripMenuItem";
+            this.autocraftCardsFromFragmentsToolStripMenuItem.Size = new System.Drawing.Size(255, 22);
+            this.autocraftCardsFromFragmentsToolStripMenuItem.Text = "Auto-craft cards from fragments...";
+            this.autocraftCardsFromFragmentsToolStripMenuItem.Click += new System.EventHandler(this.autocraftCardsFromFragmentsToolStripMenuItem_Click);
             // 
-            // moreCardGroupsToolStripMenuItem
+            // toolStripMenuItem25
             // 
-            this.moreCardGroupsToolStripMenuItem.Name = "moreCardGroupsToolStripMenuItem";
-            this.moreCardGroupsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
-            this.moreCardGroupsToolStripMenuItem.Text = "More card groups";
-            this.moreCardGroupsToolStripMenuItem.Click += new System.EventHandler(this.moreCardGroupsToolStripMenuItem_Click);
+            this.toolStripMenuItem25.Name = "toolStripMenuItem25";
+            this.toolStripMenuItem25.Size = new System.Drawing.Size(252, 6);
             // 
             // frmMain
             // 
@@ -2449,6 +2465,8 @@
         private System.Windows.Forms.ToolStripMenuItem map10ToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem24;
         private System.Windows.Forms.ToolStripMenuItem moreCardGroupsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem25;
+        private System.Windows.Forms.ToolStripMenuItem autocraftCardsFromFragmentsToolStripMenuItem;
     }
 }
 

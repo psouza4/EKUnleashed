@@ -4331,6 +4331,17 @@ namespace EKUnleashed
 
         }
 
+        private void autocraftCardsFromFragmentsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!Game.Want_Game_Login)
+                return;
+
+            this.tabsChatChannels.SelectedTab = this.tabNotifications;
+
+            Game.Play_AutomaticallyCraftCards();
+            return;
+        }
+
     } // end: public partial class frmMain : Form
 
 } // end: namespace EK Unleashed

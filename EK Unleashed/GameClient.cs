@@ -453,11 +453,13 @@ namespace EKUnleashed
             }
         }
 
-        // This doesn't work (never has)
+        // psouza4 2016-02-03: was calling API with 'ComposeChip' instead of 'CompositeChip' and had reverse logic bug with 'gold_needed >= gold_have', both fixed
         public void Play_AutomaticallyCraftCards()
         {
             lock (this.locker_gamedata)
             {
+                Utils.LoggerNotifications("<color=#ffa000>Looking for cards to craft using your collected fragments...</color>");
+
                 string js_CardCraft = this.GetGameData("cardchip", "GetCardChip");
 
                 try
@@ -467,22 +469,26 @@ namespace EKUnleashed
 
                     foreach (JToken jtCraftable in JObject.Parse(js_CardCraft)["data"]["CardChips"])
                     {
-                        //GameObjs.Card card = new GameObjs.Card(Utils.CInt(jtCraftable["CardId"]));
                         int chips_have = Utils.CInt(jtCraftable["ChipNum"]);
                         int chips_needed = Utils.CInt(jtCraftable["ChipAmount"]);
                         int gold_needed = Utils.CInt(jtCraftable["Coins"]);
 
-                        //Utils.Chatter("You have " + chips_have.ToString("#,##0") + " of " + chips_needed.ToString("#,##0") + " fragments needed to craft [Card #" + jtCraftable["CardId"].ToString() + "].");
+                        //Utils.LoggerNotifications("You have " + chips_have.ToString("#,##0") + " of " + chips_needed.ToString("#,##0") + " fragments needed to craft [Card #" + jtCraftable["CardId"].ToString() + "].");
 
-                        if ((chips_have >= chips_needed) && (gold_needed >= gold_have))
+                        while ((chips_have >= chips_needed) && (gold_have >= gold_needed))
                         {
-                            this.GetGameData("cardchip", "ComposeChip", "ChipId=" + jtCraftable["CardId"].ToString() + "&IsSuper=0");
+                            this.GetGameData("cardchip", "CompositeChip", "ChipId=" + jtCraftable["CardId"].ToString() + "&IsSuper=0");
 
-                            Utils.Chatter("<color=#ffa000>Automatically crafted a [Card #" + jtCraftable["CardId"].ToString() + "] using <b>" + chips_have.ToString("#,##0") + "</b> fragments.</color>");
+                            Utils.LoggerNotifications("<color=#ffff40>... automatically crafted a [Card #" + jtCraftable["CardId"].ToString() + "] using <b>" + chips_needed.ToString("#,##0") + "</b> fragments and <b>" + gold_needed.ToString("#,##0") + "</b> gold!</color>");
+
+                            chips_have -= chips_needed;
+                            gold_have -= gold_needed;
                         }
                     }
                 }
                 catch { }
+
+                Utils.LoggerNotifications("<color=#ffa000>... done crafting cards.</color>");
             }
         }
 
