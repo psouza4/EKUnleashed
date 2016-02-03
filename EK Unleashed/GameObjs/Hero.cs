@@ -115,7 +115,7 @@ namespace EKUnleashed.GameObjs
                 return this._XP;
             }
         }
-         
+
         private double _ProgressTowardLevel = -1.0;
         public double ProgressTowardLevel
         {
@@ -142,6 +142,52 @@ namespace EKUnleashed.GameObjs
                 catch { }
 
                 return 0.0;
+            }
+        }
+
+        private int _PrevExp = -1;
+        public int PrevExp
+        {
+            get
+            {
+                try
+                {
+                    if (this._PrevExp != -1)
+                        return this._PrevExp;
+
+                    if (!this.Valid)
+                        return -1;
+
+                    this._PrevExp = this.GetValueInt("PrevExp");
+
+                    return this._PrevExp;
+                }
+                catch { }
+
+                return 0;
+            }
+        }
+
+        private int _NextExp = -1;
+        public int NextExp
+        {
+            get
+            {
+                try
+                {
+                    if (this._NextExp != -1)
+                        return this._NextExp;
+
+                    if (!this.Valid)
+                        return -1;
+
+                    this._NextExp = this.GetValueInt("NextExp");
+
+                    return this._NextExp;
+                }
+                catch { }
+
+                return 0;
             }
         }
         
