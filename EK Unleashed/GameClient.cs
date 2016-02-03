@@ -498,6 +498,9 @@ namespace EKUnleashed
 
         public void Play_FightRaider_Hydra()
         {
+            // Don't fight hydras if Demon Invasion or Kingdom War is in progress
+            if (this.KW_Ongoing || this.DoingDemonInvasion) return;
+
             lock (this.locker_gamedata)
             {
                 this.Play_FightRaider_Hydra__real();
@@ -3736,6 +3739,9 @@ namespace EKUnleashed
 
         public void Play_FightThieves()
         {
+            // Don't fight thieves if Demon Invasion or Kingdom War is in progress
+            if (this.KW_Ongoing || this.DoingDemonInvasion) return;
+
             lock (this.locker_gamedata)
             {
                 this.CheckLogin();
@@ -4177,6 +4183,9 @@ namespace EKUnleashed
 
         public void Play_WorldTree(bool manually_started)
         {
+            // Don't participate in the World Tree event if Demon Invasion or Kingdom War is in progress
+            if (this.KW_Ongoing || this.DoingDemonInvasion) return;
+
             lock (this.locker_gamedata)
             {
                 this.CheckLogin();
@@ -4300,6 +4309,9 @@ namespace EKUnleashed
 
         public void Play_ArenaFight()
         {
+            // Don't fight in the arena if Demon Invasion or Kingdom War is in progress
+            if (this.KW_Ongoing || this.DoingDemonInvasion) return;
+
             lock (this.locker_gamedata)
             {
                 this.CheckLogin();
@@ -6510,6 +6522,9 @@ namespace EKUnleashed
 
         public void Play_SpendEnergy(int override_mode = 0)
         {
+            // Don't spend energy if Demon Invasion or Kingdom War is in progress
+            if (this.KW_Ongoing || this.DoingDemonInvasion) return;
+
             Utils.LoggerNotifications("<color=#a07000>Spending energy...</color>");
 
             lock (this.locker_gamedata)
