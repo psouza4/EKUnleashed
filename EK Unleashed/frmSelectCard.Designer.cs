@@ -68,6 +68,7 @@
             this.sellAll2CardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sellAll3CardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sellAllTreasureCardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sell4CardsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCardRightClick.SuspendLayout();
             this.mnuTools.SuspendLayout();
             this.SuspendLayout();
@@ -362,6 +363,7 @@
             this.sellAll1CardsToolStripMenuItem,
             this.sellAll2CardsToolStripMenuItem,
             this.sellAll3CardsToolStripMenuItem,
+            this.sell4CardsToolStripMenuItem,
             this.sellAllTreasureCardsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
@@ -383,29 +385,36 @@
             // 
             this.sellAll1CardsToolStripMenuItem.Name = "sellAll1CardsToolStripMenuItem";
             this.sellAll1CardsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.sellAll1CardsToolStripMenuItem.Text = "Sell all 1★ cards";
+            this.sellAll1CardsToolStripMenuItem.Text = "Sell 1★ cards...";
             this.sellAll1CardsToolStripMenuItem.Click += new System.EventHandler(this.sellAll1CardsToolStripMenuItem_Click);
             // 
             // sellAll2CardsToolStripMenuItem
             // 
             this.sellAll2CardsToolStripMenuItem.Name = "sellAll2CardsToolStripMenuItem";
             this.sellAll2CardsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.sellAll2CardsToolStripMenuItem.Text = "Sell all 2★ cards";
+            this.sellAll2CardsToolStripMenuItem.Text = "Sell 2★ cards...";
             this.sellAll2CardsToolStripMenuItem.Click += new System.EventHandler(this.sellAll2CardsToolStripMenuItem_Click);
             // 
             // sellAll3CardsToolStripMenuItem
             // 
             this.sellAll3CardsToolStripMenuItem.Name = "sellAll3CardsToolStripMenuItem";
             this.sellAll3CardsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.sellAll3CardsToolStripMenuItem.Text = "Sell all 3★ cards";
+            this.sellAll3CardsToolStripMenuItem.Text = "Sell 3★ cards...";
             this.sellAll3CardsToolStripMenuItem.Click += new System.EventHandler(this.sellAll3CardsToolStripMenuItem_Click);
             // 
             // sellAllTreasureCardsToolStripMenuItem
             // 
             this.sellAllTreasureCardsToolStripMenuItem.Name = "sellAllTreasureCardsToolStripMenuItem";
             this.sellAllTreasureCardsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.sellAllTreasureCardsToolStripMenuItem.Text = "Sell all treasure cards";
+            this.sellAllTreasureCardsToolStripMenuItem.Text = "Sell all treasure cards...";
             this.sellAllTreasureCardsToolStripMenuItem.Click += new System.EventHandler(this.sellAllTreasureCardsToolStripMenuItem_Click);
+            // 
+            // sell4CardsToolStripMenuItem
+            // 
+            this.sell4CardsToolStripMenuItem.Name = "sell4CardsToolStripMenuItem";
+            this.sell4CardsToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
+            this.sell4CardsToolStripMenuItem.Text = "Sell 4★ cards...";
+            this.sell4CardsToolStripMenuItem.Click += new System.EventHandler(this.sell4CardsToolStripMenuItem_Click);
             // 
             // frmSelectCard
             // 
@@ -482,5 +491,6 @@
         private System.Windows.Forms.ToolStripMenuItem sellAll2CardsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sellAll3CardsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sellAllTreasureCardsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sell4CardsToolStripMenuItem;
     }
 }

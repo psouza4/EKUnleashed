@@ -610,203 +610,61 @@ namespace EKUnleashed
 
         private void sellAll1CardsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GameObjs.Card.RefreshCardsInDeckCache();
-
-            JObject cards = GameClient.Current.GetUsersCards();
-
-            List<GameObjs.Card> items = new List<GameObjs.Card>();
-
-            foreach (var jCard in cards["data"]["Cards"])
-            {
-                try
-                {
-                    GameObjs.Card TempCard = new GameObjs.Card(jCard);
-
-                    if (!TempCard.Valid) continue;
-                    if (!Utils.ValidText(TempCard.Name)) continue;
-
-                    if (TempCard.Locked) continue;
-                    if (TempCard.Stars != 1) continue;
-                    if (TempCard.Level != 0) continue;
-                    if (TempCard.InAnyDeck) continue;
-                    if (TempCard.Locked) continue;
-                    if (TempCard.ElementType == GameObjs.Card.ElementTypes.Food) continue;
-                    if (TempCard.ElementType == GameObjs.Card.ElementTypes.Activity) continue;
-
-                    items.Add(TempCard);
-                }
-                catch { }
-            }
-
-            if (items.Count == 0)
-            {
-                MessageBox.Show("You don't have any 1★ cards to sell.", "No 1★ Cards", MessageBoxButtons.OK);
-                return;
-            }
-
-            if (MessageBox.Show("Do you really want to sell " + items.Count.ToString("#,##0") + " " + Utils.PluralWord(items.Count, "card", "cards") + "?", "Confirm Card Sale", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
-                return;
-
-            string cards_to_sell = "";
-            int gold_amount = 0;
-            int gold_cards_sold = items.Count;
-
-            foreach (GameObjs.Card card in items)
-            {
-                cards_to_sell += card.ID_User.ToString() + "_";
-                gold_amount += card.SellWorth;
-            }
-
-            cards_to_sell = cards_to_sell.Trim(new char[] { '_' });
-
-            Cursor cur = this.Cursor;
-            this.Cursor = Cursors.WaitCursor;
-            Utils.StartMethodMultithreadedAndWait(() =>
-            {
-                GameClient.Current.GetGameData("card", "SaleCardRunes", "Cards=" + cards_to_sell);
-                GameClient.Current.GameVitalsUpdate(GameClient.Current.GetGameData("user", "GetUserInfo"));
-                GameClient.Current.UserCards_CachedData = null;
-                Utils.LoggerNotifications("<color=#ffa000>Sold " + gold_cards_sold.ToString("#,##0") + " " + Utils.PluralWord(gold_cards_sold, "card", "cards") + " for " + gold_amount.ToString("#,##0") + " gold.</color>");
-            });
-
-            this.Cursor = cur;
+            this.SellCards(SellCardsMode.Stars1, "1★");
         }
 
         private void sellAll2CardsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GameObjs.Card.RefreshCardsInDeckCache();
-
-            JObject cards = GameClient.Current.GetUsersCards();
-
-            List<GameObjs.Card> items = new List<GameObjs.Card>();
-
-            foreach (var jCard in cards["data"]["Cards"])
-            {
-                try
-                {
-                    GameObjs.Card TempCard = new GameObjs.Card(jCard);
-
-                    if (!TempCard.Valid) continue;
-                    if (!Utils.ValidText(TempCard.Name)) continue;
-
-                    if (TempCard.Locked) continue;
-                    if (TempCard.Stars != 2) continue;
-                    if (TempCard.Level != 0) continue;
-                    if (TempCard.InAnyDeck) continue;
-                    if (TempCard.Locked) continue;
-                    if (TempCard.ElementType == GameObjs.Card.ElementTypes.Food) continue;
-                    if (TempCard.ElementType == GameObjs.Card.ElementTypes.Activity) continue;
-
-                    items.Add(TempCard);
-                }
-                catch { }
-            }
-
-            if (items.Count == 0)
-            {
-                MessageBox.Show("You don't have any 2★ cards to sell.", "No 2★ Cards", MessageBoxButtons.OK);
-                return;
-            }
-
-            if (MessageBox.Show("Do you really want to sell " + items.Count.ToString("#,##0") + " " + Utils.PluralWord(items.Count, "card", "cards") + "?", "Confirm Card Sale", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
-                return;
-
-            string cards_to_sell = "";
-            int gold_amount = 0;
-            int gold_cards_sold = items.Count;
-
-            foreach (GameObjs.Card card in items)
-            {
-                cards_to_sell += card.ID_User.ToString() + "_";
-                gold_amount += card.SellWorth;
-            }
-
-            cards_to_sell = cards_to_sell.Trim(new char[] { '_' });
-
-            Cursor cur = this.Cursor;
-            this.Cursor = Cursors.WaitCursor;
-            Utils.StartMethodMultithreadedAndWait(() =>
-            {
-                GameClient.Current.GetGameData("card", "SaleCardRunes", "Cards=" + cards_to_sell);
-                GameClient.Current.GameVitalsUpdate(GameClient.Current.GetGameData("user", "GetUserInfo"));
-                GameClient.Current.UserCards_CachedData = null;
-                Utils.LoggerNotifications("<color=#ffa000>Sold " + gold_cards_sold.ToString("#,##0") + " " + Utils.PluralWord(gold_cards_sold, "card", "cards") + " for " + gold_amount.ToString("#,##0") + " gold.</color>");
-            });
-
-            this.Cursor = cur;
+            this.SellCards(SellCardsMode.Stars2, "2★");
         }
 
         private void sellAll3CardsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            GameObjs.Card.RefreshCardsInDeckCache();
+            this.SellCards(SellCardsMode.Stars3, "3★");
+        }
 
-            JObject cards = GameClient.Current.GetUsersCards();
-
-            List<GameObjs.Card> items = new List<GameObjs.Card>();
-
-            foreach (var jCard in cards["data"]["Cards"])
-            {
-                try
-                {
-                    GameObjs.Card TempCard = new GameObjs.Card(jCard);
-
-                    if (!TempCard.Valid) continue;
-                    if (!Utils.ValidText(TempCard.Name)) continue;
-
-                    if (TempCard.Locked) continue;
-                    if (TempCard.Stars != 3) continue;
-                    if (TempCard.Level != 0) continue;
-                    if (TempCard.InAnyDeck) continue;
-                    if (TempCard.Locked) continue;
-                    if (TempCard.ElementType == GameObjs.Card.ElementTypes.Food) continue;
-                    if (TempCard.ElementType == GameObjs.Card.ElementTypes.Activity) continue;
-
-                    items.Add(TempCard);
-                }
-                catch { }
-            }
-
-            if (items.Count == 0)
-            {
-                MessageBox.Show("You don't have any 3★ cards to sell.", "No 3★ Cards", MessageBoxButtons.OK);
-                return;
-            }
-
-            if (MessageBox.Show("Do you really want to sell " + items.Count.ToString("#,##0") + " " + Utils.PluralWord(items.Count, "card", "cards") + "?", "Confirm Card Sale", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
-                return;
-
-            string cards_to_sell = "";
-            int gold_amount = 0;
-            int gold_cards_sold = items.Count;
-
-            foreach (GameObjs.Card card in items)
-            {
-                cards_to_sell += card.ID_User.ToString() + "_";
-                gold_amount += card.SellWorth;
-            }
-
-            cards_to_sell = cards_to_sell.Trim(new char[] { '_' });
-
-            Cursor cur = this.Cursor;
-            this.Cursor = Cursors.WaitCursor;
-            Utils.StartMethodMultithreadedAndWait(() =>
-            {
-                GameClient.Current.GetGameData("card", "SaleCardRunes", "Cards=" + cards_to_sell);
-                GameClient.Current.GameVitalsUpdate(GameClient.Current.GetGameData("user", "GetUserInfo"));
-                GameClient.Current.UserCards_CachedData = null;
-                Utils.LoggerNotifications("<color=#ffa000>Sold " + gold_cards_sold.ToString("#,##0") + " " + Utils.PluralWord(gold_cards_sold, "card", "cards") + " for " + gold_amount.ToString("#,##0") + " gold.</color>");
-            });
-
-            this.Cursor = cur;
+        private void sell4CardsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.SellCards(SellCardsMode.Stars4, "4★");
         }
 
         private void sellAllTreasureCardsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.SellCards(SellCardsMode.Treasure, "Treasure");
+        }
+
+        private enum SellCardsMode
+        {
+            Stars1,
+            Stars2,
+            Stars3,
+            Stars4,
+            Treasure
+        }
+
+        private void SellCards(SellCardsMode sell_mode, string sell_desc)
         {
             GameObjs.Card.RefreshCardsInDeckCache();
 
             JObject cards = GameClient.Current.GetUsersCards();
 
             List<GameObjs.Card> items = new List<GameObjs.Card>();
+            int iTotalIncludingNonqualifyingCards = 0;
+
+            Dictionary<int, int> cardCount = new Dictionary<int, int>();
+
+            foreach (var jCard in cards["data"]["Cards"])
+            {
+                GameObjs.Card TempCard = new GameObjs.Card(jCard);
+
+                if (!cardCount.ContainsKey(TempCard.ID_Generic))
+                    cardCount.Add(TempCard.ID_Generic, 1);
+                else
+                    cardCount[TempCard.ID_Generic]++;
+            }
+
+            Dictionary<int, int> cardUsed = new Dictionary<int, int>();
+            int iDontUseMoreThanThreshold = Utils.GetAppValue("Sell_Cards_ReserveThreshold", 10);
 
             foreach (var jCard in cards["data"]["Cards"])
             {
@@ -817,26 +675,66 @@ namespace EKUnleashed
                     if (!TempCard.Valid) continue;
                     if (!Utils.ValidText(TempCard.Name)) continue;
 
-                    if (TempCard.Locked) continue;
-                    if (TempCard.ElementType != GameObjs.Card.ElementTypes.Treasure) continue;
                     if (TempCard.Level != 0) continue;
-                    if (TempCard.InAnyDeck) continue;
                     if (TempCard.Locked) continue;
+                    if (TempCard.InAnyDeck) continue;
                     if (TempCard.ElementType == GameObjs.Card.ElementTypes.Food) continue;
                     if (TempCard.ElementType == GameObjs.Card.ElementTypes.Activity) continue;
 
-                    items.Add(TempCard);
+                    switch (sell_mode)
+                    {
+                        case SellCardsMode.Stars1:
+                            if (TempCard.Stars != 1) continue;
+                            break;
+
+                        case SellCardsMode.Stars2:
+                            if (TempCard.Stars != 2) continue;
+                            break;
+
+                        case SellCardsMode.Stars3:
+                            if (TempCard.Stars != 3) continue;
+                            break;
+
+                        case SellCardsMode.Stars4:
+                            if (TempCard.Stars != 4) continue;
+                            break;
+
+                        case SellCardsMode.Treasure:
+                            if (TempCard.ElementType != GameObjs.Card.ElementTypes.Treasure) continue;
+                            break;
+
+                    }
+
+                    iTotalIncludingNonqualifyingCards++;
+
+                    // Test threshold (if we're not selling treasure cards)
+                    if (sell_mode != SellCardsMode.Treasure)
+                    {
+                        int iUsedSoFar = 0;
+                        if (cardUsed.ContainsKey(TempCard.ID_Generic))
+                            iUsedSoFar = cardUsed[TempCard.ID_Generic];
+                        if (cardCount[TempCard.ID_Generic] - iUsedSoFar <= iDontUseMoreThanThreshold) continue;
+
+                        items.Add(TempCard);
+
+                        if (!cardUsed.ContainsKey(TempCard.ID_Generic))
+                            cardUsed.Add(TempCard.ID_Generic, 1);
+                        else
+                            cardUsed[TempCard.ID_Generic]++;
+                    }
+                    else
+                        items.Add(TempCard); // always sell all treasure cards if they meet the normal qualifications
                 }
                 catch { }
             }
 
             if (items.Count == 0)
             {
-                MessageBox.Show("You don't have any treasure cards to sell.", "No Treasure Cards", MessageBoxButtons.OK);
+                MessageBox.Show("You don't have any qualifying " + sell_desc + " cards to sell." + ((iTotalIncludingNonqualifyingCards == 0) ? string.Empty : "\r\n\r\nYour reserve of " + iDontUseMoreThanThreshold.ToString("#,##0") + " caused " + (iTotalIncludingNonqualifyingCards - items.Count).ToString("#,##0") + " cards to be skipped."), "No " + sell_desc + " Cards", MessageBoxButtons.OK);
                 return;
             }
 
-            if (MessageBox.Show("Do you really want to sell " + items.Count.ToString("#,##0") + " " + Utils.PluralWord(items.Count, "card", "cards") + "?", "Confirm Card Sale", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
+            if (MessageBox.Show("Do you really want to sell " + items.Count.ToString("#,##0") + " " + sell_desc + " " + Utils.PluralWord(items.Count, "card", "cards") + "?" + ((iTotalIncludingNonqualifyingCards == items.Count) ? string.Empty : "\r\n\r\nYour reserve of " + iDontUseMoreThanThreshold.ToString("#,##0") + " caused " + (iTotalIncludingNonqualifyingCards - items.Count).ToString("#,##0") + " cards to be skipped."), "Confirm Card Sale", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) != System.Windows.Forms.DialogResult.Yes)
                 return;
 
             string cards_to_sell = "";
@@ -858,7 +756,7 @@ namespace EKUnleashed
                 GameClient.Current.GetGameData("card", "SaleCardRunes", "Cards=" + cards_to_sell);
                 GameClient.Current.GameVitalsUpdate(GameClient.Current.GetGameData("user", "GetUserInfo"));
                 GameClient.Current.UserCards_CachedData = null;
-                Utils.LoggerNotifications("<color=#ffa000>Sold " + gold_cards_sold.ToString("#,##0") + " " + Utils.PluralWord(gold_cards_sold, "card", "cards") + " for " + gold_amount.ToString("#,##0") + " gold.</color>");
+                Utils.LoggerNotifications("<color=#ffa000>Sold " + gold_cards_sold.ToString("#,##0") + " " + sell_desc + " " + Utils.PluralWord(gold_cards_sold, "card", "cards") + " for " + gold_amount.ToString("#,##0") + " gold.</color>");
             });
 
             this.Cursor = cur;

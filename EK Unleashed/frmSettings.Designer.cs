@@ -183,6 +183,7 @@
             this.chkAutomation_FightArena = new System.Windows.Forms.CheckBox();
             this.chkAutomation_Events = new System.Windows.Forms.CheckBox();
             this.tabGeneral = new System.Windows.Forms.TabPage();
+            this.chkGeneral_DontLinkLowStarCards = new System.Windows.Forms.CheckBox();
             this.chkGeneral_AutoStoreReplays = new System.Windows.Forms.CheckBox();
             this.chkGeneral_ClaimWorldTreeRewards = new System.Windows.Forms.CheckBox();
             this.groupBox15 = new System.Windows.Forms.GroupBox();
@@ -231,7 +232,9 @@
             this.txtAccount_GameAccount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tabctrlSettings = new System.Windows.Forms.TabControl();
-            this.chkGeneral_DontLinkLowStarCards = new System.Windows.Forms.CheckBox();
+            this.groupBox20 = new System.Windows.Forms.GroupBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.txtGeneral_SellCardReserveThreshold = new System.Windows.Forms.TextBox();
             this.tabRaider.SuspendLayout();
             this.tabThieves.SuspendLayout();
             this.tabArena.SuspendLayout();
@@ -260,6 +263,7 @@
             this.groupBox1.SuspendLayout();
             this.tabAccount.SuspendLayout();
             this.tabctrlSettings.SuspendLayout();
+            this.groupBox20.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
@@ -1916,6 +1920,7 @@
             // 
             this.tabGeneral.AutoScroll = true;
             this.tabGeneral.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(29)))), ((int)(((byte)(33)))));
+            this.tabGeneral.Controls.Add(this.groupBox20);
             this.tabGeneral.Controls.Add(this.chkGeneral_DontLinkLowStarCards);
             this.tabGeneral.Controls.Add(this.chkGeneral_AutoStoreReplays);
             this.tabGeneral.Controls.Add(this.chkGeneral_ClaimWorldTreeRewards);
@@ -1936,6 +1941,17 @@
             this.tabGeneral.Size = new System.Drawing.Size(864, 455);
             this.tabGeneral.TabIndex = 5;
             this.tabGeneral.Text = "General";
+            // 
+            // chkGeneral_DontLinkLowStarCards
+            // 
+            this.chkGeneral_DontLinkLowStarCards.AutoSize = true;
+            this.chkGeneral_DontLinkLowStarCards.ForeColor = System.Drawing.Color.White;
+            this.chkGeneral_DontLinkLowStarCards.Location = new System.Drawing.Point(527, 512);
+            this.chkGeneral_DontLinkLowStarCards.Name = "chkGeneral_DontLinkLowStarCards";
+            this.chkGeneral_DontLinkLowStarCards.Size = new System.Drawing.Size(284, 17);
+            this.chkGeneral_DontLinkLowStarCards.TabIndex = 33;
+            this.chkGeneral_DontLinkLowStarCards.Text = "Don\'t link to 1★, 2★, or 3★ cards (speed improvement)";
+            this.chkGeneral_DontLinkLowStarCards.UseVisualStyleBackColor = true;
             // 
             // chkGeneral_AutoStoreReplays
             // 
@@ -2468,16 +2484,35 @@
             this.tabctrlSettings.Size = new System.Drawing.Size(872, 481);
             this.tabctrlSettings.TabIndex = 0;
             // 
-            // chkGeneral_DontLinkLowStarCards
+            // groupBox20
             // 
-            this.chkGeneral_DontLinkLowStarCards.AutoSize = true;
-            this.chkGeneral_DontLinkLowStarCards.ForeColor = System.Drawing.Color.White;
-            this.chkGeneral_DontLinkLowStarCards.Location = new System.Drawing.Point(527, 512);
-            this.chkGeneral_DontLinkLowStarCards.Name = "chkGeneral_DontLinkLowStarCards";
-            this.chkGeneral_DontLinkLowStarCards.Size = new System.Drawing.Size(284, 17);
-            this.chkGeneral_DontLinkLowStarCards.TabIndex = 33;
-            this.chkGeneral_DontLinkLowStarCards.Text = "Don\'t link to 1★, 2★, or 3★ cards (speed improvement)";
-            this.chkGeneral_DontLinkLowStarCards.UseVisualStyleBackColor = true;
+            this.groupBox20.Controls.Add(this.label62);
+            this.groupBox20.Controls.Add(this.txtGeneral_SellCardReserveThreshold);
+            this.groupBox20.ForeColor = System.Drawing.Color.White;
+            this.groupBox20.Location = new System.Drawing.Point(402, 211);
+            this.groupBox20.Name = "groupBox20";
+            this.groupBox20.Size = new System.Drawing.Size(438, 139);
+            this.groupBox20.TabIndex = 34;
+            this.groupBox20.TabStop = false;
+            this.groupBox20.Text = "Card Selling";
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label62.ForeColor = System.Drawing.Color.White;
+            this.label62.Location = new System.Drawing.Point(6, 23);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(148, 13);
+            this.label62.TabIndex = 24;
+            this.label62.Text = "Leave a reserve when selling:";
+            // 
+            // txtGeneral_SellCardReserveThreshold
+            // 
+            this.txtGeneral_SellCardReserveThreshold.Location = new System.Drawing.Point(29, 45);
+            this.txtGeneral_SellCardReserveThreshold.Name = "txtGeneral_SellCardReserveThreshold";
+            this.txtGeneral_SellCardReserveThreshold.Size = new System.Drawing.Size(141, 20);
+            this.txtGeneral_SellCardReserveThreshold.TabIndex = 25;
             // 
             // frmSettings
             // 
@@ -2553,6 +2588,8 @@
             this.tabAccount.ResumeLayout(false);
             this.tabAccount.PerformLayout();
             this.tabctrlSettings.ResumeLayout(false);
+            this.groupBox20.ResumeLayout(false);
+            this.groupBox20.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2761,5 +2798,8 @@
         private System.Windows.Forms.Label label63;
         private System.Windows.Forms.CheckBox chkAutomation_EnableConnectionThrottling;
         private System.Windows.Forms.CheckBox chkGeneral_DontLinkLowStarCards;
+        private System.Windows.Forms.GroupBox groupBox20;
+        private System.Windows.Forms.Label label62;
+        private System.Windows.Forms.TextBox txtGeneral_SellCardReserveThreshold;
     }
 }

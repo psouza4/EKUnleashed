@@ -140,6 +140,7 @@ namespace EKUnleashed
                 this.chkGeneral_EnchantCardWith2Star.Checked = (Utils.GetAppSetting("Enchant_Cards_WithStars").Contains("2"));
                 this.chkGeneral_EnchantCardWith3Star.Checked = (Utils.GetAppSetting("Enchant_Cards_WithStars").Contains("3"));
                 this.txtGeneral_EnchantCardReserveThreshold.Text = Utils.GetAppValue("Enchant_Cards_ReserveThreshold", 5).ToString();
+                this.txtGeneral_SellCardReserveThreshold.Text = Utils.GetAppValue("Sell_Cards_ReserveThreshold", 10).ToString();
                 this.txtGeneral_EnchantCardExclude.Text = Utils.GetAppSetting("Enchant_Cards_Excluded");
                 this.chkGeneral_EnchantCardFoodCards.Checked = Utils.True("Enchant_Cards_AllowFood");
                 this.chkGeneral_EnchantRuneWith1Star.Checked = (Utils.GetAppSetting("Enchant_Runes_WithStars").Contains("1"));
@@ -336,6 +337,7 @@ namespace EKUnleashed
                 if (this.chkGeneral_EnchantCardWith3Star.Checked) enchant_card_stars += ", 3";
                 Utils.SetAppSetting("Enchant_Cards_WithStars", enchant_card_stars.TrimStart(new char[] { ' ', ',' }));
                 Utils.SetAppSetting("Enchant_Cards_ReserveThreshold", this.txtGeneral_EnchantCardReserveThreshold.Text.Trim());
+                Utils.SetAppSetting("Sell_Cards_ReserveThreshold", this.txtGeneral_SellCardReserveThreshold.Text.Trim());
                 Utils.SetAppSetting("Enchant_Cards_Excluded", this.txtGeneral_EnchantCardExclude.Text.Trim());
                 Utils.SetAppSetting("Enchant_Cards_AllowFood", this.chkGeneral_EnchantCardFoodCards.Checked.ToString());
                 string enchant_rune_stars = "";
