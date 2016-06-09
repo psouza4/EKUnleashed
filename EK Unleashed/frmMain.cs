@@ -724,12 +724,9 @@ namespace EKUnleashed
         {
             return string.Concat(new object[]
 			{
-				"&phpp=", "ANDROID_ARC",
-				"&phpl=", "EN",
-				"&pvc=",  "1.7.5",
+                GameClient.TAG_EK,
 				"&phpk=", frmMain.CalculateMD5SumForGamePacket(),
-				"&phps=", frmMain.AuthSerial,
-				"&pvb=", System.Web.HttpUtility.UrlEncode(GameClient.TAG_EK_DateOnLoad)
+				"&phps=", frmMain.AuthSerial
 			});
         }
 

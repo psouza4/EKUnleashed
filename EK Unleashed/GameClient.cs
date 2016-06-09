@@ -56,7 +56,7 @@ namespace EKUnleashed
                 return
                     "&phpp=ANDROID_ARC" +
                     "&phpl=EN" +
-                    "&pvc=1.7.5" +
+                    "&pvc=1.8.0" +
                     "&pvb=" + System.Web.HttpUtility.UrlEncode(TAG_EK_DateOnLoad); // for 1.7.5 they switched the date to the current date/time vs the build date/time
             }
         }
