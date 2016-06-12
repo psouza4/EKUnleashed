@@ -724,12 +724,17 @@ namespace EKUnleashed
         {
             return string.Concat(new object[]
 			{
-				"&phpp=", "ANDROID_ARC",
-				"&phpl=", "EN",
-				"&pvc=",  "1.7.5",
-				"&phpk=", frmMain.CalculateMD5SumForGamePacket(),
-				"&phps=", frmMain.AuthSerial,
-				"&pvb=", System.Web.HttpUtility.UrlEncode(GameClient.TAG_EK_DateOnLoad)
+                // The removed parameters are duplicates that are already handled by GameClient.TAG_EK
+
+				//"&phpp=", "ANDROID_ARC",
+				//"&phpl=", "EN",
+				//"&pvc=",  "1.7.5",
+
+                GameClient.TAG_EK,
+				"&phpk=", frmMain.CalculateMD5SumForGamePacket(),				
+                "&phps=", frmMain.AuthSerial,
+
+				//"&pvb=", System.Web.HttpUtility.UrlEncode(GameClient.TAG_EK_DateOnLoad)
 			});
         }
 
@@ -869,29 +874,41 @@ namespace EKUnleashed
             Utils.Chatter("Getting the current server time...");
 
             uint time_check = 0;
-            try
-            {
-                string result = Utils.CStr(Comm.Download("http://www.ekunleashed.com/time.php"));
-                Utils.DebugLogger("Time result: " + result);
 
-                time_check = 0;
-                uint.TryParse(result, out time_check);
-            }
-            catch (Exception ex)
+            if (time_check == 0)
             {
-                Utils.Chatter("... <color=#ff4040>FAILED!  Are you running an outdated version of the .NET Framework?</color>");
-                Utils.Chatter();
-                Utils.Chatter("<color=#ff4040>Check Windows Updates for all .NET updates.</color>");
-                Utils.Chatter();
-                Utils.Chatter("<color=#ff4040>Full error: " + Errors.GetAllErrorDetails(ex) + "</color>");
-                return;
+                try
+                {
+                    string result = Utils.CStr(Comm.Download("http://localtimes.info/North_America/United_States/Washington/Seattle/"));
+                    result = Utils.ChopperBlank(result, "<input id=\"unixUTC\" type=\"hidden\" value=\"", "\"");
+
+                    //Utils.Chatter("result = " + result);
+                    //Utils.Chatter("result = " + Utils.time_val((uint)Utils.CLng(result)));
+
+                    time_check = 0;
+                    uint.TryParse(result, out time_check);
+                }
+                catch { }
             }
 
-            if (time_check <= 0)
+            if (time_check == 0)
             {
-                Utils.Chatter("... <color=#ff4040>FAILED!  Are you firewalled or is the server down?</color>");
+                try
+                {
+                    string result = Utils.CStr(Comm.Download("http://www.ekunleashed.com/time.php"));
+                    Utils.DebugLogger("Time result: " + result);
+
+                    time_check = 0;
+                    uint.TryParse(result, out time_check);
+                }
+                catch { }
+            }
+
+            if (time_check == 0)
+            {
+                Utils.Chatter("... <color=#ff4040>FAILED!  Is EKUnleashed firewalled?</color>");
                 Utils.Chatter();
-                Utils.Chatter("<color=#ff4040>This utility requires data from the EKUnleashed.com website to schedule automated game events.</color>");
+                Utils.Chatter("<color=#ff4040>This program requires internet access.</color>");
                 return;
             }
 

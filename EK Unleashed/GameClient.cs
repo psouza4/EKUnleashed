@@ -56,8 +56,8 @@ namespace EKUnleashed
                 return
                     "&phpp=ANDROID_ARC" +
                     "&phpl=EN" +
-                    "&pvc=1.7.5" +
-                    "&pvb=" + System.Web.HttpUtility.UrlEncode(TAG_EK_DateOnLoad); // for 1.7.5 they switched the date to the current date/time vs the build date/time
+                    "&pvc=1.8.0" +
+                    "&pvb=" + System.Web.HttpUtility.UrlEncode(TAG_EK_DateOnLoad); // for 1.7.5+ they switched the date to the current date/time vs the build date/time
             }
         }
 
@@ -7380,7 +7380,7 @@ namespace EKUnleashed
 
         #region Chinese server stuff
 
-        private const string TAG_SW = "&phpp=ANDROID&phpl=ZH_CN&pvc=1.7.5&pvb=2015-08-07%2018%3A55";
+        private const string TAG_SW = "&phpp=ANDROID&phpl=ZH_CN&pvc=1.8.0&pvb=2015-08-07%2018%3A55";
 
         private Comm.CommFetchOptions Login_SW(string language_to_use = "ZH_CN")
         {
