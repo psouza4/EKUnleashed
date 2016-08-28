@@ -1398,17 +1398,25 @@ namespace EKUnleashed
                 g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
                 g.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
 
-                g.DrawImage(
-                    image1,
-                    new System.Drawing.Rectangle(System.Drawing.Point.Empty, image1.Size), // Destination Rectangle
-                    new System.Drawing.Rectangle(System.Drawing.Point.Empty, image1.Size), // Source Rectangle
-                    System.Drawing.GraphicsUnit.Pixel);
+                try
+                {
+                    g.DrawImage(
+                        image1,
+                        new System.Drawing.Rectangle(System.Drawing.Point.Empty, image1.Size), // Destination Rectangle
+                        new System.Drawing.Rectangle(System.Drawing.Point.Empty, image1.Size), // Source Rectangle
+                        System.Drawing.GraphicsUnit.Pixel);
+                }
+                catch { }
 
-                g.DrawImage(
-                    image2,
-                    new System.Drawing.Rectangle(pImage2.X, pImage2.Y, image2.Width, image2.Height), // Destination Rectangle
-                    new System.Drawing.Rectangle(System.Drawing.Point.Empty, image2.Size), // Source Rectangle
-                    System.Drawing.GraphicsUnit.Pixel);
+                try
+                {
+                    g.DrawImage(
+                        image2,
+                        new System.Drawing.Rectangle(pImage2.X, pImage2.Y, image2.Width, image2.Height), // Destination Rectangle
+                        new System.Drawing.Rectangle(System.Drawing.Point.Empty, image2.Size), // Source Rectangle
+                        System.Drawing.GraphicsUnit.Pixel);
+                }
+                catch { }
             }
             return bmpRedrawn;
         }
