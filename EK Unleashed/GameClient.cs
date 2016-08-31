@@ -2994,6 +2994,7 @@ namespace EKUnleashed
                     //if (which_demon_invasion_cardID == "9007") demon_name =  "?"; // Azathoth ?
                     if (which_demon_invasion_cardID == "9008") demon_name = "Pazuzu";
                     if (which_demon_invasion_cardID == "9009") demon_name = "Bahamut";
+                    if (which_demon_invasion_cardID == "9016") demon_name = "Cthulhu";
                 }
                 else if (this.Service == GameService.Lies_of_Astaroth || this.Service == GameService.Elves_Realm)
                 {

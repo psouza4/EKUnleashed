@@ -1623,6 +1623,10 @@ namespace EKUnleashed
                     Utils.SetAppSetting("DemonInvasion_Bahamut_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Bahamut", "DeckCards"));
                     Utils.SetAppSetting("DemonInvasion_Bahamut_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Bahamut", "DeckRunes"));
 
+                    Utils.SetAppSetting("DemonInvasion_Cthulhu_Deck", SettingFromFile.GetData(GameClient.settings_file, "Cthulhu", "Deck"));
+                    Utils.SetAppSetting("DemonInvasion_Cthulhu_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Cthulhu", "DeckCards"));
+                    Utils.SetAppSetting("DemonInvasion_Cthulhu_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Cthulhu", "DeckRunes"));
+
                     Utils.SetAppSetting("DemonInvasion_DarkTitan_Deck", SettingFromFile.GetData(GameClient.settings_file, "DarkTitan", "Deck"));
                     Utils.SetAppSetting("DemonInvasion_DarkTitan_DeckCards", SettingFromFile.GetData(GameClient.settings_file, "Dark Titan", "DeckCards"));
                     Utils.SetAppSetting("DemonInvasion_DarkTitan_DeckRunes", SettingFromFile.GetData(GameClient.settings_file, "Dark Titan", "DeckRunes"));
