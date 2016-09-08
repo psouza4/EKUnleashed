@@ -237,9 +237,9 @@
             this.tabctrlSettings = new System.Windows.Forms.TabControl();
             this.groupBox21 = new System.Windows.Forms.GroupBox();
             this.label64 = new System.Windows.Forms.Label();
-            this.btn_Cthulu_Deck = new System.Windows.Forms.Button();
-            this.txtDI_Cthulu_DeckRunes = new System.Windows.Forms.TextBox();
-            this.txtDI_Cthulu_DeckCards = new System.Windows.Forms.TextBox();
+            this.btn_Cthulhu_Deck = new System.Windows.Forms.Button();
+            this.txtDI_Cthulhu_DeckRunes = new System.Windows.Forms.TextBox();
+            this.txtDI_Cthulhu_DeckCards = new System.Windows.Forms.TextBox();
             this.label65 = new System.Windows.Forms.Label();
             this.tabRaider.SuspendLayout();
             this.tabThieves.SuspendLayout();
@@ -2751,9 +2751,9 @@
             // groupBox21
             // 
             this.groupBox21.Controls.Add(this.label64);
-            this.groupBox21.Controls.Add(this.btn_Cthulu_Deck);
-            this.groupBox21.Controls.Add(this.txtDI_Cthulu_DeckRunes);
-            this.groupBox21.Controls.Add(this.txtDI_Cthulu_DeckCards);
+            this.groupBox21.Controls.Add(this.btn_Cthulhu_Deck);
+            this.groupBox21.Controls.Add(this.txtDI_Cthulhu_DeckRunes);
+            this.groupBox21.Controls.Add(this.txtDI_Cthulhu_DeckCards);
             this.groupBox21.Controls.Add(this.label65);
             this.groupBox21.ForeColor = System.Drawing.Color.White;
             this.groupBox21.Location = new System.Drawing.Point(21, 313);
@@ -2763,7 +2763,7 @@
             this.groupBox21.Size = new System.Drawing.Size(1085, 113);
             this.groupBox21.TabIndex = 61;
             this.groupBox21.TabStop = false;
-            this.groupBox21.Text = "Cthulu";
+            this.groupBox21.Text = "Cthulhu";
             // 
             // label64
             // 
@@ -2777,34 +2777,34 @@
             this.label64.TabIndex = 51;
             this.label64.Text = "Runes:";
             // 
-            // btn_Cthulu_Deck
+            // btn_Cthulhu_Deck
             // 
-            this.btn_Cthulu_Deck.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.btn_Cthulu_Deck.ForeColor = System.Drawing.Color.Black;
-            this.btn_Cthulu_Deck.Location = new System.Drawing.Point(21, 23);
-            this.btn_Cthulu_Deck.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_Cthulu_Deck.Name = "btn_Cthulu_Deck";
-            this.btn_Cthulu_Deck.Size = new System.Drawing.Size(175, 27);
-            this.btn_Cthulu_Deck.TabIndex = 50;
-            this.btn_Cthulu_Deck.Text = "(select deck)";
-            this.btn_Cthulu_Deck.UseVisualStyleBackColor = false;
-            this.btn_Cthulu_Deck.Click += new System.EventHandler(this.btn_Cthulu_Deck_Click);
+            this.btn_Cthulhu_Deck.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_Cthulhu_Deck.ForeColor = System.Drawing.Color.Black;
+            this.btn_Cthulhu_Deck.Location = new System.Drawing.Point(21, 23);
+            this.btn_Cthulhu_Deck.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_Cthulhu_Deck.Name = "btn_Cthulhu_Deck";
+            this.btn_Cthulhu_Deck.Size = new System.Drawing.Size(175, 27);
+            this.btn_Cthulhu_Deck.TabIndex = 50;
+            this.btn_Cthulhu_Deck.Text = "(select deck)";
+            this.btn_Cthulhu_Deck.UseVisualStyleBackColor = false;
+            this.btn_Cthulhu_Deck.Click += new System.EventHandler(this.btn_Cthulhu_Deck_Click);
             // 
-            // txtDI_Cthulu_DeckRunes
+            // txtDI_Cthulhu_DeckRunes
             // 
-            this.txtDI_Cthulu_DeckRunes.Location = new System.Drawing.Point(341, 73);
-            this.txtDI_Cthulu_DeckRunes.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDI_Cthulu_DeckRunes.Name = "txtDI_Cthulu_DeckRunes";
-            this.txtDI_Cthulu_DeckRunes.Size = new System.Drawing.Size(732, 22);
-            this.txtDI_Cthulu_DeckRunes.TabIndex = 47;
+            this.txtDI_Cthulhu_DeckRunes.Location = new System.Drawing.Point(341, 73);
+            this.txtDI_Cthulhu_DeckRunes.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDI_Cthulhu_DeckRunes.Name = "txtDI_Cthulhu_DeckRunes";
+            this.txtDI_Cthulhu_DeckRunes.Size = new System.Drawing.Size(732, 22);
+            this.txtDI_Cthulhu_DeckRunes.TabIndex = 47;
             // 
-            // txtDI_Cthulu_DeckCards
+            // txtDI_Cthulhu_DeckCards
             // 
-            this.txtDI_Cthulu_DeckCards.Location = new System.Drawing.Point(341, 26);
-            this.txtDI_Cthulu_DeckCards.Margin = new System.Windows.Forms.Padding(4);
-            this.txtDI_Cthulu_DeckCards.Name = "txtDI_Cthulu_DeckCards";
-            this.txtDI_Cthulu_DeckCards.Size = new System.Drawing.Size(732, 22);
-            this.txtDI_Cthulu_DeckCards.TabIndex = 45;
+            this.txtDI_Cthulhu_DeckCards.Location = new System.Drawing.Point(341, 26);
+            this.txtDI_Cthulhu_DeckCards.Margin = new System.Windows.Forms.Padding(4);
+            this.txtDI_Cthulhu_DeckCards.Name = "txtDI_Cthulhu_DeckCards";
+            this.txtDI_Cthulhu_DeckCards.Size = new System.Drawing.Size(732, 22);
+            this.txtDI_Cthulhu_DeckCards.TabIndex = 45;
             // 
             // label65
             // 
@@ -3110,9 +3110,9 @@
         private System.Windows.Forms.TextBox txtGeneral_SellCardReserveThreshold;
         private System.Windows.Forms.GroupBox groupBox21;
         private System.Windows.Forms.Label label64;
-        private System.Windows.Forms.Button btn_Cthulu_Deck;
-        private System.Windows.Forms.TextBox txtDI_Cthulu_DeckRunes;
-        private System.Windows.Forms.TextBox txtDI_Cthulu_DeckCards;
+        private System.Windows.Forms.Button btn_Cthulhu_Deck;
+        private System.Windows.Forms.TextBox txtDI_Cthulhu_DeckRunes;
+        private System.Windows.Forms.TextBox txtDI_Cthulhu_DeckCards;
         private System.Windows.Forms.Label label65;
     }
 }
