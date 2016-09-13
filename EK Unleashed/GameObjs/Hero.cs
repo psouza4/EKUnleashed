@@ -51,6 +51,20 @@ namespace EKUnleashed.GameObjs
             return -1;
         }
 
+        private long GetValueLong(string property)
+        {
+            if (!this.Valid)
+                return -1;
+
+            try
+            {
+                return long.Parse(this.raw_data["data"][property].ToString().Replace("\"", "").Trim());
+            }
+            catch { }
+
+            return -1;
+        }
+
         private string GetValueString(string property)
         {
             if (!this.Valid)
@@ -99,8 +113,8 @@ namespace EKUnleashed.GameObjs
             }
         }
         
-        private int _XP = -1;
-        public int XP
+        private long _XP = -1;
+        public long XP
         {
             get
             {
@@ -110,7 +124,7 @@ namespace EKUnleashed.GameObjs
                 if (!this.Valid)
                     return -1;
 
-                this._XP = this.GetValueInt("Exp");
+                this._XP = this.GetValueLong("Exp");
 
                 return this._XP;
             }
@@ -129,11 +143,11 @@ namespace EKUnleashed.GameObjs
                     if (!this.Valid)
                         return -1;
 
-                    int current_XP = this.XP;
-                    int last_level_XP = this.GetValueInt("PrevExp");
-                    int next_level_XP = this.GetValueInt("NextExp");
+                    long current_XP = this.XP;
+                    long last_level_XP = this.GetValueLong("PrevExp");
+                    long next_level_XP = this.GetValueLong("NextExp");
 
-                    int XP_progress = current_XP - last_level_XP;
+                    long XP_progress = current_XP - last_level_XP;
 
                     this._ProgressTowardLevel = ((double)XP_progress) / ((double)(next_level_XP - last_level_XP)) * 100.0;
 
@@ -145,8 +159,8 @@ namespace EKUnleashed.GameObjs
             }
         }
 
-        private int _PrevExp = -1;
-        public int PrevExp
+        private long _PrevExp = -1;
+        public long PrevExp
         {
             get
             {
@@ -158,7 +172,7 @@ namespace EKUnleashed.GameObjs
                     if (!this.Valid)
                         return -1;
 
-                    this._PrevExp = this.GetValueInt("PrevExp");
+                    this._PrevExp = this.GetValueLong("PrevExp");
 
                     return this._PrevExp;
                 }
@@ -168,8 +182,8 @@ namespace EKUnleashed.GameObjs
             }
         }
 
-        private int _NextExp = -1;
-        public int NextExp
+        private long _NextExp = -1;
+        public long NextExp
         {
             get
             {
@@ -181,7 +195,7 @@ namespace EKUnleashed.GameObjs
                     if (!this.Valid)
                         return -1;
 
-                    this._NextExp = this.GetValueInt("NextExp");
+                    this._NextExp = this.GetValueLong("NextExp");
 
                     return this._NextExp;
                 }
